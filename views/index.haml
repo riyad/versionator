@@ -1,0 +1,30 @@
+!!! 5
+!!!
+
+%html
+  %head
+    %title Versionator
+  %body
+    %h1 Versionator
+    #root
+      .container.directories
+        %h2 Directories
+        %ul
+          - @dirs.each do |dir|
+            %li= dir
+      .container.recognizers
+        %h2 Recognizers
+        %ul
+          - @recognizers.each do |rec|
+            %li= rec.to_s
+      .container.wares
+        %h2 Wares
+        - @wares.each do |ware|
+          %h3
+            %span.ware= ware.name
+            %span.version= ware.installed_version
+          %p= ware.base_dir
+          .verdict.up-to-date
+            &nbsp;
+          %p
+            %a{ :href => ware.homepage } Homepage
