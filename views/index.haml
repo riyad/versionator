@@ -9,39 +9,42 @@
     %h1 Versionator
     #root
       .container
+      - unless @dirs_that_dont_exist.empty?
+        .container.directories
+          %h2 Directories not found
+          %ul
+            - @dirs_that_dont_exist.each do |dir|
+              %li
+                = image("folder-exists-not")
+                = dir
       .container.directories
-        %h2 Directories
-        %ul
-          - @dirs.each do |dir|
-            %li
-              = Dir.exist?(dir) ? image("folder") : image("folder-exists-not")
+        %h2 Installations
+        .container.installations
+        - @dirs_that_exist.each do |dir|
+          .container.installations
+            %h3
+              = image("folder")
               = dir
-      .container.recognizers
+            - @installations[dir].each do |installation|
+              .item
+                .logo= logo_for(installation)
+                .verdict.unknown
+                  &nbsp;
+                %h4
+                  %span.name= installation.name
+                  %span.version= installation.installed_version
+                %p
+                  %a{ :href => installation.project_url }
+                    = image("homepage-developer")
+                    Project Website
+                  - if installation.project_url_for_installed_version
+                    %a{ :href => installation.project_url_for_installed_version }
+                      = image("homepage-developer")
+                      = installation.name
+                      = installation.installed_version
+                      Release
+      #recognizers.container
         %h2 Recognizers
         %ul
           - @recognizers.each do |rec|
             %li= rec.to_s
-      .container.wares
-        %h2 Wares
-        - @wares.each do |ware|
-          .item
-            .logo
-              %img{ :src => "logos/#{ware.basic_name}.png" }
-            .verdict.unknown
-              &nbsp;
-            %h3
-              %span.ware= ware.name
-              %span.version= ware.installed_version
-            %p
-              = image("folder")
-              = ware.base_dir
-            %p
-              %a{ :href => ware.project_url }
-                = image("homepage-developer")
-                Project Website
-              - if ware.project_url_for_installed_version
-                %a{ :href => ware.project_url_for_installed_version }
-                  = image("homepage-developer")
-                  = ware.name
-                  = ware.installed_version
-                  Release
