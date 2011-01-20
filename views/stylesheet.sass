@@ -31,7 +31,18 @@ img
     .version
       font-style: italic
 
-.directories
-  ul
+ul
+  &.horizontal li
+    display: inline-block
+  &.list
     list-style: none
     padding: 0
+    &.icon li
+      margin: 0.5em
+      padding: 0.5em
+      text-align: center
+      img
+        display: block
+        margin-bottom: 0.5em
+  &.vertical li
+    display: block

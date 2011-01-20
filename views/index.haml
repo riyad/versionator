@@ -13,7 +13,7 @@
       - unless @dirs_that_dont_exist.empty?
         .container.directories
           %h2 Directories not found
-          %ul
+          %ul.vertical.list
             - @dirs_that_dont_exist.each do |dir|
               %li
                 = image("folder-exists-not")
