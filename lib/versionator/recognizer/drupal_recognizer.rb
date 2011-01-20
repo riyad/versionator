@@ -1,11 +1,12 @@
 
 module Versionator
   module Recognizer
+    # works with Drupal 6 and 7
     class DrupalRecognizer < Base
 
       def initialize(*args)
         @basic_name = "drupal"
-        @project_url = "http://drupal.org/"
+        @project_url = "http://drupal.org"
         @name = "Drupal"
 
         @detect_files = %w{cron.php index.php install.php xmlrpc.php}
