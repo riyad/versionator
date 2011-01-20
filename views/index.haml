@@ -13,7 +13,9 @@
         %h2 Directories
         %ul
           - @dirs.each do |dir|
-            %li= dir
+            %li
+              = image("folder")
+              = dir
       .container.recognizers
         %h2 Recognizers
         %ul
