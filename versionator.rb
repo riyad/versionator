@@ -41,6 +41,30 @@ module Versionator
       def recognizers
         Versionator::Recognizer.all
       end
+
+      # must be sibling of toggle item
+      def toggle_container(selector)
+        %Q{<div class="toggle-container">} +
+        %Q{<img src="images/container-show.png" class="show-container" />} +
+        %Q{<img src="images/container-hide.png" class="hide-container" />} +
+        %Q{<script>
+  $(document).ready(function() {
+    var subj = $('#{selector}');
+    var cont = $('#{selector}').siblings('.toggle-container');
+    var show = cont.find('.show-container');
+    var hide = cont.find('.hide-container');
+
+    cont.click(function() {
+      show.toggle();
+      hide.toggle();
+      subj.slideToggle();
+    });
+    subj.hide();
+    hide.hide();
+  });
+        </script>} +
+        %Q{</div>}
+      end
     end
 
     get '/' do
