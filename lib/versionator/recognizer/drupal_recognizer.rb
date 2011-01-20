@@ -23,6 +23,10 @@ module Versionator
         @installed_version = m[1]
       end
 
+      def project_url_for_installed_version
+        "#{project_url}/drupal-#{installed_version}"
+      end
+
       private
 
       def version_from_changelog

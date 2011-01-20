@@ -8,6 +8,7 @@ module Versionator
       # You may override:
       # - contents_detected?
       # - detect_installed_version
+      # - project_url_for_installed_version
       def initialize(base_dir)
         @base_dir = base_dir
 
@@ -36,6 +37,9 @@ module Versionator
       def files_detected?
         files_there = @detect_files.map { |file| File.exists?(File.expand_path(file, base_dir))}
         files_there.all?
+      end
+
+      def project_url_for_installed_version
       end
     end
   end
