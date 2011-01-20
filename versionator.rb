@@ -41,12 +41,18 @@ module Versionator
 
     get '/' do
       @dirs = dirs
+      @dirs_that_dont_exist = @dirs.reject { |dir| Dir.exists?(dir) }
+      @dirs_that_exist = @dirs - @dirs_that_dont_exist
+
       @recognizers = recognizers
-      @wares = []
-      @dirs.each do |dir|
-        @recognizers.each do |rec_class|
-          rec = rec_class.new(dir)
-          @wares << rec if rec.detected?
+      @installations = {}
+
+      @dirs_that_exist.each do |dir|
+        recognized_installations = []
+        @recognizers.each do |recognizer_class|
+          recognizer = recognizer_class.new(dir)
+          recognized_installations << recognizer if recognizer.detected?
+          @installations[dir] = recognized_installations
         end
       end
 
