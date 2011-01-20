@@ -19,7 +19,7 @@ module Versionator
 
     helpers do
       def dirs
-        File.readlines('dirs').map { |dir| dir.chomp }
+        File.readlines('dirs').map(&:chomp)
       end
 
       def logo_for(recognizer)
