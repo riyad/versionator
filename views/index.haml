@@ -45,7 +45,11 @@
                       = installation.installed_version
                       Release
       #recognizers.container
-        %h2 Recognizers
-        %ul
-          - @recognizers.each do |rec|
-            %li= rec.to_s
+        %h2
+          Recognizers
+        .container.recognizers
+          %ul.horizontal.recognizers.icon.list
+            - @recognizers.each do |rec|
+              %li
+                = logo_for(rec)
+                = rec.name
