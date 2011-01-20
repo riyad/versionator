@@ -9,7 +9,7 @@ module Versionator
       # - contents_detected?
       # - detect_installed_version
       # - project_url_for_installed_version
-      def initialize(base_dir)
+      def initialize(base_dir = nil)
         @base_dir = base_dir
 
         if detected?
