@@ -9,6 +9,8 @@ require File.expand_path('lib/versionator', File.dirname(__FILE__))
 
 module Versionator
   class Application < Sinatra::Base
+    set :app_file, __FILE__
+
     configure(:development) do
       register Sinatra::Reloader
       also_reload ["*.rb", "lib/**/*.rb"]
