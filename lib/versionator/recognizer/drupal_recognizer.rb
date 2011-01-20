@@ -1,12 +1,12 @@
 
 module Versionator
   module Recognizer
-    class Drupal6Recognizer < Base
+    class DrupalRecognizer < Base
 
       def initialize(*args)
         @basic_name = "drupal"
         @homepage = "http://drupal.org/"
-        @name = "Drupal6"
+        @name = "Drupal"
 
         @detect_files = %w{cron.php index.php install.php xmlrpc.php}
         @detect_dirs = %w{includes misc modules profiles scripts sites themes}
