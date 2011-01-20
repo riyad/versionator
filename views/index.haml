@@ -25,6 +25,8 @@
         %h2 Wares
         - @wares.each do |ware|
           .item
+            .logo
+              %img{ :src => "logos/#{ware.basic_name}.png" }
             .verdict.unknown
               &nbsp;
             %h3
