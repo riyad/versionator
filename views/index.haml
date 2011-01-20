@@ -9,15 +9,15 @@
   %body
     %h1 Versionator
     #root
-      .container
       - unless @dirs_that_dont_exist.empty?
-        .container.directories
+        .message.error
           %h2 Directories not found
           %ul.vertical.list
             - @dirs_that_dont_exist.each do |dir|
               %li
                 = image("folder-exists-not")
                 = dir
+      .container
       .container.directories
         %h2 Installations
         .container.installations
