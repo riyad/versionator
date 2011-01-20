@@ -25,11 +25,11 @@
         %h2 Wares
         - @wares.each do |ware|
           .item
+            .verdict.unknown
+              &nbsp;
             %h3
               %span.ware= ware.name
               %span.version= ware.installed_version
             %p= ware.base_dir
             %p
               %a{ :href => ware.homepage } Homepage
-            .verdict.up-to-date
-              &nbsp;
