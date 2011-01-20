@@ -2,7 +2,7 @@
 module Versionator
   module Recognizer
     class Base
-      attr_reader :base_dir, :basic_name, :homepage, :installed_version, :name
+      attr_reader :base_dir, :basic_name, :project_url, :installed_version, :name
 
       # :rdoc:
       # You may override:

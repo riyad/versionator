@@ -5,7 +5,7 @@ module Versionator
 
       def initialize(*args)
         @basic_name = "drupal"
-        @homepage = "http://drupal.org/"
+        @project_url = "http://drupal.org/"
         @name = "Drupal"
 
         @detect_files = %w{cron.php index.php install.php xmlrpc.php}
