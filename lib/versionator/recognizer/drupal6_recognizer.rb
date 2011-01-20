@@ -4,7 +4,8 @@ module Versionator
     class Drupal6Recognizer < Base
 
       def initialize(*args)
-        @homepage = 'http://drupal.org/'
+        @basic_name = "drupal"
+        @homepage = "http://drupal.org/"
         @name = "Drupal6"
 
         @detect_files = %w{cron.php index.php install.php xmlrpc.php}
