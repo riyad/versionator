@@ -8,7 +8,9 @@ img
   border-bottom: .1em solid black
   margin: 0.5em 0
   padding: 0.5em
-  h2, h3
+  &.installations
+    border-bottom: 0
+  h2, h3, h4
     margin: 0
     padding: 0
   .item
@@ -26,6 +28,8 @@ img
       &.unknown
         background-image: url('images/verdict-unknown.png')
         margin: 0 0.5em 0 0
+    .version
+      font-style: italic
 
 .directories
   ul
