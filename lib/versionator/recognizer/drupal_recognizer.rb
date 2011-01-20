@@ -14,7 +14,21 @@ module Versionator
         super(*args)
       end
 
+      def contents_detected?
+        version_from_changelog.start_with? "Drupal"
+      end
+
       def detect_installed_version
+        m = /^Drupal (.+), .*$/.match version_from_changelog
+        @installed_version = m[1]
+      end
+
+      private
+
+      def version_from_changelog
+        changelog = File.readlines(File.join(base_dir, "CHANGELOG.txt"))
+        changelog.select! { |line| line =~ /^Drupal/ }
+        changelog.first
       end
     end
   end
