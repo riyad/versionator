@@ -21,7 +21,7 @@ module Versionator
       end
 
       def detect_installed_version
-        "undefined"
+        @installed_version = "unknown"
       end
 
       def detected?
