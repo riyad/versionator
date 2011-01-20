@@ -18,6 +18,10 @@ module Versionator
 
 
     helpers do
+      def ajax_loader
+        %Q{<img src="ajax-loader.gif" class="ajax-loader" />}
+      end
+
       def dirs
         File.readlines('dirs').map(&:chomp)
       end
