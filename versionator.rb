@@ -26,6 +26,10 @@ module Versionator
         %Q{<img src="images/#{name}.png" alt="#{name}" />}
       end
 
+      def logo(basic_name)
+        %Q{<img src="logos/#{basic_name}.png" alt="#{basic_name}" />}
+      end
+
       def recognizers
         Versionator::Recognizer.all
       end
