@@ -30,6 +30,10 @@
             %h3
               %span.ware= ware.name
               %span.version= ware.installed_version
-            %p= ware.base_dir
             %p
-              %a{ :href => ware.homepage } Homepage
+              = image("folder")
+              = ware.base_dir
+            %p
+              %a{ :href => ware.homepage }
+                = image("homepage-developer")
+                Developer Homepage
