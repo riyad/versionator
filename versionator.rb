@@ -40,6 +40,10 @@ module Versionator
       haml :index
     end
 
+    get '/stylesheet.css' do
+      sass :stylesheet
+    end
+
     # start the server if ruby file executed directly
     run! #if app_file == $0
   end
