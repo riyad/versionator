@@ -36,6 +36,12 @@
               = image("folder")
               = ware.base_dir
             %p
-              %a{ :href => ware.homepage }
+              %a{ :href => ware.project_url }
                 = image("homepage-developer")
-                Developer Homepage
+                Project Website
+              - if ware.project_url_for_installed_version
+                %a{ :href => ware.project_url_for_installed_version }
+                  = image("homepage-developer")
+                  = ware.name
+                  = ware.installed_version
+                  Release
