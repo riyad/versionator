@@ -16,13 +16,14 @@ module Versionator
       also_reload ["*.rb", "lib/**/*.rb"]
     end
 
-    helpers do
-      def recognizers
-        Versionator::Recognizer.all
-      end
 
+    helpers do
       def dirs
         File.readlines('dirs').map { |dir| dir.chomp }
+      end
+
+      def recognizers
+        Versionator::Recognizer.all
       end
     end
 
