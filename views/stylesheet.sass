@@ -6,6 +6,26 @@ img
   &.ajax-loader
     display: none
 
+.message
+  background-position: right center
+  background-repeat: no-repeat
+  margin: 1em 0
+  padding: 1em
+  &.error
+    background-image: url('images/message-error.png')
+    background-color: #F9CCCA
+    border: 0.1em solid #E20800
+  &.warning
+    background-image: url('images/message-warning.png')
+    background-color: #FFDFBF
+    border: 0.1em solid #EB7331
+  &.info
+    background-image: url('images/message-info.png')
+    background-color: #B8D8FF
+    border: 0.1em solid #0057AE
+  h2
+    margin: 0
+
 .container
   border-bottom: .1em solid black
   margin: 0.5em 0
