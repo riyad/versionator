@@ -14,7 +14,7 @@
         %ul
           - @dirs.each do |dir|
             %li
-              = image("folder")
+              = Dir.exist?(dir) ? image("folder") : image("folder-exists-not")
               = dir
       .container.recognizers
         %h2 Recognizers
