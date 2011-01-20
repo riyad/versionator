@@ -22,6 +22,10 @@ module Versionator
         File.readlines('dirs').map { |dir| dir.chomp }
       end
 
+      def image(name)
+        %Q{<img src="images/#{name}.png" alt="#{name}" />}
+      end
+
       def recognizers
         Versionator::Recognizer.all
       end
