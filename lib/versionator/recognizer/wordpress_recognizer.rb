@@ -3,16 +3,12 @@ module Versionator
   module Recognizer
     # works with 2.8.*, 2.9.* and 3.*
     class WordpressRecognizer < Base
-      def initialize(*args)
-        @basic_name = "wordpress"
-        @project_url = "http://wordpress.org"
-        @name = "WordPress"
+      set :basic_name, "wordpress"
+      set :app_name, "WordPress"
+      set :project_url, "http://wordpress.org"
 
-        @detect_files = %w{index.php wp-includes/version.php wp-load.php wp-settings.php xmlrpc.php}
-        @detect_dirs = %w{wp-admin wp-content wp-includes}
-
-        super(*args)
-      end
+      set :detect_dirs, %w{wp-admin wp-content wp-includes}
+      set :detect_files, %w{index.php wp-includes/version.php wp-load.php wp-settings.php xmlrpc.php}
 
       def detect_installed_version
         lines = File.readlines(File.join(base_dir, "wp-includes/version.php"))

@@ -3,17 +3,12 @@ module Versionator
   module Recognizer
     # works with Drupal 6 and 7
     class DrupalRecognizer < Base
+      set :basic_name, "drupal"
+      set :app_name, "Drupal"
+      set :project_url, "http://drupal.org"
 
-      def initialize(*args)
-        @basic_name = "drupal"
-        @project_url = "http://drupal.org"
-        @name = "Drupal"
-
-        @detect_files = %w{cron.php index.php install.php xmlrpc.php}
-        @detect_dirs = %w{includes misc modules profiles scripts sites themes}
-
-        super(*args)
-      end
+      set :detect_dirs, %w{includes misc modules profiles scripts sites themes}
+      set :detect_files, %w{cron.php index.php install.php xmlrpc.php}
 
       def contents_detected?
         version_from_changelog.start_with? "Drupal"
