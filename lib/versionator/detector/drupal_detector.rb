@@ -1,8 +1,8 @@
 
 module Versionator
-  module Recognizer
+  module Detector
     # works with Drupal 6 and 7
-    class DrupalRecognizer < Base
+    class DrupalDetector < Base
       set :basic_name, "drupal"
       set :app_name, "Drupal"
       set :project_url, "http://drupal.org"

@@ -1,8 +1,8 @@
 
 module Versionator
-  module Recognizer
+  module Detector
     # works with 2.8.*, 2.9.* and 3.*
-    class WordpressRecognizer < Base
+    class WordpressDetector < Base
       set :basic_name, "wordpress"
       set :app_name, "WordPress"
       set :project_url, "http://wordpress.org"

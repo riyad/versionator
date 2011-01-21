@@ -26,8 +26,8 @@ module Versionator
         File.readlines('dirs').map(&:chomp)
       end
 
-      def logo_for(recognizer)
-        logo(recognizer.basic_name)
+      def logo_for(detector)
+        logo(detector.basic_name)
       end
 
       def image(name)
@@ -38,8 +38,8 @@ module Versionator
         %Q{<img src="logos/#{basic_name}.png" alt="#{basic_name}" />}
       end
 
-      def recognizers
-        Versionator::Recognizer.all
+      def detectors
+        Versionator::Detector.all
       end
 
       # must be sibling of toggle item
@@ -72,14 +72,14 @@ module Versionator
       @dirs_that_dont_exist = @dirs.reject { |dir| Dir.exists?(dir) }
       @dirs_that_exist = @dirs - @dirs_that_dont_exist
 
-      @recognizers = recognizers.sort_by(&:app_name)
+      @detectors = detectors.sort_by(&:app_name)
 
       @installations = {}
       @dirs_that_exist.each do |dir|
         recognized_installations = []
-        @recognizers.each do |recognizer_class|
-          recognizer = recognizer_class.new(dir)
-          recognized_installations << recognizer if recognizer.detected?
+        @detectors.each do |detector_class|
+          detector = detector_class.new(dir)
+          recognized_installations << detector if detector.detected?
           @installations[dir] = recognized_installations
         end
       end

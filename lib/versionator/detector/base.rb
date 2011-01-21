@@ -1,6 +1,6 @@
 
 module Versionator
-  module Recognizer
+  module Detector
     class Base
       attr_reader :base_dir, :installed_version
 
