@@ -2,7 +2,7 @@
 require 'active_support'
 include ActiveSupport::Inflector
 
-require File.expand_path("recognizer/base", File.dirname(__FILE__))
+require File.expand_path("../recognizer/base", __FILE__)
 
 module Versionator
   module Recognizer

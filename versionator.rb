@@ -5,7 +5,7 @@ require 'sinatra/base'
 require 'haml'
 require 'sinatra/reloader'
 
-require File.expand_path('lib/versionator', File.dirname(__FILE__))
+require File.expand_path('../lib/versionator', __FILE__)
 
 module Versionator
   class Application < Sinatra::Base
