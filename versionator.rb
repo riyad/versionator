@@ -72,17 +72,17 @@ module Versionator
       @dirs_that_dont_exist = @dirs.reject { |dir| Dir.exists?(dir) }
       @dirs_that_exist = @dirs - @dirs_that_dont_exist
 
+      @recognizers = recognizers.sort_by(&:app_name)
+
       @installations = {}
       @dirs_that_exist.each do |dir|
         recognized_installations = []
-        recognizers.each do |recognizer|
-          recognizer = recognizer.new(dir)
+        @recognizers.each do |recognizer_class|
+          recognizer = recognizer_class.new(dir)
           recognized_installations << recognizer if recognizer.detected?
           @installations[dir] = recognized_installations
         end
       end
-
-      @recognizers = recognizers.map(&:new).sort_by(&:name)
 
       haml :index
     end

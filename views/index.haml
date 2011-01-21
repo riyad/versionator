@@ -32,7 +32,7 @@
                 .verdict.unknown
                   &nbsp;
                 %h4
-                  %span.name= installation.name
+                  %span.name= installation.app_name
                   %span.version= installation.installed_version
                 %p
                   %a{ :href => installation.project_url }
@@ -41,7 +41,7 @@
                   - if installation.project_url_for_installed_version
                     %a{ :href => installation.project_url_for_installed_version }
                       = image("homepage-developer")
-                      = installation.name
+                      = installation.app_name
                       = installation.installed_version
                       Release
       #recognizers.container
@@ -53,4 +53,4 @@
             - @recognizers.each do |rec|
               %li
                 = logo_for(rec)
-                = rec.name
+                = rec.app_name
