@@ -2,7 +2,7 @@
 module Versionator
   module Recognizer
     class Base
-      attr_reader :base_dir, :basic_name, :project_url, :installed_version, :name
+      attr_reader :base_dir, :installed_version
 
       # :rdoc:
       # You may override:
@@ -30,12 +30,12 @@ module Versionator
       end
 
       def dirs_detected?
-        dirs_there = @detect_dirs.map { |file| Dir.exists?(File.expand_path(file, base_dir))}
+        dirs_there = self.class.detect_dirs.map { |dir| Dir.exists?(File.expand_path(dir, base_dir))}
         dirs_there.all?
       end
 
       def files_detected?
-        files_there = @detect_files.map { |file| File.exists?(File.expand_path(file, base_dir))}
+        files_there = self.class.detect_files.map { |file| File.exists?(File.expand_path(file, base_dir))}
         files_there.all?
       end
 
