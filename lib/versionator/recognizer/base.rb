@@ -41,6 +41,29 @@ module Versionator
 
       def project_url_for_installed_version
       end
+
+      protected
+
+      def self.set(property, value)
+        class_variable_name = "@@#{property.to_s}".to_sym
+
+        # set the value
+        class_variable_set(class_variable_name, value)
+
+        # add the class method
+        self.class.module_eval do
+          define_method property do
+            class_variable_get(class_variable_name.to_sym)
+          end
+        end
+
+        # add a instance method wrapping the class method
+        module_eval do
+          define_method property do
+            self.class.send property
+          end
+        end
+      end
     end
   end
 end
