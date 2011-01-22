@@ -2,6 +2,8 @@
 module Versionator
   module Detector
     class Base
+      UnknownVersion = "unknown version"
+
       attr_reader :base_dir, :installed_version
 
       # :rdoc:
@@ -22,7 +24,7 @@ module Versionator
       end
 
       def detect_installed_version
-        return @installed_version = "unknown version" unless self.class.method_defined?(:version_file)
+        return @installed_version = UnknownVersion unless self.class.method_defined?(:version_file)
 
         version_line = find_first_line(:matching => version_regexp, :in_file => File.join(base_dir, version_file))
 
@@ -41,6 +43,10 @@ module Versionator
       def files_detected?
         files_there = self.class.detect_files.map { |file| File.exists?(File.expand_path(file, base_dir))}
         files_there.all?
+      end
+
+      def installed_version_detected?
+        installed_version != UnknownVersion
       end
 
       def project_url_for_installed_version
