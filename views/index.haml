@@ -38,7 +38,7 @@
                   %a{ :href => installation.project_url }
                     = image("homepage-developer")
                     Project Website
-                  - if installation.project_url_for_installed_version
+                  - if installation.installed_version_detected?
                     %a{ :href => installation.project_url_for_installed_version }
                       = image("homepage-developer")
                       = installation.app_name
