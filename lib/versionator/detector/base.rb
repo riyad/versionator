@@ -22,7 +22,11 @@ module Versionator
       end
 
       def detect_installed_version
-        @installed_version = "unknown version"
+        return @installed_version = "unknown version" unless self.class.method_defined?(:version_file)
+
+        version_line = find_first_line(:matching => version_regexp, :in_file => File.join(base_dir, version_file))
+
+        @installed_version = extract_version(:from => version_line, :with => version_regexp)
       end
 
       def detected?
@@ -43,6 +47,32 @@ module Versionator
       end
 
       protected
+
+      # finds the frist line in a file
+      # options:
+      # :in_file        the file to search in
+      # :matching       find the first line matching this regex
+      # :starting_with  find the line starting with this string
+      def find_first_line(options)
+        return unless options[:in_file]
+
+        lines = File.readlines(File.join(base_dir, version_file))
+        if options[:matching]
+          lines.select! { |line| line =~ options[:matching] }
+        elsif options[:starting_with]
+          lines.select! { |line| line.start_with? options[:starting_with] }
+        end
+        lines.first
+      end
+
+      # this will extract the first match of a regexp from a string
+      # options:
+      # :from  string
+      # :with  regexp
+      def extract_version(options)
+        m = options[:with].match(options[:from])
+        m[1]
+      end
 
       def self.set(property, value)
         class_variable_name = "@@#{property.to_s}".to_sym
