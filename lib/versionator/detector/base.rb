@@ -1,19 +1,24 @@
 
+require 'nokogiri'
+require 'open-uri'
+
 module Versionator
   module Detector
     class Base
       UnknownVersion = "unknown version"
 
-      attr_reader :base_dir, :installed_version
+      attr_reader :base_dir, :installed_version, :newest_version
 
       # :rdoc:
       # You may override:
       # - contents_detected?
       # - detect_installed_version
+      # - detect_newest_version
       # - project_url_for_installed_version
       def initialize(base_dir = nil)
         @base_dir = base_dir
         @installed_version = UnknownVersion
+        @newest_version = UnknownVersion
 
         if detected?
           detect_installed_version
@@ -22,6 +27,20 @@ module Versionator
 
       def contents_detected?
         true
+      end
+
+      # does network access, may therefore take long
+      def detect_newest_version
+        return @newest_version unless self.class.method_defined?(:newest_version_url)
+
+        doc = Nokogiri::HTML(open(newest_version_url))
+
+        download_button = doc.css(newest_version_selector)
+
+        version_line = download_button.text
+
+        m = newest_version_regexp.match(version_line)
+        @newest_version =  m[1]
       end
 
       def detect_installed_version
@@ -48,6 +67,13 @@ module Versionator
 
       def installed_version_detected?
         installed_version != UnknownVersion
+      end
+
+      # see: detect_newest_version
+      def newest_version
+        detect_newest_version if @newest_version == UnknownVersion
+
+        @newest_version
       end
 
       def project_url_for_installed_version
