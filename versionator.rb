@@ -88,6 +88,12 @@ module Versionator
       haml :index
     end
 
+    get '/apps/:app_name/newest_version' do
+      app_name = params[:app_name]
+      app_class = detectors.find { |det| det.basic_name == app_name }
+      app_class.new.newest_version
+    end
+
     get '/stylesheet.css' do
       sass :stylesheet
     end
