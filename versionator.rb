@@ -66,16 +66,18 @@ module Versionator
       # must be sibling of toggle item
       def toggle_container(selector)
         %Q{<div class="toggle-container">} +
-        %Q{<img src="images/container-show.png" class="show-container" />} +
-        %Q{<img src="images/container-hide.png" class="hide-container" />} +
-        %Q{<script>
+          %Q{<a class="button">} +
+            %Q{<img src="images/container-show.png" class="show-container" />} +
+            %Q{<img src="images/container-hide.png" class="hide-container" />} +
+          %Q{</a>} +
+          %Q{<script>
   $(document).ready(function() {
     var subj = $('#{selector}');
-    var cont = $('#{selector}').siblings('.toggle-container');
-    var show = cont.find('.show-container');
-    var hide = cont.find('.hide-container');
+    var button = $('#{selector}').siblings('.toggle-container').find('.button');
+    var show = button.find('.show-container');
+    var hide = button.find('.hide-container');
 
-    cont.click(function() {
+    button.click(function() {
       show.toggle();
       hide.toggle();
       subj.slideToggle();
