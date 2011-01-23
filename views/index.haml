@@ -27,7 +27,7 @@
               = image("folder")
               = dir
             - @installations[dir].each do |installation|
-              .item
+              %div{ :class => "item #{installation.basic_name}-installation" }
                 .logo= logo_for(installation)
                 .verdict.unknown
                   &nbsp;
@@ -44,6 +44,22 @@
                       = installation.app_name
                       = installation.installed_version
                       Release
+                .newest-version
+                  Newest Version:
+                  = image("version-detect")
+                  %span.version
+                  = ajax_loader
+                  :javascript
+                    $(document).ready(function() {
+                      var c = ".#{installation.basic_name}-installation .newest-version";
+                      $(c).find("img").click(function() {
+                        $(c).find(".ajax-loader").show();
+                        $.get("/apps/#{installation.basic_name}/newest_version", function(data) {
+                          $(c).find(".ajax-loader").hide();
+                          $(c).find(".version").html(data);
+                        });
+                      });
+                    });
       #detectors.container
         = toggle_container('#detectors div.detectors')
         %h2
