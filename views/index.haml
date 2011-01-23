@@ -46,9 +46,11 @@
                       Release
                 .newest-version
                   Newest Version:
-                  = image("version-detect")
                   %span.version
                   = ajax_loader
+                  %a.get-version.button
+                    = image("version-detect")
+                    Load
       #detectors.container
         = toggle_container('#detectors div.detectors')
         %h2
@@ -64,11 +66,13 @@
         :javascript
           $(document).ready(function() {
             var c = ".#{detector.basic_name}-installation .newest-version";
-            $(c).find("img").click(function() {
+            $(c).find(".get-version.button").click(function() {
+              $(c).find(".version").html("");
               $(c).find(".ajax-loader").show();
               $.get("/apps/#{detector.basic_name}/newest_version", function(data) {
                 $(c).find(".ajax-loader").hide();
                 $(c).find(".version").html(data);
+                $(c).find(".get-version").html("#{escape_javascript(image("version-detect"))} Reload");
               });
             });
           });
