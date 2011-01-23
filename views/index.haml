@@ -47,10 +47,11 @@
       #detectors.container
         = toggle_container('#detectors div.detectors')
         %h2
-          Recognizers
+          Application Detectors
         .container.detectors
           %ul.horizontal.detectors.icon.list
-            - @detectors.each do |rec|
+            - @detectors.each do |det|
               %li
-                = logo_for(rec)
-                = rec.app_name
+                %a{ :href => det.project_url }
+                  = logo_for(det)
+                  = det.app_name
