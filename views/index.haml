@@ -49,17 +49,6 @@
                   = image("version-detect")
                   %span.version
                   = ajax_loader
-                  :javascript
-                    $(document).ready(function() {
-                      var c = ".#{installation.basic_name}-installation .newest-version";
-                      $(c).find("img").click(function() {
-                        $(c).find(".ajax-loader").show();
-                        $.get("/apps/#{installation.basic_name}/newest_version", function(data) {
-                          $(c).find(".ajax-loader").hide();
-                          $(c).find(".version").html(data);
-                        });
-                      });
-                    });
       #detectors.container
         = toggle_container('#detectors div.detectors')
         %h2
@@ -71,3 +60,15 @@
                 %a{ :href => det.project_url }
                   = logo_for(det)
                   = det.app_name
+      - @detectors.each do |detector|
+        :javascript
+          $(document).ready(function() {
+            var c = ".#{detector.basic_name}-installation .newest-version";
+            $(c).find("img").click(function() {
+              $(c).find(".ajax-loader").show();
+              $.get("/apps/#{detector.basic_name}/newest_version", function(data) {
+                $(c).find(".ajax-loader").hide();
+                $(c).find(".version").html(data);
+              });
+            });
+          });
