@@ -10,11 +10,11 @@ module Versionator
       set :detect_dirs, %w{includes misc modules profiles scripts sites themes}
       set :detect_files, %w{cron.php index.php install.php xmlrpc.php}
 
-      set :version_file, "CHANGELOG.txt"
-      set :version_regexp, /^Drupal (.+), .*$/
+      set :installed_version_file, "CHANGELOG.txt"
+      set :installed_version_regexp, /^Drupal (.+), .*$/
 
       def contents_detected?
-        true if find_first_line(:matching => version_regexp, :in_file => File.join(base_dir, version_file))
+        true if find_first_line(:matching => installed_version_regexp, :in_file => File.join(base_dir, installed_version_file))
       end
 
       def project_url_for_installed_version

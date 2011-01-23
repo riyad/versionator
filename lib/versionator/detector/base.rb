@@ -24,11 +24,11 @@ module Versionator
       end
 
       def detect_installed_version
-        return @installed_version = UnknownVersion unless self.class.method_defined?(:version_file)
+        return @installed_version = UnknownVersion unless self.class.method_defined?(:installed_version_file)
 
-        version_line = find_first_line(:matching => version_regexp, :in_file => File.join(base_dir, version_file))
+        version_line = find_first_line(:matching => installed_version_regexp, :in_file => File.join(base_dir, installed_version_file))
 
-        @installed_version = extract_version(:from => version_line, :with => version_regexp)
+        @installed_version = extract_version(:from => version_line, :with => installed_version_regexp)
       end
 
       def detected?
@@ -36,12 +36,12 @@ module Versionator
       end
 
       def dirs_detected?
-        dirs_there = self.class.detect_dirs.map { |dir| Dir.exists?(File.expand_path(dir, base_dir))}
+        dirs_there = self.class.detect_dirs.map { |dir| Dir.exists?(File.expand_path(dir, base_dir)) }
         dirs_there.all?
       end
 
       def files_detected?
-        files_there = self.class.detect_files.map { |file| File.exists?(File.expand_path(file, base_dir))}
+        files_there = self.class.detect_files.map { |file| File.exists?(File.expand_path(file, base_dir)) }
         files_there.all?
       end
 
@@ -62,7 +62,7 @@ module Versionator
       def find_first_line(options)
         return unless options[:in_file]
 
-        lines = File.readlines(File.join(base_dir, version_file))
+        lines = File.readlines(File.join(base_dir, installed_version_file))
         if options[:matching]
           lines.select! { |line| line =~ options[:matching] }
         elsif options[:starting_with]

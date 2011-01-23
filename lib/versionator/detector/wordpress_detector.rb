@@ -10,8 +10,8 @@ module Versionator
       set :detect_dirs, %w{wp-admin wp-content wp-includes}
       set :detect_files, %w{index.php wp-includes/version.php wp-load.php wp-settings.php xmlrpc.php}
 
-      set :version_file, "wp-includes/version.php"
-      set :version_regexp, /^\$wp_version = ['"](.+)['"];$/
+      set :installed_version_file, "wp-includes/version.php"
+      set :installed_version_regexp, /^\$wp_version = ['"](.+)['"];$/
 
       def project_url_for_installed_version
         "#{project_url}/news/wordpress-#{installed_version.gsub('.', '-')}"
