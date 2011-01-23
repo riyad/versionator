@@ -12,6 +12,17 @@ module Versionator
   class Application < Sinatra::Base
     set :app_file, __FILE__
 
+    # from actionpack/lib/action_view/helpers/javascript_helper.rb
+    JS_ESCAPE_MAP = {
+      '\\'    => '\\\\',
+      '</'    => '<\/',
+      "\r\n"  => '\n',
+      "\n"    => '\n',
+      "\r"    => '\n',
+      '"'     => '\\"',
+      "'"     => "\\'"
+    }
+
     configure(:development) do
       register Sinatra::Reloader
       also_reload ["*.rb", "lib/**/*.rb"]
@@ -25,6 +36,15 @@ module Versionator
 
       def dirs
         File.readlines('dirs').map(&:chomp)
+      end
+
+      # from actionpack/lib/action_view/helpers/javascript_helper.rb
+      def escape_javascript(javascript)
+        if javascript
+          javascript.gsub(/(\\|<\/|\r\n|[\n\r"'])/) { JS_ESCAPE_MAP[$1] }
+        else
+          ''
+        end
       end
 
       def logo_for(detector)
