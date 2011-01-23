@@ -13,6 +13,7 @@ module Versionator
       # - project_url_for_installed_version
       def initialize(base_dir = nil)
         @base_dir = base_dir
+        @installed_version = UnknownVersion
 
         if detected?
           detect_installed_version
@@ -24,7 +25,7 @@ module Versionator
       end
 
       def detect_installed_version
-        return @installed_version = UnknownVersion unless self.class.method_defined?(:installed_version_file)
+        return @installed_version unless self.class.method_defined?(:installed_version_file)
 
         version_line = find_first_line(:matching => installed_version_regexp, :in_file => File.join(base_dir, installed_version_file))
 
