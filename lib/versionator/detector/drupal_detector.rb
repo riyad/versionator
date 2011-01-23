@@ -13,6 +13,10 @@ module Versionator
       set :installed_version_file, "CHANGELOG.txt"
       set :installed_version_regexp, /^Drupal (.+), .*$/
 
+      set :newest_version_url, 'http://drupal.org/project/drupal'
+      set :newest_version_selector, '.download-table .project-release .views-row-first .views-field-version a'
+      set :newest_version_regexp, /^(.+)$/
+
       def contents_detected?
         true if find_first_line(:matching => installed_version_regexp, :in_file => File.join(base_dir, installed_version_file))
       end

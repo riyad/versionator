@@ -13,6 +13,10 @@ module Versionator
       set :installed_version_file, "wp-includes/version.php"
       set :installed_version_regexp, /^\$wp_version = ['"](.+)['"];$/
 
+      set :newest_version_url, 'http://wordpress.org/download'
+      set :newest_version_selector, '.download-meta .download-button'
+      set :newest_version_regexp, /^Download.WordPress.(.+)$/
+
       def project_url_for_installed_version
         "#{project_url}/news/wordpress-#{installed_version.gsub('.', '-')}"
       end
