@@ -4,6 +4,7 @@ GEM
     activesupport (3.0.3)
     backports (1.18.2)
     haml (3.0.25)
+    json (1.5.0)
     monkey-lib (0.5.4)
       backports
     nokogiri (1.4.4)
@@ -29,6 +30,7 @@ PLATFORMS
 DEPENDENCIES
   activesupport (>= 3.0.0)
   haml
+  json
   nokogiri
   sinatra
   sinatra-reloader
