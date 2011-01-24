@@ -64,6 +64,20 @@
                   = det.app_name
       - @detectors.each do |detector|
         :javascript
+          function updateVerdictsForInstallation(inst) {
+            console.log(inst);
+            inst.each(function() {
+              var installed_version = $(this).find(".installed-version .version").text();
+              var newest_version = $(this).find(".newest-version .version").text();
+
+              $(this).addClass("verdict");
+              if(installed_version == newest_version) {
+                $(this).addClass("up-to-date");
+              } else {
+                $(this).addClass("outdated");
+              }
+            });
+          }
           $(document).ready(function() {
             var inst = $(".#{detector.basic_name}-installation");
             var nv = inst.find(".newest-version");
@@ -75,6 +89,8 @@
                 nv.find(".version").html(data); // set newest version text
                 // update button
                 nv.find(".check-version.button").html("#{escape_javascript(image("version-detect"))} Recheck");
+
+                updateVerdictsForInstallation(inst);
               });
             });
           });
