@@ -65,14 +65,16 @@
       - @detectors.each do |detector|
         :javascript
           $(document).ready(function() {
-            var c = ".#{detector.basic_name}-installation .newest-version";
-            $(c).find(".get-version.button").click(function() {
-              $(c).find(".version").html("");
-              $(c).find(".ajax-loader").show();
+            var inst = $(".#{detector.basic_name}-installation");
+            var nv = inst.find(".newest-version");
+            nv.find(".check-version.button").click(function() {
+              nv.find(".version").html(""); // erase newest version text
+              nv.find(".ajax-loader").show(); // show throbber
               $.get("/apps/#{detector.basic_name}/newest_version", function(data) {
-                $(c).find(".ajax-loader").hide();
-                $(c).find(".version").html(data);
-                $(c).find(".get-version").html("#{escape_javascript(image("version-detect"))} Reload");
+                nv.find(".ajax-loader").hide(); // hide throbber
+                nv.find(".version").html(data); // set newest version text
+                // update button
+                nv.find(".check-version.button").html("#{escape_javascript(image("version-detect"))} Recheck");
               });
             });
           });
