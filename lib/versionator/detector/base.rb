@@ -15,6 +15,7 @@ module Versionator
       # - detect_installed_version
       # - detect_newest_version
       # - project_url_for_installed_version
+      # - project_url_for_newest_version
       def initialize(base_dir = nil)
         @base_dir = base_dir
         @installed_version = UnknownVersion
@@ -77,6 +78,9 @@ module Versionator
       end
 
       def project_url_for_installed_version
+      end
+
+      def project_url_for_newest_version
       end
 
       protected
