@@ -51,7 +51,6 @@ ul
   &.recognizers
     padding: 0
   .item
-    background-color: #fff
     border: 0.1em solid #6193CF
     border-radius: 5px
     margin: 0.5em 0
@@ -62,13 +61,6 @@ ul
       float: right
     .name
       font-size: 125%
-    .verdict
-      float: left
-      height: 48px
-      width: 48px
-      &.unknown
-        background-image: url('images/verdict-unknown.png')
-        margin: 0 0.5em 0 0
     .version
       font-style: italic
 
@@ -97,3 +89,14 @@ ul
   display: inline-block
   img
     margin-bottom: 0
+
+.verdict
+  background-repeat: repeat-x
+  &.up-to-date
+    background-image: url('images/verdict-up-to-date.png')
+    background-color: #D8E8C2
+    border: 0.1em solid #37A42C
+  &.outdated
+    background-image: url('images/verdict-outdated.png')
+    background-color: #FFDD00
+    border: 0.1em solid #FFBF00
