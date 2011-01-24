@@ -39,7 +39,7 @@
                   %span.version
                   = ajax_loader
                   %a.check-version.button
-                    = image("version-detect")
+                    = image("version-check-newest")
                     Check
                 .project-links
                   %a{ :href => installation.project_url }
@@ -89,7 +89,7 @@
           $(nv).find(".ajax-loader").hide(); // hide throbber
           $(nv).find(".version").html(data.newest_version); // set newest version text
           // update button
-          $(nv).find(".check-version.button").html("#{escape_javascript(image("version-detect"))} Recheck");
+          $(nv).find(".check-version.button").html("#{escape_javascript(image("version-check-newest"))} Recheck");
         }
         function updateVerdictsFor(inst) {
           $(inst).each(function() {
