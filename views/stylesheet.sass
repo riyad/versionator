@@ -6,26 +6,21 @@ img
   &.ajax-loader
     display: none
 
-.message
-  background-position: right center
-  background-repeat: no-repeat
-  border-radius: 5px
-  margin: 1em 0
-  padding: 1em
-  &.error
-    background-image: url('images/message-error.png')
-    background-color: #F9CCCA
-    border: 0.1em solid #E20800
-  &.warning
-    background-image: url('images/message-warning.png')
-    background-color: #FFDFBF
-    border: 0.1em solid #EB7331
-  &.info
-    background-image: url('images/message-info.png')
-    background-color: #B8D8FF
-    border: 0.1em solid #0057AE
-  h2
-    margin: 0
+ul
+  &.horizontal li
+    display: inline-block
+  &.list
+    list-style: none
+    padding: 0
+    &.icon li
+      margin: 0.5em
+      padding: 0.5em
+      text-align: center
+      img
+        display: block
+        margin-bottom: 0.5em
+  &.vertical li
+    display: block
 
 .button
   background-color: #00316E
@@ -41,13 +36,13 @@ img
   border-bottom: .1em solid black
   margin: 0.5em 0
   padding: 0.5em
-  &.installations
-    border-bottom: 0
-  &.recognizers
-    padding: 0
   h2, h3, h4
     display: inline-block
     margin: 0
+    padding: 0
+  &.installations
+    border-bottom: 0
+  &.recognizers
     padding: 0
   .item
     background-color: #eee
@@ -69,23 +64,28 @@ img
     .version
       font-style: italic
 
+.message
+  background-position: right center
+  background-repeat: no-repeat
+  border-radius: 5px
+  margin: 1em 0
+  padding: 1em
+  h2
+    margin: 0
+  &.error
+    background-image: url('images/message-error.png')
+    background-color: #F9CCCA
+    border: 0.1em solid #E20800
+  &.warning
+    background-image: url('images/message-warning.png')
+    background-color: #FFDFBF
+    border: 0.1em solid #EB7331
+  &.info
+    background-image: url('images/message-info.png')
+    background-color: #B8D8FF
+    border: 0.1em solid #0057AE
+
 .toggle-container
   display: inline-block
   img
     margin-bottom: 0
-
-ul
-  &.horizontal li
-    display: inline-block
-  &.list
-    list-style: none
-    padding: 0
-    &.icon li
-      margin: 0.5em
-      padding: 0.5em
-      text-align: center
-      img
-        display: block
-        margin-bottom: 0.5em
-  &.vertical li
-    display: block
