@@ -29,12 +29,19 @@
             - @installations[dir].each do |installation|
               %div{ :class => "item #{installation.basic_name}-installation" }
                 .logo= logo_for(installation)
-                .verdict.unknown
-                  &nbsp;
                 %h4
                   %span.name= installation.app_name
+                .installed-version
+                  Installed Version:
                   %span.version= installation.installed_version
-                %p
+                .newest-version
+                  Newest Version:
+                  %span.version
+                  = ajax_loader
+                  %a.check-version.button
+                    = image("version-detect")
+                    Check
+                .project-links
                   %a{ :href => installation.project_url }
                     = image("homepage-developer")
                     Project Website
@@ -44,13 +51,6 @@
                       = installation.app_name
                       = installation.installed_version
                       Release
-                .newest-version
-                  Newest Version:
-                  %span.version
-                  = ajax_loader
-                  %a.get-version.button
-                    = image("version-detect")
-                    Load
       #detectors.container
         = toggle_container('#detectors div.detectors')
         %h2
