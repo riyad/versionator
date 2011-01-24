@@ -20,6 +20,10 @@ module Versionator
       def project_url_for_installed_version
         "#{project_url}/news/wordpress-#{installed_version.gsub('.', '-')}"
       end
+
+      def project_url_for_newest_version
+        "#{project_url}/news/wordpress-#{newest_version.gsub('.', '-')}"
+      end
     end
   end
 end
