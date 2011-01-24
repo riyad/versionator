@@ -45,7 +45,7 @@
                   %a{ :href => installation.project_url }
                     = image("homepage-developer")
                     Project Website
-                  - if installation.installed_version_detected?
+                  - if installation.project_url_for_installed_version
                     %a{ :href => installation.project_url_for_installed_version }
                       = image("homepage-developer")
                       = installation.app_name
@@ -70,18 +70,21 @@
             $(nv).find(".check-version.button").click(function() {
               $(nv).find(".version").html(""); // erase newest version text
               $(nv).find(".ajax-loader").show(); // show throbber
-              $.get("/apps/#{detector.basic_name}/newest_version", function(data) {
-                $(nv).find(".ajax-loader").hide(); // hide throbber
-                $(nv).find(".version").html(data); // set newest version text
-                // update button
-                $(nv).find(".check-version.button").html("#{escape_javascript(image("version-detect"))} Recheck");
-
-                updateVerdictsForInstallation(inst);
+              $.getJSON("/apps/#{detector.basic_name}/newest_version", function(data) {
+                updateNewestVersionFor(inst, data);
+                updateVerdictsFor(inst);
               });
             });
           });
       :javascript
-        function updateVerdictsForInstallation(inst) {
+        function updateNewestVersionFor(inst, data) {
+          var nv = $(inst).find(".newest-version");
+          $(nv).find(".ajax-loader").hide(); // hide throbber
+          $(nv).find(".version").html(data.newest_version); // set newest version text
+          // update button
+          $(nv).find(".check-version.button").html("#{escape_javascript(image("version-detect"))} Recheck");
+        }
+        function updateVerdictsFor(inst) {
           $(inst).each(function() {
             var installed_version = $(this).find(".installed-version .version").text();
             var newest_version = $(this).find(".newest-version .version").text();
