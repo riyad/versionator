@@ -4,6 +4,7 @@ require 'rubygems'
 require 'sinatra/base'
 
 require 'haml'
+require 'json'
 require 'sinatra/reloader'
 
 require File.expand_path('../lib/versionator', __FILE__)
@@ -113,7 +114,12 @@ module Versionator
     get '/apps/:app_name/newest_version' do
       app_name = params[:app_name]
       app_class = detectors.find { |det| det.basic_name == app_name }
-      app_class.new.newest_version
+      app = app_class.new
+
+      ret = Hash.new
+      ret[:newest_version] = app.newest_version
+      ret[:project_url_for_newest_version] = app.project_url_for_newest_version
+      ret.to_json
     end
 
     get '/stylesheet.css' do
