@@ -44,7 +44,7 @@ module Versionator
           newest_version_regexp.match(line)
         end
         version = newest_version_regexp.match(version_line)[1] if version_line
-        @newest_version = Versionomy.parse(version)
+        @newest_version = Versionomy.parse(version) if version
       end
 
       def detect_installed_version
@@ -52,7 +52,8 @@ module Versionator
 
         version_line = find_first_line(:matching => installed_version_regexp, :in_file => File.join(base_dir, installed_version_file))
 
-        @installed_version = Versionomy.parse(extract_version(:from => version_line, :with => installed_version_regexp))
+        version = extract_version(:from => version_line, :with => installed_version_regexp)
+        @installed_version = Versionomy.parse(version) if version
       end
 
       def detected?
