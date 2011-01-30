@@ -96,13 +96,13 @@ module Versionator
 
       # finds the frist line in a file
       # options:
-      # :in_file        the file to search in
+      # :in_file        the file (relative to base_dir) to search in
       # :matching       find the first line matching this regex
       # :starting_with  find the line starting with this string
       def find_first_line(options)
         return unless options[:in_file]
 
-        lines = File.readlines(File.join(base_dir, installed_version_file))
+        lines = File.readlines(File.join(base_dir, options[:in_file]))
         if options[:matching]
           lines.select! { |line| line =~ options[:matching] }
         elsif options[:starting_with]
