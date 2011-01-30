@@ -108,11 +108,9 @@ module Versionator
 
       @apps = {}
       @dirs_that_exist.each do |dir|
-        detected_apps = []
         @detectors.each do |detector_class|
           detector = detector_class.new(dir)
-          detected_apps << detector if detector.detected?
-          @apps[dir] = detected_apps
+          @apps[dir] = detector if detector.detected?
         end
       end
 
