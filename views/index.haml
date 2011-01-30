@@ -46,7 +46,7 @@
                     = image("homepage-developer")
                     Project Website
                   - if installation.project_url_for_installed_version
-                    %a{ :href => installation.project_url_for_installed_version }
+                    %a{ :href => installation.project_url_for_installed_version, :class => "installed_version" }
                       = image("homepage-developer")
                       = installation.app_name
                       = installation.installed_version
@@ -81,9 +81,13 @@
         function addNewestVersionLink(inst, data) {
           if (data.project_url_for_newest_version) {
             var links = $(inst).find(".project-links");
-            $(links).each(function() {
-              $(this).html($(this).html()+'<a href="'+data.project_url_for_newest_version+'">#{escape_javascript(image("homepage-developer"))} Newest Release</a>');
-            });
+            var nv = $(links).find(".newest-version");
+            var linkText = '<a href="'+data.project_url_for_newest_version+'" class="newest-version">#{escape_javascript(image("homepage-developer"))} Newest Release</a>';
+            if(nv.length === 0) {
+              $(links).append(linkText);
+            } else {
+              $(nv).relace(linkText);
+            }
           }
         }
         function updateNewestVersionFor(inst, data) {
