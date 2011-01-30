@@ -106,13 +106,13 @@ module Versionator
 
       @detectors = detectors.sort_by(&:app_name)
 
-      @installations = {}
+      @apps = {}
       @dirs_that_exist.each do |dir|
-        recognized_installations = []
+        detected_apps = []
         @detectors.each do |detector_class|
           detector = detector_class.new(dir)
-          recognized_installations << detector if detector.detected?
-          @installations[dir] = recognized_installations
+          detected_apps << detector if detector.detected?
+          @apps[dir] = detected_apps
         end
       end
 
