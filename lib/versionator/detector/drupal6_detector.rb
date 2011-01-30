@@ -18,7 +18,7 @@ module Versionator
       set :newest_version_regexp, /^(6.+)$/
 
       def contents_detected?
-        true if find_first_line(:matching => installed_version_regexp, :in_file => File.join(base_dir, installed_version_file))
+        true if find_first_line(:matching => installed_version_regexp, :in_file => installed_version_file)
       end
 
       def detected?

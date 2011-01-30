@@ -50,7 +50,7 @@ module Versionator
       def detect_installed_version
         return @installed_version unless self.class.method_defined?(:installed_version_file)
 
-        version_line = find_first_line(:matching => installed_version_regexp, :in_file => File.join(base_dir, installed_version_file))
+        version_line = find_first_line(:matching => installed_version_regexp, :in_file => installed_version_file)
 
         version = extract_version(:from => version_line, :with => installed_version_regexp)
         @installed_version = Versionomy.parse(version) if version
