@@ -24,7 +24,8 @@
         - @dirs_that_exist.each do |dir|
           .container.installations
             %h3
-              = image("folder")
+              - @installations[dir].each do |installation|
+                = mini_logo_for(installation)
               = dir
             - @installations[dir].each do |installation|
               %div{ :class => "item #{installation.basic_name}-installation" }

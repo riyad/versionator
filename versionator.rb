@@ -60,6 +60,14 @@ module Versionator
         %Q{<img src="logos/#{basic_name}.png" alt="#{basic_name}" />}
       end
 
+      def mini_logo(basic_name)
+        %Q{<img src="logos/#{basic_name}-mini.png" alt="#{basic_name}" />}
+      end
+
+      def mini_logo_for(detector)
+        mini_logo(detector.basic_name)
+      end
+
       def detectors
         Versionator::Detector.all
       end
