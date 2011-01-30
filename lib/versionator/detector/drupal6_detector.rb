@@ -4,7 +4,7 @@ module Versionator
     # works with Drupal 5 and 6
     class Drupal6Detector < Base
       set :basic_name, "drupal6"
-      set :app_name, "Drupal"
+      set :app_name, "Drupal 6"
       set :project_url, "http://drupal.org"
 
       set :detect_dirs, %w{includes misc modules profiles scripts sites themes}

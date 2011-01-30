@@ -3,7 +3,7 @@ module Versionator
   module Detector
     class Drupal7Detector < Base
       set :basic_name, "drupal7"
-      set :app_name, "Drupal"
+      set :app_name, "Drupal 7"
       set :project_url, "http://drupal.org"
 
       set :detect_dirs, %w{includes misc modules profiles scripts sites themes}
