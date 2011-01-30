@@ -1,9 +1,8 @@
 
 module Versionator
   module Detector
-    # works with Drupal 6 and 7
-    class DrupalDetector < Base
-      set :basic_name, "drupal"
+    class Drupal7Detector < Base
+      set :basic_name, "drupal7"
       set :app_name, "Drupal"
       set :project_url, "http://drupal.org"
 
@@ -11,11 +10,11 @@ module Versionator
       set :detect_files, %w{cron.php index.php install.php xmlrpc.php}
 
       set :installed_version_file, "CHANGELOG.txt"
-      set :installed_version_regexp, /^Drupal (.+), .*$/
+      set :installed_version_regexp, /^Drupal (7.+), .*$/
 
       set :newest_version_url, 'http://drupal.org/project/drupal'
       set :newest_version_selector, '.download-table .project-release .views-row-first .views-field-version a'
-      set :newest_version_regexp, /^(.+)$/
+      set :newest_version_regexp, /^(7.+)$/
 
       def contents_detected?
         true if find_first_line(:matching => installed_version_regexp, :in_file => File.join(base_dir, installed_version_file))
