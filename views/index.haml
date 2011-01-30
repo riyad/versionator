@@ -81,7 +81,9 @@
         function addNewestVersionLink(inst, data) {
           if (data.project_url_for_newest_version) {
             var links = $(inst).find(".project-links");
-            $(links).html($(links).html()+'<a href="'+data.project_url_for_newest_version+'">#{escape_javascript(image("homepage-developer"))} Newest Release</a>');
+            $(links).each(function() {
+              $(this).html($(this).html()+'<a href="'+data.project_url_for_newest_version+'">#{escape_javascript(image("homepage-developer"))} Newest Release</a>');
+            });
           }
         }
         function updateNewestVersionFor(inst, data) {
