@@ -22,7 +22,7 @@ module Versionator
       end
 
       def detected?
-        !installed_version.start_with?('7') if super
+        installed_version.major < 7 if super
       end
 
       def project_url_for_installed_version
