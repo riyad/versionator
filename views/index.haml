@@ -18,16 +18,18 @@
                 = image("folder-exists-not")
                 = dir
       .container
-      .container.directories
+      #installations.container
         %h2 Installations
-        .container.apps
         - @dirs_that_exist.each do |dir|
+          - app = @apps[dir]
           .container.apps
             %h3
-              - @apps[dir].each do |app|
+              - if app
                 = mini_logo_for(app)
+              - else
+                = image("folder")
               = dir
-            - @apps[dir].each do |app|
+            - if app
               %div{ :class => "item #{app.basic_name}-app" }
                 .logo= logo_for(app)
                 %h4
