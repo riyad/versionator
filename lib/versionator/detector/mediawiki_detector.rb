@@ -20,12 +20,8 @@ module Versionator
         true if find_first_line(:matching => installed_version_regexp, :in_file => File.join(base_dir, installed_version_file))
       end
 
-      def project_url_for_installed_version
-        "http://svn.wikimedia.org/svnroot/mediawiki/tags/REL#{installed_version.to_s.gsub('.', '_')}/phase3/RELEASE-NOTES"
-      end
-
-      def project_url_for_newest_version
-        "http://svn.wikimedia.org/svnroot/mediawiki/tags/REL#{newest_version.to_s.gsub('.', '_')}/phase3/RELEASE-NOTES"
+      def project_url_for_version(version)
+        "http://svn.wikimedia.org/svnroot/mediawiki/tags/REL#{version.to_s.gsub('.', '_')}/phase3/RELEASE-NOTES"
       end
     end
   end

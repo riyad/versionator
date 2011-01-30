@@ -20,12 +20,8 @@ module Versionator
         true if find_first_line(:matching => installed_version_regexp, :in_file => File.join(base_dir, installed_version_file))
       end
 
-      def project_url_for_installed_version
-        "#{project_url}/drupal-#{installed_version}"
-      end
-
-      def project_url_for_newest_version
-        "#{project_url}/drupal-#{newest_version}"
+      def project_url_for_version(version)
+        "#{project_url}/drupal-#{version}"
       end
     end
   end

@@ -25,12 +25,8 @@ module Versionator
         installed_version.major < 7 if super
       end
 
-      def project_url_for_installed_version
-        "#{project_url}/drupal-#{installed_version}"
-      end
-
-      def project_url_for_newest_version
-        "#{project_url}/drupal-#{newest_version}"
+      def project_url_for_version(version)
+        "#{project_url}/drupal-#{version}"
       end
     end
   end
