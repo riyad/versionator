@@ -1,11 +1,12 @@
 
 require 'nokogiri'
 require 'open-uri'
+require 'versionomy'
 
 module Versionator
   module Detector
     class Base
-      UnknownVersion = "unknown version"
+      UnknownVersion = Versionomy.parse('0.0')
 
       attr_reader :base_dir, :installed_version, :newest_version
 
@@ -44,7 +45,7 @@ module Versionator
           newest_version_regexp.match(line)
         end
         version = newest_version_regexp.match(version_line)[1] if version_line
-        @newest_version = version
+        @newest_version = Versionomy.parse(version)
       end
 
       def detect_installed_version
@@ -52,7 +53,7 @@ module Versionator
 
         version_line = find_first_line(:matching => installed_version_regexp, :in_file => File.join(base_dir, installed_version_file))
 
-        @installed_version = extract_version(:from => version_line, :with => installed_version_regexp)
+        @installed_version = Versionomy.parse(extract_version(:from => version_line, :with => installed_version_regexp))
       end
 
       def detected?
