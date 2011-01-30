@@ -36,12 +36,15 @@ module Versionator
 
         doc = Nokogiri::HTML(open(newest_version_url))
 
-        download_button = doc.css(newest_version_selector)
+        version_selection = doc.css(newest_version_selector)
 
-        version_line = download_button.text
+        version_lines = version_selection.map(&:text)
 
-        m = newest_version_regexp.match(version_line)
-        @newest_version =  m[1]
+        version_line = version_lines.find do |line|
+          newest_version_regexp.match(line)
+        end
+        version = newest_version_regexp.match(version_line)[1] if version_line
+        @newest_version = version
       end
 
       def detect_installed_version
