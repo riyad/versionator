@@ -35,6 +35,10 @@ module Versionator
         %Q{<img src="ajax-loader.gif" class="ajax-loader" />}
       end
 
+      def detectors
+        Versionator::Detector.all
+      end
+
       def dirs
         File.readlines('dirs').map(&:chomp)
       end
@@ -48,12 +52,12 @@ module Versionator
         end
       end
 
-      def logo_for(detector)
-        logo(detector.basic_name)
-      end
-
       def image(name)
         %Q{<img src="images/#{name}.png" alt="#{name}" />}
+      end
+
+      def logo_for(detector)
+        logo(detector.basic_name)
       end
 
       def logo(basic_name)
@@ -66,10 +70,6 @@ module Versionator
 
       def mini_logo_for(detector)
         mini_logo(detector.basic_name)
-      end
-
-      def detectors
-        Versionator::Detector.all
       end
 
       # must be sibling of toggle item
