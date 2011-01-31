@@ -75,7 +75,7 @@ module Versionator
 
       # must be decendant of subject
       # subject must have .head and .body decendants
-      def toggle_container(selector, subj_state = :head)
+      def toggle_container(selector, subj_state = :collapsed)
         %Q{<div class="toggle-container toggle button">} +
           %Q{<img src="images/container-expand.png" class="container-expand" />} +
           %Q{<img src="images/container-collapse.png" class="container-collapse" />} +
@@ -94,7 +94,7 @@ module Versionator
       subjHead.slideToggle();
       subjBody.slideToggle();
     });
-    #{ if subj_state == :head
+    #{ if subj_state == :collapsed
         "collapse.hide();
         subjBody.hide();"
       else
