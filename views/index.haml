@@ -62,15 +62,9 @@
                       = image("version-check-newest")
                       Check
                   .project-links
-                    %a{ :href => app.project_url }
-                      = image("homepage-developer")
-                      Project Website
+                    = link_to_app_project(app)
                     - if app.project_url_for_installed_version
-                      %a{ :href => app.project_url_for_installed_version, :class => "installed_version" }
-                        = image("homepage-developer")
-                        = app.app_name
-                        = app.installed_version
-                        Release
+                      = link_to_app_release(app, :installed_version)
       #detectors
         = toggle_container('#detectors', :head)
         %h2
@@ -103,7 +97,7 @@
           if (data.project_url_for_newest_version) {
             var links = $(inst).find(".project-links");
             var nv = $(links).find(".newest-version");
-            var linkText = '<a href="'+data.project_url_for_newest_version+'" class="newest-version">#{escape_javascript(image("homepage-developer"))} Newest Release</a>';
+            var linkText = '#{link_to_external("#{image("link")} Newest Release", "'+data.project_url_for_newest_version+'", :class => "newest-version")}';
             if(nv.length === 0) {
               $(links).append(linkText);
             } else {
@@ -116,7 +110,7 @@
           $(nv).find(".ajax-loader").hide(); // hide throbber
           $(nv).find(".version").html(data.newest_version); // set newest version text
           // update button
-          $(nv).find(".check-version.button").html("#{escape_javascript(image("version-check-newest"))} Recheck");
+          $(nv).find(".check-version.button").html('#{image("version-check-newest")} Recheck');
         }
         function updateVerdictsFor(inst) {
           $(inst).each(function() {
