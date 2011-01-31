@@ -43,6 +43,10 @@ module Versionator
         File.readlines('dirs').map(&:chomp)
       end
 
+      def dom_id_for_dir(dir)
+        dir.gsub(/(\/|\.)/, '-')
+      end
+
       # from actionpack/lib/action_view/helpers/javascript_helper.rb
       def escape_javascript(javascript)
         if javascript
