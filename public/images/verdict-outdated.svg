@@ -21,11 +21,11 @@
     <linearGradient
        id="linearGradient3966">
       <stop
-         style="stop-color:#ffdd00;stop-opacity:1;"
+         style="stop-color:#fff9d4;stop-opacity:1;"
          offset="0"
          id="stop3968" />
       <stop
-         style="stop-color:#ffdd00;stop-opacity:0;"
+         style="stop-color:#fff9d4;stop-opacity:0;"
          offset="1"
          id="stop3970" />
     </linearGradient>
@@ -48,8 +48,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
-     inkscape:cx="290.88644"
-     inkscape:cy="845.3004"
+     inkscape:cx="203.00317"
+     inkscape:cy="841.00725"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -66,7 +66,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -75,7 +75,7 @@
      inkscape:groupmode="layer"
      id="layer1">
     <path
-       style="fill:#ffdd00;fill-opacity:1"
+       style="fill:#fff9d4;fill-opacity:1"
        d="m 128.28937,63.42284 411.90982,0 0,154.55334 -411.90982,0 z"
        id="rect2985"
        inkscape:connector-curvature="0"
@@ -84,7 +84,7 @@
        inkscape:export-ydpi="33.75" />
     <g
        id="g4003"
-       style="fill:#ffaa00;fill-opacity:1;stroke:#a06b00;stroke-width:0.50000000000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#ffe655;fill-opacity:1;stroke:#996600;stroke-width:0.50000000000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        transform="translate(-40.532371,0)"
        inkscape:export-filename="/home/riyad/src/versionator/public/images/verdict-outdated.png"
        inkscape:export-xdpi="33.75"
@@ -94,49 +94,49 @@
          inkscape:connector-curvature="0"
          id="rect3755"
          d="m 180.08733,44.701217 21.52099,12.42515 -106.063468,183.707303 -21.65064,-12.5 z"
-         style="fill:#ffaa00;fill-opacity:1;stroke:#a06b00;stroke-width:0.50000000000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+         style="fill:#ffe655;fill-opacity:1;stroke:#996600;stroke-width:0.50000000000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
       <path
          sodipodi:nodetypes="ccccc"
          inkscape:connector-curvature="0"
          id="rect3755-8"
          d="m 248.72476,44.701217 21.52099,12.425151 -106.06346,183.707302 -21.65063,-12.5 z"
-         style="fill:#ffaa00;fill-opacity:1;stroke:#a06b00;stroke-width:0.50000000000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+         style="fill:#ffe655;fill-opacity:1;stroke:#996600;stroke-width:0.50000000000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
       <path
          sodipodi:nodetypes="ccccc"
          inkscape:connector-curvature="0"
          id="rect3755-8-5"
          d="m 317.36222,44.701217 21.52099,12.425151 -106.06346,183.707312 -21.65063,-12.5 z"
-         style="fill:#ffaa00;fill-opacity:1;stroke:#a06b00;stroke-width:0.50000000000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+         style="fill:#ffe655;fill-opacity:1;stroke:#996600;stroke-width:0.50000000000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
       <path
          sodipodi:nodetypes="ccccc"
          inkscape:connector-curvature="0"
          id="rect3755-8-6"
          d="m 385.99966,44.701217 21.52099,12.425151 -106.06346,183.707312 -21.65063,-12.5 z"
-         style="fill:#ffaa00;fill-opacity:1;stroke:#a06b00;stroke-width:0.50000000000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+         style="fill:#ffe655;fill-opacity:1;stroke:#996600;stroke-width:0.50000000000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
       <path
          sodipodi:nodetypes="ccccc"
          inkscape:connector-curvature="0"
          id="rect3755-8-1"
          d="m 454.63711,44.701217 21.52099,12.425151 -106.06346,183.707302 -21.65063,-12.5 z"
-         style="fill:#ffaa00;fill-opacity:1;stroke:#a06b00;stroke-width:0.50000000000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+         style="fill:#ffe655;fill-opacity:1;stroke:#996600;stroke-width:0.50000000000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
       <path
          sodipodi:nodetypes="ccccc"
          inkscape:connector-curvature="0"
          id="rect3755-8-15"
          d="m 523.27455,44.701217 21.52099,12.425151 -106.06346,183.707302 -21.65063,-12.5 z"
-         style="fill:#ffaa00;fill-opacity:1;stroke:#a06b00;stroke-width:0.50000000000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+         style="fill:#ffe655;fill-opacity:1;stroke:#996600;stroke-width:0.50000000000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
       <path
          sodipodi:nodetypes="ccccc"
          inkscape:connector-curvature="0"
          id="rect3755-8-9"
          d="m 591.91198,44.701217 21.52099,12.425151 -106.06346,183.707302 -21.65063,-12.5 z"
-         style="fill:#ffaa00;fill-opacity:1;stroke:#a06b00;stroke-width:0.50000000000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+         style="fill:#ffe655;fill-opacity:1;stroke:#996600;stroke-width:0.50000000000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
       <path
          sodipodi:nodetypes="ccccc"
          inkscape:connector-curvature="0"
          id="rect3755-8-9-3"
          d="m 660.54941,44.701217 21.52099,12.425151 -106.06346,183.707302 -21.65063,-12.5 z"
-         style="fill:#ffaa00;fill-opacity:1;stroke:#a06b00;stroke-width:0.50000000000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+         style="fill:#ffe655;fill-opacity:1;stroke:#996600;stroke-width:0.50000000000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
     </g>
     <path
        style="fill:url(#linearGradient3982);fill-opacity:1"
