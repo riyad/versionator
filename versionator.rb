@@ -76,30 +76,33 @@ module Versionator
         mini_logo(detector.basic_name)
       end
 
-      # must be sibling of toggle item
-      def toggle_container(selector, subj_state = :show)
-        %Q{<div class="toggle-container">} +
-          %Q{<a class="button">} +
-            %Q{<img src="images/container-expand.png" class="container-expand" />} +
-            %Q{<img src="images/container-collapse.png" class="container-collapse" />} +
-          %Q{</a>} +
+      # must be decendant of subject
+      # subject must have .head and .body decendants
+      def toggle_container(selector, subj_state = :head)
+        %Q{<div class="toggle-container toggle button">} +
+          %Q{<img src="images/container-expand.png" class="container-expand" />} +
+          %Q{<img src="images/container-collapse.png" class="container-collapse" />} +
           %Q{<script>
   $(document).ready(function() {
     var subj = $('#{selector}');
-    var button = $('#{selector}').siblings('.toggle-container').find('.button');
-    var expand = button.find('.container-expand');
-    var collapse = button.find('.container-collapse');
+    var subjHead = $(subj).find('.head');
+    var subjBody = $(subj).find('.body');
+    var button = $(subj).find('.toggle.button');
+    var expand = $(subj).find('.container-expand');
+    var collapse = $(subj).find('.container-collapse');
 
-    button.click(function() {
+    $(button).click(function() {
       expand.toggle();
       collapse.toggle();
-      subj.slideToggle();
+      subjHead.slideToggle();
+      subjBody.slideToggle();
     });
-    #{ if subj_state == :show
-        "expand.hide();"
+    #{ if subj_state == :head
+        "collapse.hide();
+        subjBody.hide();"
       else
-        "subj.hide();
-        collapse.hide();"
+        "expand.hide();
+        subjHead.hide();"
     end }
   });
         </script>} +

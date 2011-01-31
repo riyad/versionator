@@ -16,8 +16,8 @@ ul
       background-color: #fff
       border: 0.1em solid #6193CF
       border-radius: 5px
-      margin: 0.5em
-      padding: 0.5em
+      margin: 0 0.5em
+      padding: 0 0.5em
       text-align: center
       img
         display: block
@@ -28,41 +28,53 @@ ul
   &.vertical li
     display: block
 
-.button
-  background-color: #00316E
-  border: 0.1em solid #00316E
-  border-radius: 5px
-  color: #fff
-  cursor: pointer
-  padding: 0.1em 0.2em 0.2em
-  &:hover
-    background-color: #0057AE
-
-.container
-  border-bottom: .1em solid black
-  margin: 0.5em 0
-  padding: 0.5em
-  h2, h3, h4
-    display: inline-block
+#detectors
+  .container
+    padding: 0 0.5em
+  ul
     margin: 0
-    padding: 0
-  &.app
-    border-bottom: 0
-  &.recognizers
-    padding: 0
-  .item
-    border: 0.1em solid #6193CF
-    border-radius: 5px
-    margin: 0.5em 0
-    padding: 0.5em
+
+#installations
+  .app
     p
       margin: 0
     .logo
       float: right
+      margin: 0.5em 16px
     .name
       font-size: 125%
     .version
       font-style: italic
+
+.button
+  border-radius: 5px
+  cursor: pointer
+  padding: 0.1em 0.2em 0.2em
+  &:hover
+    background-color: #B8D8FF
+  &.toggle:hover
+    background-color: rgba(184, 216, 255, 0.5)
+
+.border-all
+  border: 0.1em solid #6193CF
+  border-radius: 5px
+
+.container
+  margin: 0.5em 0
+  padding: 0
+  h3
+    margin: 0
+    padding: 0.5em
+  .head
+  .body
+    h4
+      margin: 0
+    .content
+      padding: 0.5em
+      .button
+        text-decoration: underline
+        img
+          display: inline-block
 
 .message
   background-position: right center
@@ -86,9 +98,16 @@ ul
     border: 0.1em solid #0057AE
 
 .toggle-container
-  display: inline-block
   img
     margin-bottom: 0
+  &.button
+    background: none
+    border: none
+    display: block
+    float: right
+    padding: 0
+    margin: 0.2em
+    width: 16px
 
 .verdict
   background-repeat: repeat-x

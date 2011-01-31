@@ -17,55 +17,62 @@
               %li
                 = image("folder-exists-not")
                 = dir
-      .container
-      #installations.container
+      #installations
         %h2 Installations
         - @dirs_that_exist.each do |dir|
           - app = @apps[dir]
-          .container.app
-            - unless app
-              %h3
-                = image("folder")
-                = dir
-            - else
+          - unless app
+            %div{ :id => dom_id_for_dir(dir), :class => "container border-all app" }
+              .head
+                %h3
+                  = image("folder")
+                  = dir
+          - else
+            %div{ :id => dom_id_for_dir(dir), :class => "container border-all app #{app.basic_name}-app" }
               = toggle_container("##{dom_id_for_dir(dir)}")
-              %h3
-                = mini_logo_for(app)
-                = dir
-              %div{ :id => dom_id_for_dir(dir), :class => "container item #{app.basic_name}-app" }
+              .head
+                %h3.toggle.button
+                  = mini_logo_for(app)
+                  = dir
+              .body
                 .logo= logo_for(app)
-                %h4
-                  %span.name= app.app_name
-                .installed-version
-                  Installed Version:
-                  %span.version= app.installed_version
-                .newest-version
-                  Newest Version:
-                  %span.version
-                  = ajax_loader
-                  %a.check-version.button
-                    = image("version-check-newest")
-                    Check
-                .project-links
-                  %a{ :href => app.project_url }
-                    = image("homepage-developer")
-                    Project Website
-                  - if app.project_url_for_installed_version
-                    %a{ :href => app.project_url_for_installed_version, :class => "installed_version" }
+                %h3.toggle.button
+                  = image("folder")
+                  = dir
+                .content
+                  %h4
+                    %span.name= app.app_name
+                  .installed-version
+                    Installed Version:
+                    %span.version= app.installed_version
+                  .newest-version
+                    Newest Version:
+                    %span.version
+                    = ajax_loader
+                    %a.check-version.button
+                      = image("version-check-newest")
+                      Check
+                  .project-links
+                    %a{ :href => app.project_url }
                       = image("homepage-developer")
-                      = app.app_name
-                      = app.installed_version
-                      Release
-      #detectors.container
-        = toggle_container('#detectors div.detectors', :hide)
+                      Project Website
+                    - if app.project_url_for_installed_version
+                      %a{ :href => app.project_url_for_installed_version, :class => "installed_version" }
+                        = image("homepage-developer")
+                        = app.app_name
+                        = app.installed_version
+                        Release
+      #detectors
+        = toggle_container('#detectors', :head)
         %h2
           Application Detectors
-        .container.detectors
-          %ul.horizontal.detectors.icon.list
+        .head
+        .body.container
+          %ul.vertical.list
             - @detectors.each do |det|
               %li
                 %a{ :href => det.project_url }
-                  = logo_for(det)
+                  = mini_logo_for(det)
                   = det.app_name
       - @detectors.each do |detector|
         :javascript
