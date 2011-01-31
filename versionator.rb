@@ -80,26 +80,26 @@ module Versionator
       def toggle_container(selector, subj_state = :show)
         %Q{<div class="toggle-container">} +
           %Q{<a class="button">} +
-            %Q{<img src="images/container-show.png" class="show-container" />} +
-            %Q{<img src="images/container-hide.png" class="hide-container" />} +
+            %Q{<img src="images/container-expand.png" class="container-expand" />} +
+            %Q{<img src="images/container-collapse.png" class="container-collapse" />} +
           %Q{</a>} +
           %Q{<script>
   $(document).ready(function() {
     var subj = $('#{selector}');
     var button = $('#{selector}').siblings('.toggle-container').find('.button');
-    var show = button.find('.show-container');
-    var hide = button.find('.hide-container');
+    var expand = button.find('.container-expand');
+    var collapse = button.find('.container-collapse');
 
     button.click(function() {
-      show.toggle();
-      hide.toggle();
+      expand.toggle();
+      collapse.toggle();
       subj.slideToggle();
     });
     #{ if subj_state == :show
-        "show.hide();"
+        "expand.hide();"
       else
         "subj.hide();
-        hide.hide();"
+        collapse.hide();"
     end }
   });
         </script>} +
