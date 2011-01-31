@@ -22,15 +22,17 @@
         %h2 Installations
         - @dirs_that_exist.each do |dir|
           - app = @apps[dir]
-          .container.apps
-            %h3
-              - if app
-                = mini_logo_for(app)
-              - else
+          .container.app
+            - unless app
+              %h3
                 = image("folder")
-              = dir
-            - if app
-              %div{ :class => "item #{app.basic_name}-app" }
+                = dir
+            - else
+              = toggle_container("##{dom_id_for_dir(dir)}")
+              %h3
+                = mini_logo_for(app)
+                = dir
+              %div{ :id => dom_id_for_dir(dir), :class => "container item #{app.basic_name}-app" }
                 .logo= logo_for(app)
                 %h4
                   %span.name= app.app_name
@@ -55,7 +57,7 @@
                       = app.installed_version
                       Release
       #detectors.container
-        = toggle_container('#detectors div.detectors')
+        = toggle_container('#detectors div.detectors', :hide)
         %h2
           Application Detectors
         .container.detectors
