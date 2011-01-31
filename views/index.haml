@@ -34,6 +34,15 @@
                 %h3.toggle.button
                   = mini_logo_for(app)
                   = dir
+                  %span.content
+                    %span.installed-version
+                      Installed:
+                      %span.version>= app.installed_version
+                    &nbsp;
+                    %span.newest-version
+                      Newest:
+                      %span.version> unknown
+                      = ajax_loader
               .body
                 .logo= logo_for(app)
                 %h3.toggle.button
