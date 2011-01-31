@@ -73,17 +73,27 @@
                     - if app.project_url_for_installed_version
                       = link_to_app_release(app, :installed_version)
       #detectors
-        = toggle_container('#detectors', :collapsed)
         %h2
           Application Detectors
-        .head
-        .body.container
-          %ul.vertical.list
-            - @detectors.each do |det|
-              %li
-                %a{ :href => det.project_url }
-                  = mini_logo_for(det)
-                  = det.app_name
+        .container.border-all
+          = toggle_container('#detectors .container', :collapsed)
+          .head
+            %h3.toggle.button
+              Having
+              = @detectors.size
+              Detectors
+          .body
+            %h3.toggle.button
+              Having
+              = @detectors.size
+              Detectors
+            .content
+              %ul.vertical.list
+                - @detectors.each do |detector|
+                  %li
+                    %a{ :href => detector.project_url }
+                      = mini_logo_for(detector)
+                      = detector.app_name
       - @detectors.each do |detector|
         :javascript
           $(document).ready(function() {
