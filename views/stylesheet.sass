@@ -89,25 +89,28 @@ ul
           display: inline-block
 
 .message
-  background-position: right center
-  background-repeat: no-repeat
   border-radius: 5px
   margin: 1em 0
-  padding: 1em
-  h2
-    margin: 0
   &.error
-    background-image: url('images/message-error.png')
-    background-color: #F9CCCA
+    background-color: #FFE5E5
     border: 0.1em solid #E20800
-  &.warning
-    background-image: url('images/message-warning.png')
-    background-color: #FFDFBF
-    border: 0.1em solid #EB7331
-  &.info
-    background-image: url('images/message-info.png')
-    background-color: #B8D8FF
-    border: 0.1em solid #0057AE
+    .body
+      background-image: url('images/message-error.png')
+      background-position: 0.5em 0.5em
+      background-repeat: no-repeat
+      h2
+        margin: 0
+        padding: 0.4em 0 0.5em 2em
+    .content
+      padding: 0.5em 1em 0
+    .head
+      background-image: url('images/message-error-mini.png')
+      background-position: 0.4em 0.4em
+      background-repeat: no-repeat
+      h2
+        font-size: 12pt
+        margin: 0
+        padding: 0.3em 0 0.2em 1.6em
 
 .toggle-container
   img

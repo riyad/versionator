@@ -9,14 +9,21 @@
   %body
     %h1 Versionator
     #root
-      - unless @dirs_that_dont_exist.empty?
-        .message.error
-          %h2 Directories not found
-          %ul.vertical.list
-            - @dirs_that_dont_exist.each do |dir|
-              %li
-                = image("folder-exists-not")
-                = dir
+      #messages
+        - unless @dirs_that_dont_exist.empty?
+          #message-error.error.message.container
+            = toggle_container("#message-error", :expanded)
+            .head
+              %h2.toggle.button Directories not found
+            .body
+              %h2.toggle.button Directories not found
+              .content
+                The following directories could not be found:
+                %ul.vertical.list
+                  - @dirs_that_dont_exist.each do |dir|
+                    %li
+                      = image("folder-exists-not")
+                      = dir
       #installations
         %h2 Installations
         - @dirs_that_exist.each do |dir|
