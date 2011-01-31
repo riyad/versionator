@@ -77,7 +77,7 @@ module Versionator
       end
 
       # must be sibling of toggle item
-      def toggle_container(selector)
+      def toggle_container(selector, subj_state = :show)
         %Q{<div class="toggle-container">} +
           %Q{<a class="button">} +
             %Q{<img src="images/container-show.png" class="show-container" />} +
@@ -95,8 +95,12 @@ module Versionator
       hide.toggle();
       subj.slideToggle();
     });
-    subj.hide();
-    hide.hide();
+    #{ if subj_state == :show
+        "show.hide();"
+      else
+        "subj.hide();
+        hide.hide();"
+    end }
   });
         </script>} +
         %Q{</div>}
