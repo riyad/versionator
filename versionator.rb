@@ -114,20 +114,6 @@ module Versionator
     end
 
     get '/' do
-      @dirs = dirs
-      @dirs_that_dont_exist = @dirs.reject { |dir| Dir.exists?(dir) }
-      @dirs_that_exist = @dirs - @dirs_that_dont_exist
-
-      @detectors = detectors.sort_by { |det| det.app_name.downcase }
-
-      @apps = {}
-      @dirs_that_exist.each do |dir|
-        @detectors.each do |detector_class|
-          detector = detector_class.new(dir)
-          @apps[dir] = detector if detector.detected?
-        end
-      end
-
       haml :index
     end
 
@@ -150,6 +136,24 @@ module Versionator
       ret[:newest_version] = app.newest_version
       ret[:project_url_for_newest_version] = app.project_url_for_newest_version
       ret.to_json
+    end
+
+    get '/installations' do
+      @dirs = dirs
+      @dirs_that_dont_exist = @dirs.reject { |dir| Dir.exists?(dir) }
+      @dirs_that_exist = @dirs - @dirs_that_dont_exist
+
+      @detectors = detectors.sort_by { |det| det.app_name.downcase }
+
+      @apps = {}
+      @dirs_that_exist.each do |dir|
+        @detectors.each do |detector_class|
+          detector = detector_class.new(dir)
+          @apps[dir] = detector if detector.detected?
+        end
+      end
+
+      haml :installations, :layout => !request.xhr?
     end
 
     get '/stylesheet.css' do
