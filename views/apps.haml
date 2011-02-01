@@ -4,12 +4,16 @@
     Applications
   - @apps.each do |app|
     %div{ :id => "#{app.basic_name}-app", :class => "container border-all app #{app.basic_name}-app" }
-      .logo= logo_for(app)
+      = toggle_container("##{app.basic_name}-app", :expanded)
       .head
-        %h3
+        %h3.toggle.button
           = mini_logo_for(app)
-          %span.name= app.app_name
+          = app.app_name
       .body
+        .logo= logo_for(app)
+        %h3.toggle.button
+          = mini_logo_for(app)
+          = app.app_name
         .content
           .newest-version
             Newest Version:
