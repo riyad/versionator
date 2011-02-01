@@ -40,6 +40,12 @@ module Versionator
         %Q{<img src="images/#{name}.png" alt="#{name}" />}
       end
 
+      def link_to(text, href, html_options = {})
+        %Q{<a href="#{href}" #{%Q{id="#{html_options[:id]}"} if html_options[:id]} #{%Q{class="#{html_options[:class]}"} if html_options[:class]}>} +
+          text +
+        %Q{</a> }
+      end
+
       def link_to_app_project(app)
         link_to_external("#{mini_logo_for(app)} #{app.app_name} Website", app.project_url)
       end
@@ -108,21 +114,20 @@ module Versionator
     end
 
     get '/' do
-      @dirs = dirs
-      @dirs_that_dont_exist = @dirs.reject { |dir| Dir.exists?(dir) }
-      @dirs_that_exist = @dirs - @dirs_that_dont_exist
-
-      @detectors = detectors.sort_by(&:app_name)
-
-      @apps = {}
-      @dirs_that_exist.each do |dir|
-        @detectors.each do |detector_class|
-          detector = detector_class.new(dir)
-          @apps[dir] = detector if detector.detected?
-        end
-      end
+      @apps = detectors.sort_by { |det| det.app_name.downcase }
+      @dirs = dirs.sort
 
       haml :index
+    end
+
+    get '/about' do
+      haml :about
+    end
+
+    get '/apps' do
+      @detectors = detectors.sort_by { |det| det.app_name.downcase }
+
+      haml :apps, :layout => !request.xhr?
     end
 
     get '/apps/:app_name/newest_version' do
@@ -134,6 +139,24 @@ module Versionator
       ret[:newest_version] = app.newest_version
       ret[:project_url_for_newest_version] = app.project_url_for_newest_version
       ret.to_json
+    end
+
+    get '/installations' do
+      @dirs = dirs
+      @dirs_that_dont_exist = @dirs.reject { |dir| Dir.exists?(dir) }
+      @dirs_that_exist = @dirs - @dirs_that_dont_exist
+
+      @detectors = detectors.sort_by { |det| det.app_name.downcase }
+
+      @apps = {}
+      @dirs_that_exist.each do |dir|
+        @detectors.each do |detector_class|
+          detector = detector_class.new(dir)
+          @apps[dir] = detector if detector.detected?
+        end
+      end
+
+      haml :installations, :layout => !request.xhr?
     end
 
     get '/stylesheet.css' do
