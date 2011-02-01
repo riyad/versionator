@@ -40,6 +40,12 @@ module Versionator
         %Q{<img src="images/#{name}.png" alt="#{name}" />}
       end
 
+      def link_to(text, href, html_options = {})
+        %Q{<a href="#{href}" #{%Q{id="#{html_options[:id]}"} if html_options[:id]} #{%Q{class="#{html_options[:class]}"} if html_options[:class]}>} +
+          text +
+        %Q{</a> }
+      end
+
       def link_to_app_project(app)
         link_to_external("#{mini_logo_for(app)} #{app.app_name} Website", app.project_url)
       end
