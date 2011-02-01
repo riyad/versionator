@@ -66,13 +66,30 @@
     $(document).ready(function() {
       var inst = $(".#{detector.basic_name}-app");
       var nv = $(inst).find(".newest-version");
+      var nvt = $(nv).find(".version");
       var url = "/apps/#{detector.basic_name}/newest_version.json";
+
+      $(inst).ajaxError(function(event, xhr, settings, exception) {
+        if (settings.url != url) {
+          return;
+        }
+        console.log(event);
+        console.log(xhr);
+        console.log(settings);
+        console.log(exception);
+        if (xhr.status != 200) {
+          var error = xhr.statusText;
+        } else {
+          var error = 'An error occured';
+        }
+        updateNewestVersionFor(inst, '<span class="message error">'+error+'</span>');
+      });
+
       $(nv).find(".check-version.button").click(function() {
-        $(nv).find(".version").html(""); // erase newest version text
         $(nv).find(".ajax-loader").show(); // show throbber
-        $.getJSON("/apps/#{detector.basic_name}/newest_version", function(data) {
-          updateNewestVersionFor(inst, data);
+        $(nvt).html(""); // erase newest version text
         $.getJSON(url, function(data) {
+          updateNewestVersionFor(inst, data.newest_version);
           updateVerdictsFor(inst);
           addNewestVersionLink(inst, data);
         });
@@ -91,10 +108,10 @@
       }
     }
   }
-  function updateNewestVersionFor(inst, data) {
+  function updateNewestVersionFor(inst, html) {
     var nv = $(inst).find(".newest-version");
     $(nv).find(".ajax-loader").hide(); // hide throbber
-    $(nv).find(".version").html(data.newest_version); // set newest version text
+    $(nv).find(".version").html(html); // set newest version text
     // update button
     $(nv).find(".check-version.button").html('#{image("version-check-newest")} Recheck');
   }
