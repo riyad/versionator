@@ -106,7 +106,18 @@ module Versionator
     end
 
     get '/apps' do
-      @detectors = detectors.sort_by(&:basic_name)
+      all_apps = detectors
+      installs_for_app = Hash.new([])
+      dirs.each do |dir|
+        all_apps.each do |app_class|
+          app = app_class.new(dir)
+          installs_for_app[app_class] += [app] if app.detected?
+        end
+      end
+
+      # only show apps that have actual installs
+      @apps = installs_for_app.keys.sort_by(&:basic_name)
+      @installs_for_app = installs_for_app
 
       haml :apps, :layout => !request.xhr?
     end

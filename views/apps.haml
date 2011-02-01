@@ -2,7 +2,7 @@
 #apps
   %h2
     Applications
-  - @detectors.each do |app|
+  - @apps.each do |app|
     %div{ :id => "#{app.basic_name}-app", :class => "container border-all app #{app.basic_name}-app" }
       .logo= logo_for(app)
       .head
@@ -20,3 +20,13 @@
               Check
           .project-links
             = link_to_app_project(app)
+          .dirs.container
+            Installations:
+            %ul.verical.list
+              - @installs_for_app[app].each do |install|
+                %li{ :id => dom_id_for_dir(install.base_dir) }
+                  = image("folder")
+                  = install.base_dir
+                  (Version:
+                  %span.version= install.installed_version
+                  )
