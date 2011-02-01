@@ -114,6 +114,9 @@ module Versionator
     end
 
     get '/' do
+      @apps = detectors.sort_by { |det| det.app_name.downcase }
+      @dirs = dirs.sort
+
       haml :index
     end
 

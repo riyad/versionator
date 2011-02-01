@@ -1,1 +1,50 @@
 
+%h2 Overview
+%ul.vertical.icon.list
+  %li
+    = image("folder-big")
+    %h2 Installations
+    %p This will list all the directories you have configured to track.
+    %p It will detect the installed application and the its version.
+    %p
+      You will then have the opportunity to check for the most recent version online and get an overview on which of your applications might need an update.
+  %li
+    = image("apps-big")
+    %h2 Applications
+    %p
+      This will list all the applications you have installed in the directories you have configured to track.
+    %p
+      It will allow you to check for the most recent version online and show you which installation might need an update.
+
+#dirs.container.border-all
+  = toggle_container("#dirs", :collapsed)
+  .head
+    %h3.toggle.button
+      Directories
+      .content This is a list of all the directories you have configured to track.
+  .body
+    %h3.toggle.button Directories
+    .content
+      %p
+        This is a list of all the directories you have configured to track.
+      %ul.vertical.list
+        - @dirs.each do |dir|
+          %li
+            = image("folder")
+            = dir
+
+#apps.container.border-all
+  = toggle_container("#apps", :collapsed)
+  .head
+    %h3.toggle.button
+      Applications
+      .content This is a list of all the applications we are able to track.
+  .body
+    %h3.toggle.button Applications
+    .content
+      %p
+        This is a list of all the applications we are able to track.
+      %ul.vertical.list
+        - @apps.each do |app|
+          %li
+            = link_to("#{mini_logo_for(app)} #{app.app_name}", app.project_url)

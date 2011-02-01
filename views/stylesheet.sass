@@ -13,6 +13,7 @@ img
     display: none
 
 ul
+  margin: 0.5em 0
   &.horizontal li
     display: inline-block
   &.list
@@ -22,15 +23,25 @@ ul
       background-color: #fff
       border: 0.1em solid #6193CF
       border-radius: 5px
+    &.horizontal.icon li
       margin: 0 0.5em
       padding: 0 0.5em
       text-align: center
       img
         display: block
         margin-bottom: 0.5em
-      &:hover
-        background-color: #BFD9FF
-        border: 0.1em solid #2C72C7
+    &.vertical.icon li
+      margin: 0.5em auto
+      padding: 0.5em
+      width: 70%
+      h2
+        margin: 0 0 0.2em
+      img
+        display: block
+        float: left
+        margin: 0 1em 0 0.5em
+      p
+        margin: 0.2em 0 0.2em 5.6em
   &.tabs
     border-bottom: 0.1em solid #6193CF
     li
