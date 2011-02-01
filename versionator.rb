@@ -81,33 +81,14 @@ module Versionator
 
       # must be decendant of subject
       # subject must have .head and .body decendants
-      def toggle_container(selector, subj_state = :collapsed)
+      def toggle_container(subj_selector, initial_subj_state = :collapsed)
         %Q{<div class="toggle-container toggle button">} +
           %Q{<img src="images/container-expand.png" class="container-expand" />} +
           %Q{<img src="images/container-collapse.png" class="container-collapse" />} +
           %Q{<script>
-  $(document).ready(function() {
-    var subj = $('#{selector}');
-    var subjHead = $(subj).find('.head');
-    var subjBody = $(subj).find('.body');
-    var button = $(subj).find('.toggle.button');
-    var expand = $(subj).find('.container-expand');
-    var collapse = $(subj).find('.container-collapse');
-
-    $(button).click(function() {
-      expand.toggle();
-      collapse.toggle();
-      subjHead.slideToggle();
-      subjBody.slideToggle();
-    });
-    #{ if subj_state == :collapsed
-        "collapse.hide();
-        subjBody.hide();"
-      else
-        "expand.hide();
-        subjHead.hide();"
-    end }
-  });
+            $(document).ready(function() {
+              setupToggleContainer("#{subj_selector}", "#{initial_subj_state.to_s}");
+            });
         </script>} +
         %Q{</div>}
       end
