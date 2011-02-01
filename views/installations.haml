@@ -54,7 +54,7 @@
               Newest Version:
               %span.version
               = ajax_loader
-              %a.check-version.button
+              %a.check-newest-version.button
                 = image("version-check-newest")
                 Check
             .project-links
@@ -85,7 +85,7 @@
         updateNewestVersionFor(inst, '<span class="message error">'+error+'</span>');
       });
 
-      $(nv).find(".check-version.button").click(function() {
+      $(nv).find(".check-newest-version.button").click(function() {
         $(nv).find(".ajax-loader").show(); // show throbber
         $(nvt).html(""); // erase newest version text
         $.getJSON(url, function(data) {
@@ -113,7 +113,7 @@
     $(nv).find(".ajax-loader").hide(); // hide throbber
     $(nv).find(".version").html(html); // set newest version text
     // update button
-    $(nv).find(".check-version.button").html('#{image("version-check-newest")} Recheck');
+    $(nv).find(".check-newest-version.button").html('#{image("version-check-newest")} Recheck');
   }
   function updateVerdictsFor(inst) {
     $(inst).each(function() {
