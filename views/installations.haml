@@ -68,6 +68,6 @@
               - if app.project_url_for_installed_version
                 = link_to_app_release(app, :installed_version)
 :javascript
-  $(document).ready(function() {
+  $(function() {
     $(".check-all-newest-versions.button").click(checkAllNewestVersions);
   });

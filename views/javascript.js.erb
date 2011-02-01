@@ -28,7 +28,7 @@ function checkAllNewestVersions() {
 }
 
 <% @detectors.each do |detector| %>
-  $(document).ready(function() {
+  $(function() {
     var inst = $(".<%= detector.basic_name %>-app");
     var nv = $(inst).find(".newest-version");
     var nvt = $(nv).find(".version");
