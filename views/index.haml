@@ -20,10 +20,13 @@
   = toggle_container("#dirs", :collapsed)
   .head
     %h3.toggle.button
+      = image("folder")
       Directories
       .content This is a list of all the directories you have configured to track.
   .body
-    %h3.toggle.button Directories
+    %h3.toggle.button
+      = image("folder")
+      Directories
     .content
       %p
         This is a list of all the directories you have configured to track.
@@ -37,10 +40,13 @@
   = toggle_container("#apps", :collapsed)
   .head
     %h3.toggle.button
+      = image("apps")
       Applications
       .content This is a list of all the applications we are able to track.
   .body
-    %h3.toggle.button Applications
+    %h3.toggle.button
+      = image("apps")
+      Applications
     .content
       %p
         This is a list of all the applications we are able to track.
