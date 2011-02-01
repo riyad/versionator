@@ -36,18 +36,21 @@ ul
       img
         display: block
         margin-bottom: 0.5em
-    &.vertical.icon li
-      margin: 0.5em auto
-      padding: 0.5em
-      width: 70%
-      h2
-        margin: 0 0 0.2em
-      img
-        display: block
-        float: left
-        margin: 0 1em 0 0.5em
-      p
-        margin: 0.2em 0 0.2em 5.6em
+    &.vertical
+      li
+        padding: 0.1em 0
+      &.icon li
+        margin: 0.5em auto
+        padding: 0.5em
+        width: 70%
+        h2
+          margin: 0 0 0.2em
+        img
+          display: block
+          float: left
+          margin: 0 1em 0 0.5em
+        p
+          margin: 0.2em 0 0.2em 5.6em
   &.tabs
     border-bottom: 0.1em solid #6193CF
     li
@@ -151,12 +154,17 @@ span.message.error
     width: 16px
 
 .verdict
-  background-repeat: repeat-x
-  &.up-to-date
-    background-image: url('images/verdict-up-to-date.png')
-    background-color: #daf0be
-    border: 0.1em solid #9ed15c
+  &.dir img
+    padding: 0 0.2em 0 0.3em
   &.outdated
-    background-image: url('images/verdict-outdated.png')
     background-color: #fff9d4
     border: 0.1em solid #ffe655
+  &.striped
+    background-repeat: repeat-x
+    &.outdated
+      background-image: url('images/verdict-outdated.png')
+    &.up-to-date
+      background-image: url('images/verdict-up-to-date.png')
+  &.up-to-date
+    background-color: #daf0be
+    border: 0.1em solid #9ed15c
