@@ -131,6 +131,10 @@ module Versionator
       haml :index
     end
 
+    get '/about' do
+      haml :about
+    end
+
     get '/apps' do
       @detectors = detectors.sort_by(&:app_name)
 
