@@ -159,6 +159,12 @@ module Versionator
       haml :installations, :layout => !request.xhr?
     end
 
+    get '/javascript.js' do
+      @detectors = detectors.sort_by(&:basic_name)
+
+      erb :"javascript.js"
+    end
+
     get '/stylesheet.css' do
       sass :stylesheet
     end

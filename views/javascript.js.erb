@@ -1,0 +1,24 @@
+
+function setupToggleContainer(subjectSelector, initialSubjectState) {
+  var subj = $(subjectSelector);
+  var subjHead = $(subj).find('.head');
+  var subjBody = $(subj).find('.body');
+  var button = $(subj).find('.toggle.button');
+  var expand = $(subj).find('.container-expand');
+  var collapse = $(subj).find('.container-collapse');
+
+  $(button).click(function() {
+    expand.toggle();
+    collapse.toggle();
+    subjHead.slideToggle();
+    subjBody.slideToggle();
+  });
+
+  if (initialSubjectState == "collapsed") {
+    collapse.hide();
+    subjBody.hide();
+  } else {
+    expand.hide();
+    subjHead.hide();
+  }
+}
