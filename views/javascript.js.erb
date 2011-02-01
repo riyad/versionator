@@ -24,7 +24,10 @@ function setupToggleContainer(subjectSelector, initialSubjectState) {
 }
 
 function checkAllNewestVersions() {
-  <%= @detectors.map{ |detector| "checkNewestVersionFor#{detector.basic_name.camelize}();" }.join("\n") %>
+  // start a request every 250ms
+  <% @detectors.each_with_index do |detector, index| %>
+    setTimeout(checkNewestVersionFor<%= detector.basic_name.camelize %>, <%= index*250 %>);
+  <% end %>
 }
 
 <% @detectors.each do |detector| %>
