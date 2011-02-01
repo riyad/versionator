@@ -10,8 +10,8 @@
     #header
       %h1 Versionator
     #content
+      %ul.horizontal.tabs
+        %li= link_to("#{image("folder")} Installations", '/')
+        %li= link_to("#{image("apps")} Applications", '/apps')
+        %li.about= link_to("#{image("about")} About", '/about')
       = yield
-    #footer
-      %ul.horizontal.list
-        %li= link_to("#{image("detectors")} Detectors", '/apps')
-        %li= link_to("#{image("about")} About", '/about')
