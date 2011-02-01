@@ -1,6 +1,12 @@
 
 #installations
-  %h2 Installations
+  %h2
+    Installations
+    %span.description
+      %a.check-all-newest-versions.button
+        = ajax_loader
+        = image("version-check-newest")
+        Check all newest versions
 - unless @dirs_that_dont_exist.empty?
   #message-error-dirs.error.message.container
     = toggle_container("#message-error-dirs", :expanded)
