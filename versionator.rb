@@ -118,7 +118,7 @@ module Versionator
       @dirs_that_dont_exist = @dirs.reject { |dir| Dir.exists?(dir) }
       @dirs_that_exist = @dirs - @dirs_that_dont_exist
 
-      @detectors = detectors.sort_by(&:app_name)
+      @detectors = detectors.sort_by { |det| det.app_name.downcase }
 
       @apps = {}
       @dirs_that_exist.each do |dir|
@@ -136,7 +136,7 @@ module Versionator
     end
 
     get '/apps' do
-      @detectors = detectors.sort_by(&:app_name)
+      @detectors = detectors.sort_by { |det| det.app_name.downcase }
 
       haml :apps, :layout => !request.xhr?
     end
