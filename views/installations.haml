@@ -66,11 +66,13 @@
     $(document).ready(function() {
       var inst = $(".#{detector.basic_name}-app");
       var nv = $(inst).find(".newest-version");
+      var url = "/apps/#{detector.basic_name}/newest_version.json";
       $(nv).find(".check-version.button").click(function() {
         $(nv).find(".version").html(""); // erase newest version text
         $(nv).find(".ajax-loader").show(); // show throbber
         $.getJSON("/apps/#{detector.basic_name}/newest_version", function(data) {
           updateNewestVersionFor(inst, data);
+        $.getJSON(url, function(data) {
           updateVerdictsFor(inst);
           addNewestVersionLink(inst, data);
         });

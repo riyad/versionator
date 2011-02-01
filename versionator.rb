@@ -130,7 +130,7 @@ module Versionator
       haml :apps, :layout => !request.xhr?
     end
 
-    get '/apps/:app_name/newest_version' do
+    get '/apps/:app_name/newest_version.json' do
       app_name = params[:app_name]
       app_class = detectors.find { |det| det.basic_name == app_name }
       app = app_class.new
