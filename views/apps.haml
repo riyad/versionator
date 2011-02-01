@@ -1,0 +1,22 @@
+
+#detectors
+  %h2
+    Applications
+  - @detectors.each do |app|
+    %div{ :id => "#{app.basic_name}-app", :class => "container border-all app #{app.basic_name}-app" }
+      .logo= logo_for(app)
+      .head
+        %h3
+          = mini_logo_for(app)
+          %span.name= app.app_name
+      .body
+        .content
+          .newest-version
+            Newest Version:
+            %span.version
+            = ajax_loader
+            %a.check-version.button
+              = image("version-check-newest")
+              Check
+          .project-links
+            = link_to_app_project(app)

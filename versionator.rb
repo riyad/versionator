@@ -131,6 +131,12 @@ module Versionator
       haml :index
     end
 
+    get '/apps' do
+      @detectors = detectors.sort_by(&:app_name)
+
+      haml :apps, :layout => !request.xhr?
+    end
+
     get '/apps/:app_name/newest_version' do
       app_name = params[:app_name]
       app_class = detectors.find { |det| det.basic_name == app_name }
