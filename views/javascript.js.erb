@@ -22,3 +22,84 @@ function setupToggleContainer(subjectSelector, initialSubjectState) {
     subjHead.hide();
   }
 }
+
+function checkAllNewestVersions() {
+  <%= @detectors.map{ |detector| "checkNewestVersionFor#{detector.basic_name.camelize}();" }.join("\n") %>
+}
+
+<% @detectors.each do |detector| %>
+  $(document).ready(function() {
+    var inst = $(".<%= detector.basic_name %>-app");
+    var nv = $(inst).find(".newest-version");
+    var nvt = $(nv).find(".version");
+    var url = "/apps/<%= detector.basic_name %>/newest_version.json";
+
+    $(inst).ajaxError(function(event, xhr, settings, exception) {
+      if (settings.url != url) {
+        return;
+      }
+      console.log(event);
+      console.log(xhr);
+      console.log(settings);
+      console.log(exception);
+      if (xhr.status != 200) {
+        var error = xhr.statusText;
+      } else {
+        var error = 'An error occured';
+      }
+      updateNewestVersionFor(inst, '<span class="message error">'+error+'</span>');
+    });
+
+    $(nv).find(".check-newest-version.button").click(checkNewestVersionFor<%= detector.basic_name.camelize %>);
+  });
+
+  function checkNewestVersionFor<%= detector.basic_name.camelize %>() {
+    var inst = $(".<%= detector.basic_name %>-app");
+    var nv = $(inst).find(".newest-version");
+    var nvt = $(nv).find(".version");
+    var url = "/apps/<%= detector.basic_name %>/newest_version.json";
+
+    $(nv).find(".ajax-loader").show(); // show throbber
+    $(nvt).html(""); // erase newest version text
+    $.getJSON(url, function(data) {
+      updateNewestVersionFor(inst, data.newest_version);
+      updateVerdictsFor(inst);
+      addNewestVersionLink(inst, data);
+    });
+  }
+<% end %>
+
+function addNewestVersionLink(inst, data) {
+  if (data.project_url_for_newest_version) {
+    var links = $(inst).find(".project-links");
+    var nv = $(links).find(".newest-version");
+    var linkText = '<%= link_to_external("#{image("link")} Newest Release", "'+data.project_url_for_newest_version+'", :class => "newest-version") %>';
+    if(nv.length === 0) {
+      $(links).append(linkText);
+    } else {
+      $(nv).relace(linkText);
+    }
+  }
+}
+
+function updateNewestVersionFor(inst, html) {
+  var nv = $(inst).find(".newest-version");
+  $(nv).find(".ajax-loader").hide(); // hide throbber
+  $(nv).find(".version").html(html); // set newest version text
+  // update button
+  $(nv).find(".check-newest-version.button").html('<%= image("version-check-newest") %> Recheck');
+}
+
+function updateVerdictsFor(inst) {
+  $(inst).each(function() {
+    var installed_version = $(this).find(".installed-version .version").text();
+    var newest_version = $(this).find(".newest-version .version").text();
+
+    $(this).addClass("verdict");
+    if(installed_version == newest_version) {
+      $(this).addClass("up-to-date");
+    } else {
+      $(this).addClass("outdated");
+    }
+  });
+}
