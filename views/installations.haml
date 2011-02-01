@@ -5,9 +5,9 @@
   #message-error-dirs.error.message.container
     = toggle_container("#message-error-dirs", :expanded)
     .head
-      %h2.toggle.button Directories not found
+      %h3.toggle.button Directories not found
     .body
-      %h2.toggle.button Directories not found
+      %h3.toggle.button Directories not found
       .content
         The following directories could not be found:
         %ul.vertical.list
@@ -30,7 +30,7 @@
           %h3.toggle.button
             = mini_logo_for(app)
             = dir
-            %span.content
+            %span.description
               %span.installed-version
                 Installed:
                 %span.version>= app.installed_version
