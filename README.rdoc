@@ -1,0 +1,21 @@
+= Versionator
+
+This is a web application that alows you to check a list of directories which web application they contain and whether they are up-to-date.
+
+== Usage
+
+== Issues
+
+Please, report all issues on our issue tracker on GitHub: https://github.com/riyad/versionator/issues
+
+== Code
+
+The main repository can be found on {GitHub}[http://github.com/]: http://github.com/riyad/versionator
+
+== License
+
+Versionator is released under the MIT license.
+
+== Authors
+
+Riyad Preukschas
