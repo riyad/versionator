@@ -1,6 +1,6 @@
 
-# The list of directories to be tracked
-dirs
+# The list of directories to be checked
+check_dirs
 
 # generated documentation
 doc/
