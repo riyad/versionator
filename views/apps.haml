@@ -31,15 +31,17 @@
                 %li{ :id => dom_id_for_dir(install.base_dir), :class => "dir" }
                   = image("folder")
                   = install.base_dir
-                  (Version:
-                  %span.version= install.installed_version
-                  )
+                  %span.description
+                    %span.installed-version
+                      Installed:
+                      %span.version>= install.installed_version
+                    = link_to_app_release(install, :installed_version)
 :javascript
   function updateVerdicts(app) {
     var nv = $(app).find(".newest-version .version").text();
     var installs = $(app).find(".dir");
     $(installs).each(function() {
-      var img = $(this).find("img");
+      var img = $(this).find("img").not(".description img");
       var iv = $(this).find(".version").text();
 
       $(this).addClass("verdict border-all");
