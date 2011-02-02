@@ -1,4 +1,6 @@
 #
 # List all the directories you want to have checked here.
 # Put one directory per line.
+# You can also use shell expansions like:
+# /var/www/*
 #

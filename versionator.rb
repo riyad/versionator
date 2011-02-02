@@ -34,7 +34,19 @@ module Versionator
       end
 
       def dirs
-        File.readlines(settings.check_dirs).map(&:chomp).reject{ |line| line.empty? || line.start_with?('#') }
+        raw_dirs = File.readlines(settings.check_dirs).map(&:chomp)
+        simple_dirs = raw_dirs.reject{ |line| line.empty? || line.start_with?('#') }
+        expanded_dirs = simple_dirs.map do |line|
+          expanded = Dir.glob(line)
+          if expanded.empty?
+            # return original line for error reporting
+            line
+          else
+            # only return directories
+            expanded.select{ |dir| File.directory?(dir) }
+          end
+        end
+        expanded_dirs.flatten.sort_by(&:downcase)
       end
 
       def dom_id_for_dir(dir)
