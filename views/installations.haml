@@ -7,20 +7,20 @@
       = ajax_loader
       = image("version-check-newest")
       Check all newest versions
-- unless @dirs_that_dont_exist.empty?
-  #message-error-dirs.error.message.container
-    = toggle_container("#message-error-dirs", :expanded)
-    .head
-      %h3.toggle.button Directories not found
-    .body
-      %h3.toggle.button Directories not found
-      .content
-        The following directories could not be found:
-        %ul.vertical.list
-          - @dirs_that_dont_exist.each do |dir|
-            %li
-              = image("folder-exists-not")
-              = dir
+  - unless @dirs_that_dont_exist.empty?
+    #message-error-dirs.error.message.container
+      = toggle_container("#message-error-dirs", :expanded)
+      .head
+        %h3.toggle.button Directories not found
+      .body
+        %h3.toggle.button Directories not found
+        .content
+          The following directories could not be found:
+          %ul.vertical.list
+            - @dirs_that_dont_exist.each do |dir|
+              %li
+                = image("folder-exists-not")
+                = dir
   - @dirs_that_exist.each do |dir|
     - app = @apps[dir]
     - unless app
