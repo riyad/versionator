@@ -13,6 +13,11 @@ module Versionator
   class Application < Sinatra::Base
     set :app_file, __FILE__
 
+    configure do
+      # the name of the file containing the directories to be checked
+      set :check_dirs, "check_dirs"
+    end
+
     configure(:development) do
       register Sinatra::Reloader
       also_reload ["*.rb", "lib/**/*.rb"]
