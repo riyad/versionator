@@ -31,10 +31,12 @@ module Versionator
       end
 
       def detectors
-        Versionator::Detector.all.sort_by(&:basic_name)
+        @detectors ||= Versionator::Detector.all.sort_by(&:basic_name)
       end
 
       def dirs
+        return @expanded_dirs if @expanded_dirs
+
         raw_dirs = File.readlines(settings.check_dirs).map(&:chomp)
         simple_dirs = raw_dirs.reject{ |line| line.empty? || line.start_with?('#') }
         expanded_dirs = simple_dirs.map do |line|
@@ -47,7 +49,7 @@ module Versionator
             expanded.select{ |dir| File.directory?(dir) }
           end
         end
-        expanded_dirs.flatten.sort_by(&:downcase)
+        @expanded_dirs = expanded_dirs.flatten.sort_by(&:downcase)
       end
 
       def dom_id_for_dir(dir)
