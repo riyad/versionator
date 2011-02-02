@@ -34,7 +34,7 @@ module Versionator
       end
 
       def dirs
-        File.readlines('dirs').map(&:chomp)
+        File.readlines(settings.check_dirs).map(&:chomp).reject{ |line| line.empty? || line.start_with?('#') }
       end
 
       def dom_id_for_dir(dir)
