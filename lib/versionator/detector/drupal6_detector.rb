@@ -17,10 +17,6 @@ module Versionator
       set :newest_version_selector, '.download-table .project-release .release-update-status-0 .views-field-version a'
       set :newest_version_regexp, /^(6.+)$/
 
-      def contents_detected?
-        true if find_first_line(:matching => installed_version_regexp, :in_file => installed_version_file)
-      end
-
       def detected?
         installed_version.major < 7 if super
       end
