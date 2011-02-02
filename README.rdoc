@@ -19,6 +19,25 @@ This is a web application that alows you to check a list of directories which we
 
 4. Open your web browser and go to http://localhost:4567
 
+== Supported Applications
+
+This is a list of applications that \Versionator is able to detect.
+
+* {Drupal}[http://drupal.org]
+* {EGroupware}[http://www.egroupware.org]
+* {MediaWiki}[http://www.mediawiki.org]
+* {phpBB}[http://www.phpbb.com]
+* {phpMyAdmin}[http://www.phpmyadmin.net]
+* {Piwik}[http://piwik.org]
+* {Redmine}[http://www.redmine.org]
+* {Review Board}[http://www.reviewboard.org]
+* {Roundcube}[http://roundcube.net]
+* {Trac}[http://trac.edgewall.org]
+* {WordPress}[http://wordpress.org]
+
+If your favorite web application is not in the list,
+please either report an issue (see below) or fork the repository and send a merge request.
+
 == Issues
 
 Please, report all issues on our issue tracker on GitHub: http://github.com/riyad/versionator/issues
