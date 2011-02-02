@@ -17,6 +17,9 @@ module Versionator
 
       attr_reader :base_dir, :installed_version, :newest_version
 
+      # Creates a new detector.
+      # You will only be able to use installation specific features if you specifiy the _base_dir_ param.
+      # For detecting the newest version you will not need to set the _base_dir_ param.
       def initialize(base_dir = nil)
         @base_dir = base_dir
         @installed_version = UnknownVersion
@@ -170,23 +173,23 @@ module Versionator
       # This will extract the first match of a regexp from a string.
       #
       # Options:
-      # +:from+:: string
-      # +:with+:: regexp
+      # +:from+:: String
+      # +:with+:: Regexp
       def extract_version(options)
         m = options[:with].match(options[:from])
         m[1]
       end
 
       # Supported settings:
-      # +:app_name+::
-      # +:project_url+::
-      # +:detect_dirs+::
-      # +:detect_files+::
-      # +:installed_version_file+::
-      # +:installed_version_regexp+::
-      # +:newest_version_url+::
-      # +:newest_version_selector+::
-      # +:newest_version_regexp+::
+      # +:app_name+::     Tha application's name.
+      # +:project_url+::  The project's website.
+      # +:detect_dirs+::  See: +dirs_detected?+
+      # +:detect_files+:: See: +files_detected?+
+      # +:installed_version_file+::   See: +detect_installed_version+
+      # +:installed_version_regexp+:: See: +detect_installed_version+
+      # +:newest_version_url+::       See: +detect_newest_version+
+      # +:newest_version_selector+::  See: +detect_newest_version+
+      # +:newest_version_regexp+::    See: +detect_newest_version+
       #
       # Once set, these are available as class and as instance methods.
       def self.set(property, value)

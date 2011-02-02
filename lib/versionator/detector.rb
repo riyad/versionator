@@ -6,6 +6,7 @@ require 'versionator/detector/base'
 
 module Versionator
   module Detector
+    # Returns an array of all the known detector classes.
     def self.all
       detectors = []
 
