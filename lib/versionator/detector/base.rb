@@ -20,7 +20,7 @@ module Versionator
         @installed_version = UnknownVersion
         @newest_version = UnknownVersion
 
-        if detected?
+        if base_dir && detected?
           detect_installed_version
         end
       end
