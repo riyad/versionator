@@ -5,7 +5,12 @@ require 'versionomy'
 
 module Versionator
   module Detector
-    # You may override:
+    # This is the base class for all application detectors.
+    #
+    # Add a derived class for each application you want to have detected.
+    # Specify the according settings using the ::set method.
+    #
+    # In special cases you may override the following methods:
     # * +contents_detected?+
     # * +detect_installed_version+
     # * +detect_newest_version+
