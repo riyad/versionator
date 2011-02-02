@@ -3,7 +3,7 @@ module Versionator
   module Detector
     class PhpmyadminDetector < Base
       set :basic_name, "phpmyadmin"
-      set :app_name, "PhpMyAdmin"
+      set :app_name, "phpMyAdmin"
       set :project_url, "http://www.phpmyadmin.net"
 
       set :detect_dirs, %w{contrib js lang libraries pmd scripts themes}
