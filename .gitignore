@@ -1,0 +1,9 @@
+
+# The list of directories to be tracked
+dirs
+
+# generated documentation
+doc/
+
+# test applications
+test_apps/
