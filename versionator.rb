@@ -112,7 +112,7 @@ module Versionator
     end
 
     get '/' do
-      @apps = detectors.sort_by(&:basic_name)
+      @apps = detectors
       @dirs = dirs.sort
 
       haml :index
