@@ -11,6 +11,8 @@ module Versionator
     # * +detect_newest_version+
     # * +project_url_for_version+
     class Base
+      # Specifies an unknown version.
+      # This is eqivalent to version "0.0".
       UnknownVersion = Versionomy.parse('0.0')
 
       attr_reader :base_dir, :installed_version, :newest_version
@@ -26,7 +28,7 @@ module Versionator
       end
 
       # Actually looks inside of files to detect a specific application.
-      # The default implementation does nothing.
+      # The default implementation always returns +true+.
       #
       # This method should be overriden, when applications cannot be safely distinguished by the directory layout alone.
       # This may be the case for multiple supported versions of a single app (e.g. Druapl6 and Drupal7) or if the app was built using a common framework (e.g. Ruby on Rails in Redmine).
@@ -113,6 +115,10 @@ module Versionator
         @newest_version
       end
 
+      # Gives a version specific link for the app.
+      # The default implementation returns +nil+.
+      #
+      # Override this method and return a URL to the release notes or the release announcement for the given _version_.
       def project_url_for_version(version)
       end
 
