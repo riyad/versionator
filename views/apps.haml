@@ -11,7 +11,7 @@
   .message.container
   - @apps.each do |app|
     %div{ :id => "#{app.basic_name}-app", :class => "container border-all app #{app.basic_name}-app" }
-      = toggle_container("##{app.basic_name}-app", :expanded)
+      = toggle_container("##{app.basic_name}-app", :collapsed)
       .head
         %h3.toggle.button
           = mini_logo_for(app)
