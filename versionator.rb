@@ -89,12 +89,9 @@ module Versionator
         %Q{<img src="logos/#{basic_name}.png" alt="#{basic_name}" />}
       end
 
-      def mini_logo(basic_name)
-        %Q{<img src="logos/#{basic_name}-mini.png" alt="#{basic_name}" />}
-      end
-
+      # Inserts the mini logo for the given _detector_.
       def mini_logo_for(detector)
-        mini_logo(detector.basic_name)
+        logo("#{detector.basic_name}-mini")
       end
 
       # must be decendant of subject
