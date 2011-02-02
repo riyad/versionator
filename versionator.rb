@@ -154,7 +154,7 @@ module Versionator
     get '/javascript.js' do
       @detectors = detectors.sort_by(&:basic_name)
 
-      erb :"javascript.js"
+      erb "javascript.js".to_sym
     end
 
     get '/stylesheet.css' do

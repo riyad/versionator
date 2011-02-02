@@ -10,7 +10,6 @@ module Versionator
 
       attr_reader :base_dir, :installed_version, :newest_version
 
-      # :rdoc:
       # You may override:
       # - contents_detected?
       # - detect_installed_version
