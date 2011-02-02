@@ -2,7 +2,6 @@
 module Versionator
   module Detector
     class Trac < Base
-      set :basic_name, "trac"
       set :app_name, "Trac"
       set :project_url, "http://trac.edgewall.org"
 

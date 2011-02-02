@@ -2,7 +2,6 @@
 module Versionator
   module Detector
     class Egroupware < Base
-      set :basic_name, "egroupware"
       set :app_name, "EGroupware"
       set :project_url, "http://www.egroupware.org"
 

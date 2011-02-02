@@ -2,7 +2,6 @@
 module Versionator
   module Detector
     class Roundcube < Base
-      set :basic_name, "roundcube"
       set :app_name, "Roundcube"
       set :project_url, "http://roundcube.net/"
 

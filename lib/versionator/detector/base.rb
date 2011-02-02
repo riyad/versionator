@@ -27,6 +27,14 @@ module Versionator
         end
       end
 
+      def self.basic_name
+        File.basename(self.name.underscore)
+      end
+
+      def basic_name
+        self.class.basic_name
+      end
+
       # Actually looks inside of files to detect a specific application.
       # The default implementation always returns +true+.
       #
@@ -170,7 +178,6 @@ module Versionator
       end
 
       # Supported settings:
-      # +:basic_name+::
       # +:app_name+::
       # +:project_url+::
       # +:detect_dirs+::

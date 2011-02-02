@@ -2,7 +2,6 @@
 module Versionator
   module Detector
     class Redmine < Base
-      set :basic_name, "redmine"
       set :app_name, "Redmine"
       set :project_url, "http://www.redmine.org"
 

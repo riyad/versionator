@@ -2,7 +2,6 @@
 module Versionator
   module Detector
     class Drupal7 < Base
-      set :basic_name, "drupal7"
       set :app_name, "Drupal 7"
       set :project_url, "http://drupal.org"
 

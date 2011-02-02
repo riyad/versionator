@@ -2,7 +2,6 @@
 module Versionator
   module Detector
     class Piwik < Base
-      set :basic_name, "piwik"
       set :app_name, "Piwik"
       set :project_url, "http://piwik.org"
 
