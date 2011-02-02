@@ -24,6 +24,7 @@ module Versionator
     end
 
 
+
     helpers do
       def ajax_loader
         %Q{<img src="ajax-loader.gif" class="ajax-loader" />}
@@ -110,6 +111,8 @@ module Versionator
         %Q{</div>}
       end
     end
+
+
 
     get '/' do
       @apps = detectors
