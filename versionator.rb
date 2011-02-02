@@ -30,7 +30,7 @@ module Versionator
       end
 
       def detectors
-        Versionator::Detector.all
+        Versionator::Detector.all.sort_by(&:basic_name)
       end
 
       def dirs
@@ -143,7 +143,7 @@ module Versionator
       @dirs_that_dont_exist = @dirs.reject { |dir| Dir.exists?(dir) }
       @dirs_that_exist = @dirs - @dirs_that_dont_exist
 
-      @detectors = detectors.sort_by(&:basic_name)
+      @detectors = detectors
 
       @apps = {}
       @dirs_that_exist.each do |dir|
@@ -157,7 +157,7 @@ module Versionator
     end
 
     get '/javascript.js' do
-      @detectors = detectors.sort_by(&:basic_name)
+      @detectors = detectors
 
       erb "javascript.js".to_sym
     end
