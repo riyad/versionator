@@ -9,10 +9,18 @@
         %h3.toggle.button
           = mini_logo_for(app)
           = app.app_name
+          .description
+            %span.total-installs
+              Installations:
+              %span.installs>= @installs_for_app[app].size
+            &nbsp;
+            %span.outdated-installs
+              Outdated:
+              %span.installs> unknown
       .body
         .logo= logo_for(app)
         %h3.toggle.button
-          = mini_logo_for(app)
+          = image("app")
           = app.app_name
         .content
           .newest-version
@@ -53,4 +61,24 @@
         $(img).replaceWith('#{image("verdict-outdated-mini")}');
       }
     });
+
+    updateSummaryVerdicts(app);
+  }
+
+  function updateSummaryVerdicts(app) {
+    var img = $(app).find("h3 img");
+    var outdatedInstalls = $(app).find(".verdict.outdated");
+    var outdatedInstallsSummary = $(app).find(".outdated-installs .installs");
+
+    console.log(app);
+    console.log(outdatedInstallsSummary);
+
+    $(app).addClass("verdict striped");
+    if (outdatedInstalls.length === 0) {
+      $(app).addClass("up-to-date");
+      $(outdatedInstallsSummary).html("none");
+    } else {
+      $(app).addClass("outdated");
+      $(outdatedInstallsSummary).html(outdatedInstalls.length);
+    }
   }
