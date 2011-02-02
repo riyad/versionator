@@ -2,19 +2,34 @@
 
 This is a web application that alows you to check a list of directories which web application they contain and whether they are up-to-date.
 
-== Usage
+== Getting Started
+
+1. Get your copy of \Versionator
+
+    git clone git://github.com/riyad/versionator.git
+
+2. Change directory the versionator directory and install the dependencies
+
+    cd versionator
+    bundle install
+
+3. Start the webserver
+
+    ruby versionator.rb
+
+4. Open your web browser and go to http://localhost:4567
 
 == Issues
 
-Please, report all issues on our issue tracker on GitHub: https://github.com/riyad/versionator/issues
+Please, report all issues on our issue tracker on GitHub: http://github.com/riyad/versionator/issues
 
 == Code
 
-The main repository can be found on {GitHub}[http://github.com/]: http://github.com/riyad/versionator
+The main repository can be found on GitHub: http://github.com/riyad/versionator
 
 == License
 
-Versionator is released under the MIT license.
+\Versionator is released under the MIT license.
 
 == Authors
 
