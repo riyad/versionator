@@ -1,7 +1,7 @@
 
 module Versionator
   module Detector
-    class PhpmyadminDetector < Base
+    class Phpmyadmin < Base
       set :basic_name, "phpmyadmin"
       set :app_name, "phpMyAdmin"
       set :project_url, "http://www.phpmyadmin.net"

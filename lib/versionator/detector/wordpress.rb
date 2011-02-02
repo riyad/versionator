@@ -2,7 +2,7 @@
 module Versionator
   module Detector
     # works with 2.8.*, 2.9.* and 3.*
-    class WordpressDetector < Base
+    class Wordpress < Base
       set :basic_name, "wordpress"
       set :app_name, "WordPress"
       set :project_url, "http://wordpress.org"

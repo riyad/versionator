@@ -1,7 +1,7 @@
 
 module Versionator
   module Detector
-    class ReviewboardDetector < Base
+    class Reviewboard < Base
       set :basic_name, "reviewboard"
       set :app_name, "Review Board"
       set :project_url, "http://www.reviewboard.org"
