@@ -58,8 +58,8 @@ function checkAllNewestVersions() {
 
   function checkNewestVersionFor<%= detector.basic_name.camelize %>() {
     var inst = $(".<%= detector.basic_name %>-app");
-    var nv = $(inst).find(".newest-version");
-    var nvt = $(nv).find(".version");
+    var nv = $(inst).find(".newest-version, .outdated-installs");
+    var nvt = $(nv).find(".version, .installs");
     var url = "/apps/<%= detector.basic_name %>/newest_version.json";
 
     $(nv).find(".ajax-loader").show(); // show throbber
@@ -86,9 +86,9 @@ function addNewestVersionLink(inst, data) {
 }
 
 function updateNewestVersionFor(inst, html) {
-  var nv = $(inst).find(".newest-version");
+  var nv = $(inst).find(".newest-version, .outdated-installs");
   $(nv).find(".ajax-loader").hide(); // hide throbber
-  $(nv).find(".version").html(html); // set newest version text
+  $(nv).find(".version, .installs").html(html); // set newest version text
   // update button
   $(nv).find(".check-newest-version.button").html('<%= image("version-check-newest") %> Recheck');
 }
