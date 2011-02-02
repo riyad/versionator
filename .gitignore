@@ -7,3 +7,6 @@ doc/
 
 # test applications
 test_apps/
+
+# others
+Gemfile.lock
