@@ -4,20 +4,22 @@ This is a web application that alows you to check a list of directories which we
 
 == Getting Started
 
-1. Get your copy of \Versionator
+0. Get your copy of \Versionator
 
     git clone git://github.com/riyad/versionator.git
 
-2. Change directory the versionator directory and install the dependencies
+0. Change directory the versionator directory and install the dependencies
 
     cd versionator
     bundle install
 
-3. Start the webserver
+0. Edit the _ckeck_dirs_ file and list the directories you want to have checked there
+
+0. Start the webserver
 
     ruby versionator.rb
 
-4. Open your web browser and go to http://localhost:4567
+0. Open your web browser and go to http://localhost:4567
 
 == Supported Applications
 
