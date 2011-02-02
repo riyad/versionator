@@ -1,6 +1,7 @@
 
 module Versionator
   module Detector
+    # Detects {EGroupware}[http://www.egroupware.org].
     class Egroupware < Base
       set :app_name, "EGroupware"
       set :project_url, "http://www.egroupware.org"
@@ -15,6 +16,8 @@ module Versionator
       set :newest_version_selector, '.contentpane h2'
       set :newest_version_regexp, /^\s*Current release: (.+)$/
 
+      # Overridden to get the full version number on the 2nd round.
+      # Initial detection only gets major and minor version numbers.
       def detect_installed_version
         super
 

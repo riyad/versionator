@@ -1,6 +1,7 @@
 
 module Versionator
   module Detector
+    # Detects {phpBB}[http://www.phpbb.com].
     class Phpbb < Base
       set :app_name, "phpBB"
       set :project_url, "http://www.phpbb.com"

@@ -1,6 +1,7 @@
 
 module Versionator
   module Detector
+    # Detects {Piwik}[http://piwik.org].
     class Piwik < Base
       set :app_name, "Piwik"
       set :project_url, "http://piwik.org"

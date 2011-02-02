@@ -1,7 +1,8 @@
 
 module Versionator
   module Detector
-    # works with 2.8.*, 2.9.* and 3.*
+    # Detects {WordPress}[http://wordpress.org].
+    # This will detect versions 2.8.*, 2.9.* and 3.*.
     class Wordpress < Base
       set :app_name, "WordPress"
       set :project_url, "http://wordpress.org"

@@ -1,6 +1,7 @@
 
 module Versionator
   module Detector
+    # Detects {phpMyAdmin}[http://www.phpmyadmin.net].
     class Phpmyadmin < Base
       set :app_name, "phpMyAdmin"
       set :project_url, "http://www.phpmyadmin.net"
@@ -15,6 +16,7 @@ module Versionator
       set :newest_version_selector, '#body .rightbuttons .downloadbutton .dlname a'
       set :newest_version_regexp, /^Download (.+)$/
 
+      # Overridden to filter out optional version fields
       def installed_version
         Versionomy.parse(super.unparse(:optional_fields => [:tiny, :tiny2]))
       end

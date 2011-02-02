@@ -1,6 +1,7 @@
 
 module Versionator
   module Detector
+    # Detects {Roundcube}[http://roundcube.net/].
     class Roundcube < Base
       set :app_name, "Roundcube"
       set :project_url, "http://roundcube.net/"

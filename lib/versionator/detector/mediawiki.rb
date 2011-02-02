@@ -1,6 +1,7 @@
 
 module Versionator
   module Detector
+    # Detects {MediaWiki}[http://www.mediawiki.org].
     class Mediawiki < Base
       set :app_name, "MediaWiki"
       set :project_url, "http://www.mediawiki.org"

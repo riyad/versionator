@@ -1,7 +1,8 @@
 
 module Versionator
   module Detector
-    # works with Drupal 5 and 6
+    # Detects {Drupal 6}[http://drupal.org].
+    # This will also detect Drupal 5.
     class Drupal6 < Base
       set :app_name, "Drupal 6"
       set :project_url, "http://drupal.org"
@@ -16,6 +17,7 @@ module Versionator
       set :newest_version_selector, '.download-table .project-release .release-update-status-0 .views-field-version a'
       set :newest_version_regexp, /^(6.+)$/
 
+      # Overridden to make sure that we do not also detect Drupal7
       def detected?
         installed_version.major < 7 if super
       end
