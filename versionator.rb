@@ -56,8 +56,8 @@ module Versionator
         dir.gsub(/(\/|\.)/, '-')
       end
 
-      def image(name)
-        %Q{<img src="images/#{name}.png" alt="#{name}" />}
+      def image(name, html_options = {})
+        %Q{<img src="images/#{name}.png" alt="#{name}" #{%Q{id="#{html_options[:id]}"} if html_options[:id]} #{%Q{class="#{html_options[:class]}"} if html_options[:class]}/>}
       end
 
       def link_to(text, href, html_options = {})
