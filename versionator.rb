@@ -1,5 +1,9 @@
 #!/usr/bin/env ruby
 
+# add lib/ to load path
+libdir = File.dirname(__FILE__) + '/lib'
+$LOAD_PATH.unshift(libdir) unless $LOAD_PATH.include?(libdir)
+
 require 'rubygems'
 require 'sinatra/base'
 
@@ -7,7 +11,8 @@ require 'haml'
 require 'json'
 require 'sinatra/reloader'
 
-require File.expand_path('../lib/versionator', __FILE__)
+
+require 'versionator'
 
 module Versionator
   class Application < Sinatra::Base
