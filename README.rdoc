@@ -17,7 +17,7 @@ This is a web application that alows you to check a list of directories which we
 
 0. Start the webserver
 
-    ruby versionator.rb
+    ./versionator.rb
 
 0. Open your web browser and go to http://localhost:4567
 
