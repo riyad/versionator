@@ -137,7 +137,7 @@ module Versionator
       haml :about
     end
 
-    get '/apps' do
+    get '/applications' do
       all_apps = detectors
       installs_for_app = Hash.new([])
       directories.each do |dir|
@@ -151,7 +151,7 @@ module Versionator
       @apps = installs_for_app.keys.sort_by(&:basic_name)
       @installs_for_app = installs_for_app
 
-      haml :apps, :layout => !request.xhr?
+      haml :applications, :layout => !request.xhr?
     end
 
     get '/applications/:app_name/newest_version.json' do
