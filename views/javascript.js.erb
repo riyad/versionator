@@ -1,4 +1,26 @@
 
+// From http://phpjs.org/functions/empty:392
+function isEmpty(mixed_var) {
+  var key;    
+  if (mixed_var === "" ||
+    mixed_var === 0 ||
+    mixed_var === "0" ||
+    mixed_var === null ||
+    mixed_var === false ||
+    typeof mixed_var === 'undefined'
+  ){
+    return true;
+  } 
+  if (typeof mixed_var == 'object') {
+    for (key in mixed_var) {
+      return false;
+    }
+    return true;
+  }
+
+  return false;
+}
+
 function titelize(text) {
   return text.substr(0,1).toUpperCase() + text.substr(1)
 }
@@ -78,7 +100,7 @@ function addNewestVersionLink(inst, data) {
     var links = $(inst).find(".project-links");
     var nv = $(links).find(".newest-version");
     var linkText = '<%= link_to_external("#{image("link")} Newest Release", "'+data.project_url_for_newest_version+'", :class => "newest-version") %>';
-    if(nv.length === 0) {
+    if(isEmpty(nv.length)) {
       $(links).append(linkText);
     } else {
       $(nv).relace(linkText);
