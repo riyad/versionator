@@ -89,7 +89,7 @@ module Versionator
       def link_to_external(text, href, html_options = {})
         %Q{<a href="#{href}" #{%Q{id="#{html_options[:id]}"} if html_options[:id]} #{%Q{class="#{html_options[:class]}"} if html_options[:class]}>} +
           text +
-          %Q{ <img src="images/link-external.png" class="link-external" />} +
+          image("link-external", :class => "link-external") +
         %Q{</a> }
       end
 
@@ -113,11 +113,11 @@ module Versionator
       # You can also specify the initial state of the subject element using the _initial_subj_state_ param with either the +:collapsed+ or +:expanded+ values.
       def toggle_container(subj_selector, initial_subj_state = :collapsed)
         %Q{<div class="toggle-container toggle button">} +
-          %Q{<img src="images/container-expand.png" class="container-expand" />} +
-          %Q{<img src="images/container-collapse.png" class="container-collapse" />} +
+          image("container-expand", :class => "container-expand") +
+          image("container-collapse", :class => "container-collapse") +
           %Q{<script>
             $(document).ready(function() {
-              setupToggleContainer("#{subj_selector}", "#{initial_subj_state.to_s}");
+              setupToggleContainer("#{subj_selector}", "#{initial_subj_state}");
             });
         </script>} +
         %Q{</div>}
