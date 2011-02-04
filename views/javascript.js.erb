@@ -55,9 +55,13 @@ function setupToggleContainer(subjectSelector, initialSubjectState) {
 
 
 function checkAllNewestVersions() {
-  // start a request every 250ms
+  var delayBetweenRequests = 250; // in ms
+  var currentDelay = 0;
   <% @detectors.each_with_index do |detector, index| %>
-    setTimeout(checkNewestVersionFor<%= detector.basic_name.camelize %>, <%= index*250 %>);
+    if (!isEmpty($(".<%= detector.basic_name %>-app").toArray())) {
+      setTimeout(checkNewestVersionFor<%= detector.basic_name.camelize %>, currentDelay);
+      currentDelay += delayBetweenRequests;
+    }
   <% end %>
 }
 
