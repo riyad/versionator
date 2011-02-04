@@ -29,6 +29,9 @@ function setupToggleContainer(subjectSelector, initialSubjectState) {
   }
 }
 
+
+
+
 function checkAllNewestVersions() {
   // start a request every 250ms
   <% @detectors.each_with_index do |detector, index| %>
@@ -43,22 +46,6 @@ function checkAllNewestVersions() {
     var nvt = $(nv).find(".version");
     var url = "/apps/<%= detector.basic_name %>/newest_version.json";
 
-    $(inst).ajaxError(function(event, xhr, settings, exception) {
-      if (settings.url != url) {
-        return;
-      }
-      console.log(event);
-      console.log(xhr);
-      console.log(settings);
-      console.log(exception);
-      if (xhr.status != 200) {
-        var error = xhr.statusText;
-      } else {
-        var error = 'An error occured';
-      }
-      updateNewestVersionFor(inst, '<span class="message error">'+error+'</span>');
-    });
-
     $(nv).find(".check-newest-version.button").click(checkNewestVersionFor<%= detector.basic_name.camelize %>);
   });
 
@@ -66,17 +53,25 @@ function checkAllNewestVersions() {
     var inst = $(".<%= detector.basic_name %>-app");
     var nv = $(inst).find(".newest-version, .outdated-installs");
     var nvt = $(nv).find(".version, .installs");
-    var url = "/apps/<%= detector.basic_name %>/newest_version.json";
+    var newestVersionUrl = "/apps/<%= detector.basic_name %>/newest_version.json";
 
     $(nv).find(".ajax-loader").show(); // show throbber
     $(nvt).html(""); // erase newest version text
-    $.getJSON(url, function(data) {
+    $.getJSON(newestVersionUrl).success(function(data) {
       updateNewestVersionFor(inst, data.newest_version);
       updateVerdicts(inst);
       addNewestVersionLink(inst, data);
+    }).error(function(xhr, error, exception) {
+      console.log(xhr);
+      console.log(error);
+      console.log(exception);
+      error = titelize(error);
+      updateNewestVersionFor(inst, '<span class="message error">'+error+': '+exception+'</span>');
     });
   }
 <% end %>
+
+
 
 function addNewestVersionLink(inst, data) {
   if (data.project_url_for_newest_version) {
