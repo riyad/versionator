@@ -1,4 +1,10 @@
 
+function titelize(text) {
+  return text.substr(0,1).toUpperCase() + text.substr(1)
+}
+
+
+
 function setupToggleContainer(subjectSelector, initialSubjectState) {
   var subj = $(subjectSelector);
   var subjHead = $(subj).find('.head');
