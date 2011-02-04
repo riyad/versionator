@@ -167,19 +167,22 @@ module Versionator
     end
 
     get '/installations' do
-      @dirs = directories
-      @dirs_that_dont_exist = @dirs.reject { |dir| Dir.exists?(dir) }
-      @dirs_that_exist = @dirs - @dirs_that_dont_exist
+      dirs = directories
+      dirs_that_dont_exist = dirs.reject { |dir| Dir.exists?(dir) }
+      dirs_that_exist = dirs - dirs_that_dont_exist
 
-      @detectors = detectors
-
-      @apps = {}
-      @dirs_that_exist.each do |dir|
-        @detectors.each do |detector_class|
-          detector = detector_class.new(dir)
-          @apps[dir] = detector if detector.detected?
+      app_for_dir = {}
+      dirs_that_exist.each do |dir|
+        detectors.each do |detector|
+          app = detector.new(dir)
+          app_for_dir[dir] = app if app.detected?
         end
       end
+      
+      @app_for_dir = app_for_dir
+      @detectors = detectors
+      @dirs_that_dont_exist = dirs_that_dont_exist
+      @dirs_that_exist = dirs_that_exist
 
       haml :installations, :layout => !request.xhr?
     end

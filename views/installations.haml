@@ -22,7 +22,7 @@
                 = image("folder-exists-not")
                 = dir
   - @dirs_that_exist.each do |dir|
-    - app = @apps[dir]
+    - app = @app_for_dir[dir]
     - unless app
       %div{ :id => dom_id_for_dir(dir), :class => "container border-all app" }
         .head
