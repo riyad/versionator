@@ -82,9 +82,6 @@
     var outdatedInstalls = $(app).find(".verdict.outdated");
     var outdatedInstallsSummary = $(app).find(".outdated-installs .installs");
 
-    console.log(app);
-    console.log(outdatedInstallsSummary);
-
     $(app).addClass("verdict striped");
     if (outdatedInstalls.length === 0) {
       $(app).addClass("up-to-date");
