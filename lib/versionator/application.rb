@@ -39,7 +39,7 @@ module Versionator
       end
 
       # Returns a list of directories found in the file set in the _check_dirs_ setting.
-      def dirs
+      def directories
         return @expanded_dirs if @expanded_dirs
 
         raw_dirs = File.readlines(settings.check_dirs).map(&:chomp)
@@ -128,7 +128,7 @@ module Versionator
 
     get '/' do
       @apps = detectors
-      @dirs = dirs.sort
+      @dirs = directories.sort
 
       haml :index
     end
@@ -140,7 +140,7 @@ module Versionator
     get '/apps' do
       all_apps = detectors
       installs_for_app = Hash.new([])
-      dirs.each do |dir|
+      directories.each do |dir|
         all_apps.each do |app_class|
           app = app_class.new(dir)
           installs_for_app[app_class] += [app] if app.detected?
@@ -166,7 +166,7 @@ module Versionator
     end
 
     get '/installations' do
-      @dirs = dirs
+      @dirs = directories
       @dirs_that_dont_exist = @dirs.reject { |dir| Dir.exists?(dir) }
       @dirs_that_exist = @dirs - @dirs_that_dont_exist
 
