@@ -79,7 +79,7 @@ function checkAllNewestVersions() {
     var inst = $(".<%= detector.basic_name %>-app");
     var nv = $(inst).find(".newest-version, .outdated-installs");
     var nvt = $(nv).find(".version, .installs");
-    var newestVersionUrl = "/apps/<%= detector.basic_name %>/newest_version.json";
+    var newestVersionUrl = "/applications/<%= detector.basic_name %>/newest_version.json";
 
     $(nv).find(".ajax-loader").show(); // show throbber
     $(nvt).html(""); // erase newest version text
