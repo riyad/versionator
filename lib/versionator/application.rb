@@ -156,13 +156,14 @@ module Versionator
 
     get '/apps/:app_name/newest_version.json' do
       app_name = params[:app_name]
-      app_class = detectors.find { |det| det.basic_name == app_name }
-      app = app_class.new
+      detector = detectors.find { |det| det.basic_name == app_name }
+      app = detector.new
 
-      ret = Hash.new
-      ret[:newest_version] = app.newest_version
-      ret[:project_url_for_newest_version] = app.project_url_for_newest_version
-      ret.to_json
+      result = Hash.new
+      result[:newest_version] = app.newest_version
+      result[:project_url_for_newest_version] = app.project_url_for_newest_version
+
+      result.to_json
     end
 
     get '/installations' do
