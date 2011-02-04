@@ -4,7 +4,7 @@
   %li
     = image("folder-big")
     %h2 Installations
-    %p This will list all the directories you have configured to track.
+    %p This will list all the directories you have configured to check.
     %p It will detect the installed application and the its version.
     %p
       You will then have the opportunity to check for the most recent version online and get an overview on which of your applications might need an update.
@@ -12,7 +12,7 @@
     = image("app-big")
     %h2 Applications
     %p
-      This will list all the applications you have installed in the directories you have configured to track.
+      This will list all the applications you have installed in the directories you have configured to check.
     %p
       It will allow you to check for the most recent version online and show you which installation might need an update.
 
@@ -22,14 +22,14 @@
     %h3.toggle.button
       = image("folder")
       Directories
-      .description This is a list of all the directories you have configured to track.
+      .description This is a list of all the directories you have configured to check.
   .body
     %h3.toggle.button
       = image("folder")
       Directories
     .content
       %p
-        This is a list of all the directories you have configured to track.
+        This is a list of all the directories you have configured to check.
       %ul.vertical.list
         - @dirs.each do |dir|
           %li
@@ -42,14 +42,14 @@
     %h3.toggle.button
       = image("app")
       Applications
-      .description This is a list of all the applications we are able to track.
+      .description This is a list of all the applications we are able to check.
   .body
     %h3.toggle.button
       = image("app")
       Applications
     .content
       %p
-        This is a list of all the applications we are able to track.
+        This is a list of all the applications we are able to check.
       %ul.vertical.list
         - @apps.each do |app|
           %li
