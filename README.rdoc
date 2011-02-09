@@ -2,28 +2,9 @@
 
 This is a web application that alows you to check a list of directories which web application they contain and whether they are up-to-date.
 
-== Getting Started
-
-0. Get your copy of \Versionator
-
-    git clone git://github.com/riyad/versionator.git
-
-0. Change directory the versionator directory and install the dependencies
-
-    cd versionator
-    bundle install
-
-0. Edit the _ckeck_dirs_ file and list the directories you want to have checked there
-
-0. Start the webserver
-
-    ./versionator.rb
-
-0. Open your web browser and go to http://localhost:4567
-
 == Supported Applications
 
-This is a list of applications that \Versionator is able to detect.
+\Versionator is able to detect the following applications:
 
 * {Drupal}[http://drupal.org]
 * {EGroupware}[http://www.egroupware.org]
@@ -39,6 +20,25 @@ This is a list of applications that \Versionator is able to detect.
 
 If your favorite web application is not in the list,
 please either report an issue (see below) or fork the repository and send a merge request.
+
+== Getting Started
+
+0. Get your copy of \Versionator
+
+    git clone git://github.com/riyad/versionator.git
+
+0. Change directory the versionator directory and install the dependencies
+
+    cd versionator
+    bundle install
+
+0. Edit the _ckeck_dirs_ file and list the directories you want to have checked there
+
+0. Start the application by either using your default webserver (any web server supporting Rack apps is fine) or do it by hand
+
+    ./versionator.rb
+
+0. Open your web browser and go to your \Versionator URL or http://localhost:4567 if  have started it by hand
 
 == Issues
 
