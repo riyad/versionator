@@ -2,7 +2,8 @@
 module Versionator
   module Detector
     # Detects {Drupal 6}[http://drupal.org].
-    # This will also detect Drupal 5.
+    # This will also detect installed Drupal versions prior to the 6 series.
+    # But it will only check for the most recent version of the 6 series.
     class Drupal6 < Base
       set :app_name, "Drupal 6"
       set :project_url, "http://drupal.org"
