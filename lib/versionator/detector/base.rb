@@ -11,10 +11,10 @@ module Versionator
     # Specify the according settings using the ::set method.
     #
     # In special cases you may override the following methods:
-    # * +contents_detected?+
-    # * +detect_installed_version+
-    # * +detect_newest_version+
-    # * +project_url_for_version+
+    # * #contents_detected?
+    # * #detect_installed_version
+    # * #detect_newest_version
+    # * #project_url_for_version
     class Base
       # Specifies an unknown version.
       # This is eqivalent to version "0.0".
@@ -63,9 +63,9 @@ module Versionator
       #   The first one matching the following regexp will be used.
       # +newest_version_regexp+::
       #   Extracts the actual version string out of the selected element.
-      #   The first match must be the desired version string.
+      #   The first capture must be the desired version string.
       #
-      # The result will be available as a Versionomy object through the +newest_version+ method.
+      # The result will be available as a Versionomy object through #newest_version .
       #
       # Note: ::    This method can be called without the +base_dir+ set.
       # Warning: :: This method does network access and may therefore take long
@@ -94,7 +94,7 @@ module Versionator
       #   Extracts the actual version string out of the matching line.
       #   The first match must be the desired version string.
       #
-      # The result will be available as a Versionomy object through the +newest_version+ method.
+      # The result will be available as a Versionomy object through #newest_version .
       def detect_installed_version
         return @installed_version unless self.class.method_defined?(:installed_version_file)
 
@@ -106,25 +106,25 @@ module Versionator
 
       # Determines whether an app could be detected in +base_dir+.
       #
-      # See also: +files_detected?+, +dirs_detected?+, +contents_detected?+
+      # See also: #files_detected? , #dirs_detected? , #contents_detected?
       def detected?
         files_detected? && dirs_detected? && contents_detected?
       end
 
-      # Determines whether the list of directories set through the +detect_dirs+ setting could be found in +base_dir+.
+      # Determines whether the list of directories set through the +detect_dirs+ setting could be found in #base_dir .
       def dirs_detected?
         dirs_there = self.class.detect_dirs.map { |dir| Dir.exists?(File.expand_path(dir, base_dir)) }
         dirs_there.all?
       end
 
-      # Determines whether the list of files set through the +detect_files+ setting could be found in +base_dir+.
+      # Determines whether the list of files set through the +detect_files+ setting could be found in #base_dir .
       def files_detected?
         files_there = self.class.detect_files.map { |file| File.exists?(File.expand_path(file, base_dir)) }
         files_there.all?
       end
 
-      # Warning: See warnings for +detect_newest_version+
-      # See also: +detect_newest_version+
+      # Warning: See warnings for #detect_newest_version
+      # See also: #detect_newest_version
       def newest_version
         detect_newest_version if @newest_version == UnknownVersion
 
@@ -141,7 +141,7 @@ module Versionator
       # This is a convenenience equivalent to:
       #   project_url_for_version(installed_version)
       #
-      # See also: +project_url_for_version+
+      # See also: #project_url_for_version
       def project_url_for_installed_version
         project_url_for_version(installed_version)
       end
@@ -150,7 +150,7 @@ module Versionator
       # This is a convenenience equivalent to:
       #   project_url_for_version(newest_version)
       #
-      # See also: +project_url_for_version+
+      # See also: #project_url_for_version
       def project_url_for_newest_version
         project_url_for_version(newest_version)
       end
@@ -175,7 +175,7 @@ module Versionator
         lines.first
       end
 
-      # This will extract the first match of a regexp from a string.
+      # This will extract the first capture of a regexp from a string.
       #
       # Options:
       # +:from+:: String
@@ -186,15 +186,15 @@ module Versionator
       end
 
       # Supported settings:
-      # +:app_name+::     Tha application's name.
+      # +:app_name+::     Tha application's name (e.g. "Drupal 7").
       # +:project_url+::  The project's website.
-      # +:detect_dirs+::  See: +dirs_detected?+
-      # +:detect_files+:: See: +files_detected?+
-      # +:installed_version_file+::   See: +detect_installed_version+
-      # +:installed_version_regexp+:: See: +detect_installed_version+
-      # +:newest_version_url+::       See: +detect_newest_version+
-      # +:newest_version_selector+::  See: +detect_newest_version+
-      # +:newest_version_regexp+::    See: +detect_newest_version+
+      # +:detect_dirs+::  See: #dirs_detected?
+      # +:detect_files+:: See: #files_detected?
+      # +:installed_version_file+::   See: #detect_installed_version
+      # +:installed_version_regexp+:: See: #detect_installed_version
+      # +:newest_version_url+::       See: #detect_newest_version
+      # +:newest_version_selector+::  See: #detect_newest_version
+      # +:newest_version_regexp+::    See: #detect_newest_version
       #
       # Once set, these are available as class and as instance methods.
       def self.set(property, value)
