@@ -40,6 +40,14 @@ please either report an issue (see below) or fork the repository and send a merg
 
 0. Open your web browser and go to your \Versionator URL or http://localhost:4567 if  have started it by hand
 
+== A Word of Warning
+
+Please be aware of the risks of using this sort of application.
+You might leak information about potential security risks to attackers.
+
+So please make sure that you only expose \Versionator over a secure channel (e.g. Https).
+Also the use of some sort of authentication is recommeded.
+
 == Issues
 
 Please, report all issues on our issue tracker on GitHub: http://github.com/riyad/versionator/issues
