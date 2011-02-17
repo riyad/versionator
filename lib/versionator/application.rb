@@ -30,6 +30,21 @@ module Versionator
         %Q{<img src="ajax-loader.gif" class="ajax-loader" />}
       end
 
+      def app_for_dir(dir)
+        @app_for_dir ||= {}
+        return @app_for_dir[dir] if @app_for_dir[dir]
+
+        detectors.each do |det|
+          app = det.new(dir)
+          if app.detected?
+            @app_for_dir[dir] = app
+            return app
+          end
+        end
+
+        nil # in case nothing was found
+      end
+
       # Returns an array of all known detectors.
       # This list will be sorted.
       #
