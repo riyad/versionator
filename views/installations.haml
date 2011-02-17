@@ -39,7 +39,7 @@
             %span.description
               %span.installed-version
                 Installed:
-                %span.version>= app.installed_version
+                %span.version> unknown
                 = ajax_loader
               &nbsp;
               %span.newest-version
@@ -56,8 +56,11 @@
               %span.name= app.app_name
             .installed-version
               Installed Version:
-              %span.version= app.installed_version
+              %span.version
               = ajax_loader
+              %a.check-installed-version.button
+                = image("version-check-installed")
+                Check
             .newest-version
               Newest Version:
               %span.version
@@ -67,8 +70,8 @@
                 Check
             .project-links
               = link_to_app_project(app)
-              - if app.project_url_for_installed_version
-                = link_to_app_release(app, :installed_version)
+              %span.installed-version
+              %span.newest-version
 :javascript
   $(function() {
     $(".check-all-newest-versions.button").click(checkAllNewestVersions);
