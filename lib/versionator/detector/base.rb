@@ -113,13 +113,13 @@ module Versionator
 
       # Determines whether the list of directories set through the +detect_dirs+ setting could be found in #base_dir .
       def dirs_detected?
-        dirs_there = self.class.detect_dirs.map { |dir| Dir.exists?(File.expand_path(dir, base_dir)) }
+        dirs_there = detect_dirs.map { |dir| Dir.exists?(File.expand_path(dir, base_dir)) }
         dirs_there.all?
       end
 
       # Determines whether the list of files set through the +detect_files+ setting could be found in #base_dir .
       def files_detected?
-        files_there = self.class.detect_files.map { |file| File.exists?(File.expand_path(file, base_dir)) }
+        files_there = detect_files.map { |file| File.exists?(File.expand_path(file, base_dir)) }
         files_there.all?
       end
 
