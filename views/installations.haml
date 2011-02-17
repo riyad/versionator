@@ -40,6 +40,7 @@
               %span.installed-version
                 Installed:
                 %span.version>= app.installed_version
+                = ajax_loader
               &nbsp;
               %span.newest-version
                 Newest:
@@ -56,6 +57,7 @@
             .installed-version
               Installed Version:
               %span.version= app.installed_version
+              = ajax_loader
             .newest-version
               Newest Version:
               %span.version
