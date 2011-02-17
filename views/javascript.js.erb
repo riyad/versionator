@@ -85,7 +85,7 @@ function checkInstalledVersionForDirectory(directory) {
     console.log(error);
     console.log(exception);
     error = titelize(error);
-    addInstalledVersionLink(inst, '<span class="message error">'+error+': '+exception+'</span>');
+    addInstalledVersionLink(dir, '<span class="message error">'+error+': '+exception+'</span>');
   });
 }
 
@@ -93,7 +93,6 @@ function checkInstalledVersionForDirectory(directory) {
   $(function() {
     var dir = $("#<%= directory %>");
     var iv = $(dir).find(".installed-version");
-    var ivt = $(iv).find(".version");
 
     $(iv).find(".check-installed-version.button").click(function() {
       checkInstalledVersionForDirectory("<%= directory %>");
@@ -131,43 +130,46 @@ function addInstalledVersionLink(dir, data) {
 function checkAllNewestVersions() {
   var delayBetweenRequests = 250; // in ms
   var currentDelay = 0;
-  <% @detectors.each_with_index do |detector, index| %>
+  <% @detectors.each do |detector| %>
     if (!isEmpty($(".<%= detector.basic_name %>-app").toArray())) {
-      setTimeout(checkNewestVersionFor<%= detector.basic_name.camelize %>, currentDelay);
+      setTimeout(function() {
+        checkNewestVersionForApplication("<%= detector.basic_name %>");
+      }, currentDelay);
       currentDelay += delayBetweenRequests;
     }
   <% end %>
+}
+
+function checkNewestVersionForApplication(app) {
+  var inst = $("."+app+"-app");
+  var nv = $(inst).find(".newest-version, .outdated-installs");
+  var nvt = $(nv).find(".version, .installs");
+  var newestVersionUrl = "/applications/"+app+"/newest_version.json";
+
+  $(nv).find(".ajax-loader").show(); // show throbber
+  $(nvt).html(""); // erase newest version text
+  $.getJSON(newestVersionUrl).success(function(data) {
+    updateNewestVersionFor(inst, data.newest_version);
+    updateVerdicts(inst);
+    addNewestVersionLink(inst, data);
+  }).error(function(xhr, error, exception) {
+    console.log(xhr);
+    console.log(error);
+    console.log(exception);
+    error = titelize(error);
+    updateNewestVersionFor(inst, '<span class="message error">'+error+': '+exception+'</span>');
+  });
 }
 
 <% @detectors.each do |detector| %>
   $(function() {
     var inst = $(".<%= detector.basic_name %>-app");
     var nv = $(inst).find(".newest-version");
-    var nvt = $(nv).find(".version");
 
-    $(nv).find(".check-newest-version.button").click(checkNewestVersionFor<%= detector.basic_name.camelize %>);
-  });
-
-  function checkNewestVersionFor<%= detector.basic_name.camelize %>() {
-    var inst = $(".<%= detector.basic_name %>-app");
-    var nv = $(inst).find(".newest-version, .outdated-installs");
-    var nvt = $(nv).find(".version, .installs");
-    var newestVersionUrl = "/applications/<%= detector.basic_name %>/newest_version.json";
-
-    $(nv).find(".ajax-loader").show(); // show throbber
-    $(nvt).html(""); // erase newest version text
-    $.getJSON(newestVersionUrl).success(function(data) {
-      updateNewestVersionFor(inst, data.newest_version);
-      updateVerdicts(inst);
-      addNewestVersionLink(inst, data);
-    }).error(function(xhr, error, exception) {
-      console.log(xhr);
-      console.log(error);
-      console.log(exception);
-      error = titelize(error);
-      updateNewestVersionFor(inst, '<span class="message error">'+error+': '+exception+'</span>');
+    $(nv).find(".check-newest-version.button").click(function() {
+      checkNewestVersionForApplication("<%= detector.basic_name %>");
     });
-  }
+  });
 <% end %>
 
 
