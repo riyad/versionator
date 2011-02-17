@@ -189,6 +189,7 @@ module Versionator
 
     get '/javascript.js' do
       @detectors = detectors
+      @directories = directories.map { |d| dom_id_for_dir(d) }
 
       erb "javascript.js".to_sym
     end

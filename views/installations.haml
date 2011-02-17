@@ -79,11 +79,17 @@
       var installed_version = $(this).find(".installed-version .version").text();
       var newest_version = $(this).find(".newest-version .version").text();
 
-      $(this).addClass("verdict striped");
-      if(installed_version == newest_version) {
-        $(this).addClass("up-to-date");
-      } else {
-        $(this).addClass("outdated");
+      if(!isEmpty(installed_version) &&
+         installed_version != "unknown" &&
+         !isEmpty(newest_version) &&
+         newest_version != "unknown"
+      ) {
+        $(this).addClass("verdict striped");
+        if(installed_version == newest_version) {
+          $(this).addClass("up-to-date");
+        } else {
+          $(this).addClass("outdated");
+        }
       }
     });
   }

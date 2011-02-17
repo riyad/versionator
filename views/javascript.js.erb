@@ -53,6 +53,80 @@ function setupCollapsableContainer(subjectSelector, initialSubjectState) {
 
 
 
+// installed version
+
+function checkAllInstalledVersions() {
+  var delayBetweenRequests = 250; // in ms
+  var currentDelay = 0;
+  <% @directories.each do |directory| %>
+    if (!isEmpty($("#<%= directory %>").toArray())) {
+      setTimeout(function() {
+        checkInstalledVersionForDirectory("<%= directory %>")
+      }, currentDelay);
+      currentDelay += delayBetweenRequests;
+    }
+  <% end %>
+}
+
+function checkInstalledVersionForDirectory(directory) {
+  var dir = $("#"+directory);
+  var iv = $(dir).find(".installed-version");
+  var ivt = $(iv).find(".version");
+  var installedVersionUrl = "/installations/"+directory+"/installed_version.json";
+
+  $(iv).find(".ajax-loader").show(); // show throbber
+  $(ivt).html(""); // erase newest version text
+  $.getJSON(installedVersionUrl).success(function(data) {
+    updateInstalledVersionFor(dir, data.installed_version);
+    updateVerdicts(dir);
+    addInstalledVersionLink(dir, data);
+  }).error(function(xhr, error, exception) {
+    console.log(xhr);
+    console.log(error);
+    console.log(exception);
+    error = titelize(error);
+    addInstalledVersionLink(inst, '<span class="message error">'+error+': '+exception+'</span>');
+  });
+}
+
+<% @directories.each do |directory| %>
+  $(function() {
+    var dir = $("#<%= directory %>");
+    var iv = $(dir).find(".installed-version");
+    var ivt = $(iv).find(".version");
+
+    $(iv).find(".check-installed-version.button").click(function() {
+      checkInstalledVersionForDirectory("<%= directory %>");
+    });
+  });
+<% end %>
+
+
+
+function updateInstalledVersionFor(dir, html) {
+  var iv = $(dir).find(".installed-version");
+  $(iv).find(".ajax-loader").hide(); // hide throbber
+  $(iv).find(".version").html(html); // set installed version text
+  // update button
+  $(iv).find(".check-installed-version.button").html('<%= image("version-check-installed") %> Recheck');
+}
+
+function addInstalledVersionLink(dir, data) {
+  if (data.project_url_for_installed_version) {
+    var links = $(dir).find(".project-links");
+    var iv = $(links).find(".installed-version");
+    var linkText = '<%= link_to_external("#{image("link")} '+data.installed_version+' Release", "'+data.project_url_for_newest_version+'", :class => "installed-version") %>';
+    if(isEmpty($(iv).toArray())) {
+      $(links).append(linkText);
+    } else {
+      $(iv).replaceWith(linkText);
+    }
+  }
+}
+
+
+
+// newest version
 
 function checkAllNewestVersions() {
   var delayBetweenRequests = 250; // in ms
@@ -70,7 +144,6 @@ function checkAllNewestVersions() {
     var inst = $(".<%= detector.basic_name %>-app");
     var nv = $(inst).find(".newest-version");
     var nvt = $(nv).find(".version");
-    var url = "/apps/<%= detector.basic_name %>/newest_version.json";
 
     $(nv).find(".check-newest-version.button").click(checkNewestVersionFor<%= detector.basic_name.camelize %>);
   });
