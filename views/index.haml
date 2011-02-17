@@ -17,13 +17,13 @@
       It will allow you to check for the most recent version online and show you which installation might need an update.
 
 #dirs.container.border-all
-  = toggle_container("#dirs", :collapsed)
-  .head
+  = make_collapsable("#dirs", :collapsed)
+  .collapsable-collapsed
     %h3.toggle.button
       = image("folder")
       Directories
       .description This is a list of all the directories you have configured to check.
-  .body
+  .collapsable-expanded
     %h3.toggle.button
       = image("folder")
       Directories
@@ -37,13 +37,13 @@
             = dir
 
 #apps.container.border-all
-  = toggle_container("#apps", :collapsed)
-  .head
+  = make_collapsable("#apps", :collapsed)
+  .collapsable-collapsed
     %h3.toggle.button
       = image("app")
       Applications
       .description This is a list of all the applications we are able to check.
-  .body
+  .collapsable-expanded
     %h3.toggle.button
       = image("app")
       Applications

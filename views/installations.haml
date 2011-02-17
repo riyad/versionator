@@ -9,10 +9,10 @@
       Check all newest versions
   - unless @dirs_that_dont_exist.empty?
     #message-error-dirs.error.message.container
-      = toggle_container("#message-error-dirs", :expanded)
-      .head
+      = make_collapsable("#message-error-dirs", :expanded)
+      .collapsable-collapsed
         %h3.toggle.button Directories not found
-      .body
+      .collapsable-expanded
         %h3.toggle.button Directories not found
         .content
           The following directories could not be found:
@@ -25,14 +25,14 @@
     - app = @app_for_dir[dir]
     - unless app
       %div{ :id => dom_id_for_dir(dir), :class => "container border-all app" }
-        .head
+        .collapsable-collapsed
           %h3
             = image("folder")
             = dir
     - else
       %div{ :id => dom_id_for_dir(dir), :class => "container border-all app #{app.basic_name}-app" }
-        = toggle_container("##{dom_id_for_dir(dir)}")
-        .head
+        = make_collapsable("##{dom_id_for_dir(dir)}")
+        .collapsable-collapsed
           %h3.toggle.button
             = mini_logo_for(app)
             = dir
@@ -45,7 +45,7 @@
                 Newest:
                 %span.version> unknown
                 = ajax_loader
-        .body
+        .collapsable-expanded
           .logo= logo_for(app)
           %h3.toggle.button
             = image("folder")

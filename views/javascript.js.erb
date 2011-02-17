@@ -1,7 +1,7 @@
 
 // From http://phpjs.org/functions/empty:392
 function isEmpty(mixed_var) {
-  var key;    
+  var key;
   if (mixed_var === "" ||
     mixed_var === 0 ||
     mixed_var === "0" ||
@@ -27,27 +27,27 @@ function titelize(text) {
 
 
 
-function setupToggleContainer(subjectSelector, initialSubjectState) {
+function setupCollapsableContainer(subjectSelector, initialSubjectState) {
   var subj = $(subjectSelector);
-  var subjHead = $(subj).find('.head');
-  var subjBody = $(subj).find('.body');
+  var subjCollapsed = $(subj).find('.collapsable-collapsed');
+  var subjExpanded = $(subj).find('.collapsable-expanded');
   var button = $(subj).find('.toggle.button');
-  var expand = $(subj).find('.container-expand');
-  var collapse = $(subj).find('.container-collapse');
+  var expand = $(subj).find('.collapsable-button-expand');
+  var collapse = $(subj).find('.collapsable-button-collapse');
 
   $(button).click(function() {
     expand.toggle();
     collapse.toggle();
-    subjHead.slideToggle();
-    subjBody.slideToggle();
+    subjCollapsed.slideToggle();
+    subjExpanded.slideToggle();
   });
 
   if (initialSubjectState == "collapsed") {
     collapse.hide();
-    subjBody.hide();
+    subjExpanded.hide();
   } else {
     expand.hide();
-    subjHead.hide();
+    subjCollapsed.hide();
   }
 }
 

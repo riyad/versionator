@@ -100,7 +100,7 @@ ul
       margin-bottom: -0.05em
   p
     margin: 0
-  .body
+  .collapsable-expanded
     h4
       margin: 0
     .content
@@ -132,17 +132,9 @@ ul
   &.error
     background-color: #ffe5e5
     border: 0.1em solid #ff9b9b
-    .body
-      background-image: url('images/message-error.png')
-      background-position: 0.5em 0.5em
-      background-repeat: no-repeat
-      h3
-        font-size: 18pt
-        margin: 0
-        padding: 0.4em 0 0.5em 2em
     .content
       padding: 0.5em 1em 0
-    .head
+    .collapsable-collapsed
       background-image: url('images/message-error-mini.png')
       background-position: 0.4em 0.4em
       background-repeat: no-repeat
@@ -150,6 +142,14 @@ ul
         font-size: 12pt
         margin: 0
         padding: 0.3em 0 0.2em 1.6em
+    .collapsable-expanded
+      background-image: url('images/message-error.png')
+      background-position: 0.5em 0.5em
+      background-repeat: no-repeat
+      h3
+        font-size: 18pt
+        margin: 0
+        padding: 0.4em 0 0.5em 2em
 span.message.error
   background-image: url('images/message-error-mini.png')
   background-position: 3px 0.15em
@@ -157,7 +157,7 @@ span.message.error
   padding: 0 .2em 0 22px
   font-style: normal
 
-.toggle-container
+.collapsable-container
   img
     margin-bottom: 0
   &.button

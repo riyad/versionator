@@ -111,13 +111,13 @@ module Versionator
       # This must be inserted as a decendant of the subject element.
       # The subject must have +.head+ and +.body+ decendants.
       # You can also specify the initial state of the subject element using the _initial_subj_state_ param with either the +:collapsed+ or +:expanded+ values.
-      def toggle_container(subj_selector, initial_subj_state = :collapsed)
-        %Q{<div class="toggle-container toggle button">} +
-          image("container-expand", :class => "container-expand") +
-          image("container-collapse", :class => "container-collapse") +
+      def make_collapsable(subj_selector, initial_subj_state = :collapsed)
+        %Q{<div class="collapsable-container toggle button">} +
+          image("container-expand", :class => "collapsable-button-expand") +
+          image("container-collapse", :class => "collapsable-button-collapse") +
           %Q{<script>
             $(document).ready(function() {
-              setupToggleContainer("#{subj_selector}", "#{initial_subj_state}");
+              setupCollapsableContainer("#{subj_selector}", "#{initial_subj_state}");
             });
         </script>} +
         %Q{</div>}

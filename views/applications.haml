@@ -11,8 +11,8 @@
   .message.container
   - @apps.each do |app|
     %div{ :id => "#{app.basic_name}-app", :class => "container border-all app #{app.basic_name}-app" }
-      = toggle_container("##{app.basic_name}-app", :collapsed)
-      .head
+      = make_collapsable("##{app.basic_name}-app", :collapsed)
+      .collapsable-collapsed
         %h3.toggle.button
           = mini_logo_for(app)
           = app.app_name
@@ -25,7 +25,7 @@
               Outdated:
               %span.installs> unknown
               = ajax_loader
-      .body
+      .collapsable-expanded
         .logo= logo_for(app)
         %h3.toggle.button
           = image("app")
