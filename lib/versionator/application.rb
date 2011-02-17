@@ -95,12 +95,6 @@ module Versionator
         link_to_external("#{mini_logo_for(app)} #{app.app_name} Website", app.project_url)
       end
 
-      def link_to_app_release(app, version)
-        version_method = version.to_sym
-        url_method = "project_url_for_#{version.to_s}".to_sym
-        link_to_external("#{image("link")} #{app.send(version_method)} Release", app.send(url_method), :class => version_method.to_s)
-      end
-
       def link_to_external(text, href, html_options = {})
         %Q{<a href="#{href}" #{%Q{id="#{html_options[:id]}"} if html_options[:id]} #{%Q{class="#{html_options[:class]}"} if html_options[:class]}>} +
           text +
