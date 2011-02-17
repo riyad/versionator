@@ -197,6 +197,20 @@ module Versionator
       haml :installations, :layout => !request.xhr?
     end
 
+    get '/installations/:dir_id/installed_version.json' do
+      dir_id = params[:dir_id]
+      dir = directories.find { |d| dom_id_for_dir(d) == dir_id }
+      app = app_for_dir(dir)
+
+      return 404 unless app
+
+      result = Hash.new
+      result[:installed_version] = app.installed_version
+      result[:project_url_for_installed_version] = app.project_url_for_installed_version
+
+      result.to_json
+    end
+
     get '/javascript.js' do
       @detectors = detectors
       @directories = directories.map { |d| dom_id_for_dir(d) }
