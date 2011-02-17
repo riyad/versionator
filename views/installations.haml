@@ -3,6 +3,10 @@
   %h2
     Installations
   .container
+    %a.check-all-installed-versions.button
+      = ajax_loader
+      = image("version-check-installed")
+      Check all installed versions
     %a.check-all-newest-versions.button
       = ajax_loader
       = image("version-check-newest")
@@ -74,6 +78,7 @@
               %span.newest-version
 :javascript
   $(function() {
+    $(".check-all-installed-versions.button").click(checkAllInstalledVersions);
     $(".check-all-newest-versions.button").click(checkAllNewestVersions);
   });
 
