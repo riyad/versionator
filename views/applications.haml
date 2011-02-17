@@ -3,6 +3,10 @@
   %h2
     Applications
   .container
+    %a.check-all-installed-versions.button
+      = ajax_loader
+      = image("version-check-installed")
+      Check all installed versions
     %a.check-all-newest-versions.button
       = ajax_loader
       = image("version-check-newest")
@@ -50,27 +54,47 @@
                   %span.description
                     %span.installed-version
                       Installed:
-                      %span.version>= install.installed_version
-                    = link_to_app_release(install, :installed_version)
+                      %span.version
+                      = ajax_loader
+                      %a.check-installed-version.button
+                        = image("version-check-installed")
+                        Check
+                      %span.dir-project-links
+                        %span.installed-version
 :javascript
   $(function() {
+    $(".check-all-installed-versions.button").click(checkAllInstalledVersions);
     $(".check-all-newest-versions.button").click(checkAllNewestVersions);
   });
 
-  function updateVerdicts(app) {
-    var nv = $(app).find(".newest-version .version").text();
+  function updateVerdicts(app_or_dir) {
+    if(app_or_dir.hasClass("app")) {
+      var app = app_or_dir;
+    } else {
+      var app = app_or_dir.parents(".app");
+    }
+    var newest_version = $(app).find(".newest-version .version").text();
+    if(isEmpty(newest_version)) {
+      newest_version = $(app).parent(".app").find(".newest-version .version").text();
+    }
     var installs = $(app).find(".dir");
     $(installs).each(function() {
       var img = $(this).find("img").not(".description img");
-      var iv = $(this).find(".version").text();
+      var installed_version = $(this).find(".version").text();
 
-      $(this).addClass("verdict border-all");
-      if (nv == iv) {
-        $(this).addClass("up-to-date");
-        $(img).replaceWith('#{image("verdict-up-to-date-mini")}');
-      } else {
-        $(this).addClass("outdated");
-        $(img).replaceWith('#{image("verdict-outdated-mini")}');
+      if(!isEmpty(installed_version) &&
+         installed_version != "unknown" &&
+         !isEmpty(newest_version) &&
+         newest_version != "unknown"
+      ) {
+        $(this).addClass("verdict border-all");
+        if (newest_version == installed_version) {
+          $(this).addClass("up-to-date");
+          $(img).replaceWith('#{image("verdict-up-to-date-mini")}');
+        } else {
+          $(this).addClass("outdated");
+          $(img).replaceWith('#{image("verdict-outdated-mini")}');
+        }
       }
     });
 
@@ -78,16 +102,22 @@
   }
 
   function updateSummaryVerdicts(app) {
-    var img = $(app).find("h3 img");
-    var outdatedInstalls = $(app).find(".verdict.outdated");
     var outdatedInstallsSummary = $(app).find(".outdated-installs .installs");
 
-    $(app).addClass("verdict striped");
-    if (outdatedInstalls.length === 0) {
-      $(app).addClass("up-to-date");
-      $(outdatedInstallsSummary).html("none");
+    // when all verdicts have been issued
+    if($(app).find(".dir").length == $(app).find(".verdict").length) {
+      var img = $(app).find("h3 img");
+      var outdatedInstalls = $(app).find(".dir.verdict.outdated");
+
+      $(app).addClass("verdict striped");
+      if (outdatedInstalls.length === 0) {
+        $(app).addClass("up-to-date");
+        $(outdatedInstallsSummary).html("none");
+      } else {
+        $(app).addClass("outdated");
+        $(outdatedInstallsSummary).html(outdatedInstalls.length);
+      }
     } else {
-      $(app).addClass("outdated");
-      $(outdatedInstallsSummary).html(outdatedInstalls.length);
+      $(outdatedInstallsSummary).html("unknown");
     }
   }
