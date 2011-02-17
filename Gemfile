@@ -5,5 +5,8 @@ gem 'haml'
 gem 'json'
 gem 'nokogiri'
 gem 'sinatra'
-gem 'sinatra-reloader'
 gem 'versionomy'
+
+group :development do
+  gem 'sinatra-reloader'
+end
