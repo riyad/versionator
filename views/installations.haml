@@ -2,7 +2,7 @@
 #installations
   %h2
     Installations
-  .container
+  %p
     %a.check-all-installed-versions.button
       = ajax_loader
       = image("version-check-installed")
@@ -29,13 +29,13 @@
   - @dirs_that_exist.each do |dir|
     - app = @app_for_dir[dir]
     - unless app
-      %div{ :id => dom_id_for_dir(dir), :class => "container border-all app" }
+      %div{ :id => dom_id_for_dir(dir), :class => "container app" }
         .collapsable-collapsed
           %h3
             = image("folder")
             = dir
     - else
-      %div{ :id => dom_id_for_dir(dir), :class => "container border-all app #{app.basic_name}-app" }
+      %div{ :id => dom_id_for_dir(dir), :class => "container app #{app.basic_name}-app" }
         = make_collapsable("##{dom_id_for_dir(dir)}")
         .collapsable-collapsed
           %h3.collapsable-button
