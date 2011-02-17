@@ -156,10 +156,8 @@ module Versionator
       all_apps = detectors
       installs_for_app = Hash.new([])
       directories.each do |dir|
-        all_apps.each do |app_class|
-          app = app_class.new(dir)
-          installs_for_app[app_class] += [app] if app.detected?
-        end
+        app = app_for_dir(dir)
+        installs_for_app[app.class] += [app] if app
       end
 
       # only show apps that have actual installs
@@ -188,12 +186,9 @@ module Versionator
 
       app_for_dir = {}
       dirs_that_exist.each do |dir|
-        detectors.each do |detector|
-          app = detector.new(dir)
-          app_for_dir[dir] = app if app.detected?
-        end
+        app_for_dir[dir] = app_for_dir(dir)
       end
-      
+
       @app_for_dir = app_for_dir
       @detectors = detectors
       @dirs_that_dont_exist = dirs_that_dont_exist
