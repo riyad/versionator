@@ -38,7 +38,6 @@ module Versionator
       def self.basic_name
         File.basename(self.name.underscore)
       end
-
       def basic_name
         self.class.basic_name
       end
