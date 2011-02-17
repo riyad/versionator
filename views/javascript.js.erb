@@ -70,12 +70,13 @@ function checkAllInstalledVersions() {
 
 function checkInstalledVersionForDirectory(directory) {
   var dir = $("#"+directory);
-  var iv = $(dir).find(".installed-version");
-  var ivt = $(iv).find(".version");
+  var app = $(dir).parents(".app");
+  var iv = $(app).find($(dir).selector+" .installed-version, .outdated-installs");
+  var ivt = $(iv).find(".version, .installs");
   var installedVersionUrl = "/installations/"+directory+"/installed_version.json";
 
-  $(iv).find(".ajax-loader").show(); // show throbber
-  $(ivt).html(""); // erase newest version text
+  $(iv).find(".ajax-loader").show(); // show throbbers
+  $(ivt).html(""); // erase installed version text
   $.getJSON(installedVersionUrl).success(function(data) {
     updateInstalledVersionFor(dir, data.installed_version);
     updateVerdicts(dir);
@@ -104,6 +105,7 @@ function checkInstalledVersionForDirectory(directory) {
 
 function updateInstalledVersionFor(dir, html) {
   var iv = $(dir).find(".installed-version");
+  $(dir).parents(".app").find(".outdated-installs .ajax-loader").hide(); // hide throbber
   $(iv).find(".ajax-loader").hide(); // hide throbber
   $(iv).find(".version").html(html); // set installed version text
   // update button
@@ -112,14 +114,10 @@ function updateInstalledVersionFor(dir, html) {
 
 function addInstalledVersionLink(dir, data) {
   if (data.project_url_for_installed_version) {
-    var links = $(dir).find(".project-links");
+    var links = $(dir).find(".project-links, .dir-project-links");
     var iv = $(links).find(".installed-version");
-    var linkText = '<%= link_to_external("#{image("link")} '+data.installed_version+' Release", "'+data.project_url_for_newest_version+'", :class => "installed-version") %>';
-    if(isEmpty($(iv).toArray())) {
-      $(links).append(linkText);
-    } else {
-      $(iv).replaceWith(linkText);
-    }
+    var linkText = '<%= link_to_external("#{image("link")} Installed Release", "'+data.project_url_for_newest_version+'", :class => "installed-version") %>';
+    $(iv).replaceWith(linkText);
   }
 }
 
@@ -179,11 +177,7 @@ function addNewestVersionLink(inst, data) {
     var links = $(inst).find(".project-links");
     var nv = $(links).find(".newest-version");
     var linkText = '<%= link_to_external("#{image("link")} Newest Release", "'+data.project_url_for_newest_version+'", :class => "newest-version") %>';
-    if(isEmpty(nv.length)) {
-      $(links).append(linkText);
-    } else {
-      $(nv).replaceWith(linkText);
-    }
+    $(nv).replaceWith(linkText);
   }
 }
 
