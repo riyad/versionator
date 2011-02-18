@@ -1,16 +1,50 @@
+
+$background-color: #d9eefa
+$background-color-transparent: rgba(184, 216, 255, 0.5)
+$border-color: #6193cf
+$font-color: #000
+$link-color: #6193cf
+
+
+
+@mixin rounded-borders
+  border: 0.1em solid $border-color
+  border-radius: 5px
+
+@mixin box
+  +rounded-borders
+  margin: 0.5em 0
+  padding: 0
+
+@mixin button
+  border-radius: 5px
+  color: $font-color
+  cursor: pointer
+  padding: 0.1em 0.2em 0.1em
+  text-decoration: none
+  &:hover
+    background-color: $background-color
+  img
+    margin-bottom: -0.1em
+
+@mixin button-bordered
+  +button
+  border: 0.1em solid $background-color
+
+
+
 a
-  img.link-external
-    margin-bottom: 0.1em
+  &:not(.button)
+    color: $link-color
+  img
+    margin-bottom: -0.2em
+    &.link-external
+      margin-bottom: 0.1em
 
 body
-  font-family: Ubuntu, Droid Sans, Arial, sans-serif
+  font-family: Ubuntu, "Droid Sans", Arial, sans-serif
   font-size: 12pt
   margin: 0.5em 1.5em 1.5em
-
-img
-  margin-bottom: -0.2em
-  &.ajax-loader
-    display: none
 
 ul
   margin: 0.5em 0
@@ -20,9 +54,8 @@ ul
     list-style: none
     padding: 0
     &.icon li
+      +rounded-borders
       background-color: #fff
-      border: 0.1em solid #6193CF
-      border-radius: 5px
     &.horizontal.icon li
       margin: 0 0.5em
       padding: 0 0.5em
@@ -46,69 +79,57 @@ ul
         p
           margin: 0.2em 0 0.2em 5.6em
   &.tabs
-    border-bottom: 0.1em solid #6193CF
+    border-bottom: 0.1em solid $border-color
     li
-      border: 0.1em solid #6193CF
+      border: 0.1em solid $border-color
       border-bottom-width: 0
       border-radius: 5px 5px 0 0
       padding: 0.3em 1em
       &:hover
-        background-color: #d9eefa
+        background-color: $background-color
       a
         color: #000
         text-decoration: none
+    .about
+      float: right
+      margin-right: 2em
   &.vertical li
     display: block
 
-#content
-  a
-    border-radius: 5px
-    color: #6193cf
-    padding: 0.1em 0.2em 0.1em
-    text-decoration: none
-    &:hover
-      background-color: #d9eefa
-    &.button
-      border: 0.1em solid #d9eefa
-      color: #000
-      img
-        margin-bottom: -0.1em
-
-.about
-  float: right
-  margin-right: 2em
+.ajax-loader
+  display: none
 
 .button
-  border-radius: 5px
-  cursor: pointer
-  &:hover
-    background-color: #d9eefa
-  &.toggle:hover
-    background-color: rgba(184, 216, 255, 0.5)
+  +button-bordered
 
-.border-all
-  border: 0.1em solid #6193CF
-  border-radius: 5px
+.collapsable-button
+  +button
+  &:hover
+    background-color: $background-color-transparent
+
+.collapsable-indicator
+  float: right
+  width: 16px
 
 .container
-  margin: 0.5em 0
-  padding: 0
+  +box
   h3
     margin: 0
     padding: 0.5em
     img
       margin-bottom: -0.05em
-  p
+  h4
     margin: 0
-  .collapsable-expanded
-    h4
-      margin: 0
-    .content
-      padding: 0.5em
-      .button
-        text-decoration: underline
-        img
-          display: inline-block
+  &.dirs
+    border: 0
+  .content
+    padding: 0.5em
+  .description
+    display: inline-block
+    font-size: 85%
+    font-weight: normal
+  .dir img
+    margin: 0.1em 0.3em -0.2em
   .logo
     float: right
     margin: 0.5em 16px
@@ -116,15 +137,6 @@ ul
     font-size: 125%
   .version, .installs
     font-style: italic
-
-.description
-  display: inline-block
-  font-size: 85%
-  font-weight: normal
-
-.dir
-  img
-    margin: 0.1em 0.3em -0.2em
 
 .message
   border-radius: 5px
@@ -135,7 +147,7 @@ ul
     .content
       padding: 0.5em 1em 0
     .collapsable-collapsed
-      background-image: url('images/message-error-mini.png')
+      background-image: url('/images/message-error-mini.png')
       background-position: 0.4em 0.4em
       background-repeat: no-repeat
       h3
@@ -143,7 +155,7 @@ ul
         margin: 0
         padding: 0.3em 0 0.2em 1.6em
     .collapsable-expanded
-      background-image: url('images/message-error.png')
+      background-image: url('/images/message-error.png')
       background-position: 0.5em 0.5em
       background-repeat: no-repeat
       h3
@@ -151,34 +163,23 @@ ul
         margin: 0
         padding: 0.4em 0 0.5em 2em
 span.message.error
-  background-image: url('images/message-error-mini.png')
+  background-image: url('/images/message-error-mini.png')
   background-position: 3px 0.15em
   background-repeat: no-repeat
   padding: 0 .2em 0 22px
   font-style: normal
 
-.collapsable-container
-  img
-    margin-bottom: 0
-  &.button
-    background: none
-    border: none
-    display: block
-    float: right
-    padding: 0
-    margin: 0.2em
-    width: 16px
-
 .verdict
+  border-radius: 5px
   &.outdated
     background-color: #fff9d4
     border: 0.1em solid #ffe655
   &.striped
     background-repeat: repeat-x
     &.outdated
-      background-image: url('images/verdict-outdated.png')
+      background-image: url('/images/verdict-outdated.png')
     &.up-to-date
-      background-image: url('images/verdict-up-to-date.png')
+      background-image: url('/images/verdict-up-to-date.png')
   &.up-to-date
     background-color: #daf0be
     border: 0.1em solid #9ed15c
