@@ -31,10 +31,11 @@ function setupCollapsableContainer(subjectSelector, initialSubjectState) {
   var subj = $(subjectSelector);
   var subjCollapsed = $(subj).find('.collapsable-collapsed');
   var subjExpanded = $(subj).find('.collapsable-expanded');
-  var button = $(subj).find('.toggle.button');
+  var button = $(subj).find('.collapsable-button');
   var expand = $(subj).find('.collapsable-button-expand');
   var collapse = $(subj).find('.collapsable-button-collapse');
 
+  $(subj).addClass("collapsable-container")
   $(button).click(function() {
     expand.toggle();
     collapse.toggle();

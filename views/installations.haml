@@ -16,9 +16,9 @@
     #message-error-dirs.error.message.container
       = make_collapsable("#message-error-dirs", :expanded)
       .collapsable-collapsed
-        %h3.toggle.button Directories not found
+        %h3.collapsable-button Directories not found
       .collapsable-expanded
-        %h3.toggle.button Directories not found
+        %h3.collapsable-button Directories not found
         .content
           The following directories could not be found:
           %ul.vertical.list
@@ -38,7 +38,7 @@
       %div{ :id => dom_id_for_dir(dir), :class => "container border-all app #{app.basic_name}-app" }
         = make_collapsable("##{dom_id_for_dir(dir)}")
         .collapsable-collapsed
-          %h3.toggle.button
+          %h3.collapsable-button
             = mini_logo_for(app)
             = dir
             %span.description
@@ -53,7 +53,7 @@
                 = ajax_loader
         .collapsable-expanded
           .logo= logo_for(app)
-          %h3.toggle.button
+          %h3.collapsable-button
             = image("folder")
             = dir
           .content

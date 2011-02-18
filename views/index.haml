@@ -19,12 +19,12 @@
 #dirs.container.border-all
   = make_collapsable("#dirs", :collapsed)
   .collapsable-collapsed
-    %h3.toggle.button
+    %h3.collapsable-button
       = image("folder")
       Directories
       .description This is a list of all the directories you have configured to check.
   .collapsable-expanded
-    %h3.toggle.button
+    %h3.collapsable-button
       = image("folder")
       Directories
     .content
@@ -39,12 +39,12 @@
 #apps.container.border-all
   = make_collapsable("#apps", :collapsed)
   .collapsable-collapsed
-    %h3.toggle.button
+    %h3.collapsable-button
       = image("app")
       Applications
       .description This is a list of all the applications we are able to check.
   .collapsable-expanded
-    %h3.toggle.button
+    %h3.collapsable-button
       = image("app")
       Applications
     .content

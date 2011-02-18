@@ -18,7 +18,7 @@
     %div{ :id => "#{app.basic_name}-app", :class => "container border-all app #{app.basic_name}-app" }
       = make_collapsable("##{app.basic_name}-app", :collapsed)
       .collapsable-collapsed
-        %h3.toggle.button
+        %h3.collapsable-button
           = mini_logo_for(app)
           = app.app_name
           .description
@@ -32,7 +32,7 @@
               = ajax_loader
       .collapsable-expanded
         .logo= logo_for(app)
-        %h3.toggle.button
+        %h3.collapsable-button
           = image("app")
           = app.app_name
         .content
