@@ -12,8 +12,6 @@
       = ajax_loader
       = image("version-check-newest")
       Check all newest versions
-  -# empty container for spacing
-  .message.container
   - @apps.each do |app|
     %div{ :id => "#{app.basic_name}-app", :class => "container app #{app.basic_name}-app" }
       = make_collapsable("##{app.basic_name}-app", :collapsed)
