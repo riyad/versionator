@@ -193,3 +193,22 @@ function updateNewestVersionFor(inst, html) {
 function updateVerdicts(inst) {
   console.log("override this"); 
 }
+
+
+
+// all versions
+
+function checkAllVersions() {
+  checkAllInstalledVersions();
+  checkAllNewestVersions();
+}
+
+
+
+// hook up buttons
+
+$(function() {
+  $(".check-all-versions.button").click(checkAllVersions);
+  $(".check-all-installed-versions.button").click(checkAllInstalledVersions);
+  $(".check-all-newest-versions.button").click(checkAllNewestVersions);
+});

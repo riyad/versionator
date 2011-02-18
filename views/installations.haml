@@ -3,15 +3,21 @@
   %h2
     Installations
   %p
-    %a.check-all-installed-versions.button
+    %a.check-all-versions.button
       = ajax_loader
-      = image("version-check-installed")
-      Check all installed versions
-    &nbsp;
-    %a.check-all-newest-versions.button
-      = ajax_loader
-      = image("version-check-newest")
-      Check all newest versions
+      = image("version-check-all")
+      Check all versions
+    /
+      &nbsp;
+      %a.check-all-installed-versions.button
+        = ajax_loader
+        = image("version-check-installed")
+        Check all installed versions
+      &nbsp;
+      %a.check-all-newest-versions.button
+        = ajax_loader
+        = image("version-check-newest")
+        Check all newest versions
   - unless @dirs_that_dont_exist.empty?
     #message-error-dirs.error.message.container
       = make_collapsable("#message-error-dirs", :expanded)
@@ -78,11 +84,6 @@
               %span.installed-version
               %span.newest-version
 :javascript
-  $(function() {
-    $(".check-all-installed-versions.button").click(checkAllInstalledVersions);
-    $(".check-all-newest-versions.button").click(checkAllNewestVersions);
-  });
-
   function updateVerdicts(inst) {
     $(inst).each(function() {
       var installed_version = $(this).find(".installed-version .version").text();

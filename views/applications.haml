@@ -3,15 +3,21 @@
   %h2
     Applications
   %p
-    %a.check-all-installed-versions.button
+    %a.check-all-versions.button
       = ajax_loader
-      = image("version-check-installed")
-      Check all installed versions
-    &nbsp;
-    %a.check-all-newest-versions.button
-      = ajax_loader
-      = image("version-check-newest")
-      Check all newest versions
+      = image("version-check-all")
+      Check all versions
+    /
+      &nbsp;
+      %a.check-all-installed-versions.button
+        = ajax_loader
+        = image("version-check-installed")
+        Check all installed versions
+      &nbsp;
+      %a.check-all-newest-versions.button
+        = ajax_loader
+        = image("version-check-newest")
+        Check all newest versions
   - @apps.each do |app|
     %div{ :id => "#{app.basic_name}-app", :class => "container app #{app.basic_name}-app" }
       = make_collapsable("##{app.basic_name}-app", :collapsed)
@@ -61,11 +67,6 @@
                       %span.dir-project-links
                         %span.installed-version
 :javascript
-  $(function() {
-    $(".check-all-installed-versions.button").click(checkAllInstalledVersions);
-    $(".check-all-newest-versions.button").click(checkAllNewestVersions);
-  });
-
   function updateVerdicts(app_or_dir) {
     if(app_or_dir.hasClass("app")) {
       var app = app_or_dir;
