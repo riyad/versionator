@@ -2,6 +2,7 @@
 require 'haml'
 require 'json'
 require 'sinatra/base'
+require 'sinatra/reloader'
 
 require 'versionator/detector'
 
@@ -16,7 +17,6 @@ module Versionator
     end
 
     configure(:development) do
-      require 'sinatra/reloader'
       register Sinatra::Reloader
       also_reload ["*.rb", "lib/**/*.rb"]
     end
