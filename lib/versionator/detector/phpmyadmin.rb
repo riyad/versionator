@@ -7,7 +7,7 @@ module Versionator
       set :project_url, "http://www.phpmyadmin.net"
 
       set :detect_dirs, %w{contrib js lang libraries pmd scripts themes}
-      set :detect_files, %w{ChangeLog error.php export.php index.php main.php navigation.php sql.php themes.php}
+      set :detect_files, %w{ChangeLog export.php index.php main.php navigation.php sql.php themes.php}
 
       set :installed_version_file, "ChangeLog"
       set :installed_version_regexp, /^(\d.+) \(\d\d\d\d-\d\d-\d\d\)$/
