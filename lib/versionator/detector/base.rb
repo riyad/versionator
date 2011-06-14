@@ -51,6 +51,26 @@ module Versionator
         true
       end
 
+      # Tries to detect the version of the app installed in +bsae_dir+.
+      # Where and what to look for is determined by the following settings:
+      # +installed_version_file+::
+      #   The file which contains the full version string.
+      #   (_version.php_, _ChangeLog_, _PKG-INFO_, etc.)
+      # +installed_version_regexp+::
+      #   Extracts the actual version string out of the matching line.
+      #   The first match must be the desired version string.
+      #
+      # The result will be available as a Versionomy object through #installed_version .
+      def detect_installed_version
+        return @installed_version unless self.class.method_defined?(:installed_version_file)
+
+        version_line = find_first_line(:matching => installed_version_regexp, :in_file => installed_version_file)
+
+        version = extract_version(:from => version_line, :with => installed_version_regexp)
+
+        @installed_version = Versionomy.parse(version) if version
+      end
+
       # Tries to detect the newest version by checking online for it.
       # Where and what to look for is determined by the following settings:
       # +newest_version_url+::
@@ -82,25 +102,6 @@ module Versionator
         end
         version = newest_version_regexp.match(version_line)[1] if version_line
         @newest_version = Versionomy.parse(version) if version
-      end
-
-      # Tries to detect the version of the app installed in +bsae_dir+.
-      # Where and what to look for is determined by the following settings:
-      # +installed_version_file+::
-      #   The file which contains the full version string.
-      #   (_version.php_, _ChangeLog_, _PKG-INFO_, etc.)
-      # +installed_version_regexp+::
-      #   Extracts the actual version string out of the matching line.
-      #   The first match must be the desired version string.
-      #
-      # The result will be available as a Versionomy object through #newest_version .
-      def detect_installed_version
-        return @installed_version unless self.class.method_defined?(:installed_version_file)
-
-        version_line = find_first_line(:matching => installed_version_regexp, :in_file => installed_version_file)
-
-        version = extract_version(:from => version_line, :with => installed_version_regexp)
-        @installed_version = Versionomy.parse(version) if version
       end
 
       # Determines whether an app could be detected in +base_dir+.
