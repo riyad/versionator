@@ -29,10 +29,6 @@ module Versionator
         @base_dir = base_dir
         @installed_version = UnknownVersion
         @newest_version = UnknownVersion
-
-        if base_dir && detected?
-          detect_installed_version
-        end
       end
 
       def self.basic_name
@@ -121,6 +117,13 @@ module Versionator
       def files_detected?
         files_there = detect_files.map { |file| File.exists?(File.expand_path(file, base_dir)) }
         files_there.all?
+      end
+
+      # See also: #detect_installed_version
+      def installed_version
+        detect_installed_version if @installed_version == UnknownVersion
+
+        @installed_version
       end
 
       # Warning: See warnings for #detect_newest_version
