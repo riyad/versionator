@@ -117,7 +117,7 @@ function addInstalledVersionLink(dir, data) {
   if (data.project_url_for_installed_version) {
     var links = $(dir).find(".project-links, .dir-project-links");
     var iv = $(links).find(".installed-version");
-    var linkText = '<%= link_to_external("#{image("link")} Installed Release", "'+data.project_url_for_newest_version+'", :class => "installed-version") %>';
+    var linkText = '<%= link_to_external("#{image("link")} Installed Release", "'+data.project_url_for_installed_version+'", :class => "installed-version") %>';
     $(iv).replaceWith(linkText);
   }
 }
