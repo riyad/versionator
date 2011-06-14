@@ -16,9 +16,9 @@ module Versionator
       set :newest_version_selector, '.download-table .project-release .views-row-first .views-field-version a'
       set :newest_version_regexp, /^(7.+)$/
 
-      # Overridden to make sure that we do only also detect Drupal7
+      # Overridden to make sure that we do only detect Drupal7
       def contents_detected?
-        true if find_first_line(:matching => installed_version_regexp, :in_file => installed_version_file)
+        installed_version.major >= 7
       end
 
       def project_url_for_version(version)
