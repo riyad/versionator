@@ -27,8 +27,8 @@ module Versionator
         version_line = find_first_line(:matching => detailed_version_regexp, :in_file => detailed_version_file)
 
         version = extract_version(:from => version_line, :with => detailed_version_regexp)
-        version = Versionomy.parse(version).reset(:tiny2).unparse(:optional_fields => [:tiny, :tiny2])
-        @installed_version = Versionomy.parse(version)
+        version = Versionomy.parse(version)
+        @installed_version = version.change({ :tiny2 => 0 }, :optional_fields => [:tiny, :tiny2])
       end
 
       def project_url_for_version(version)
