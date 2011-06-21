@@ -1,7 +1,7 @@
 
 module Versionator
   module Detector
-    # Detects {ownCloud1}[http://owncloud.org/index.php/Main_Page].
+    # Detects {ownCloud}[http://owncloud.org/index.php/Main_Page].
     class Owncloud < Base
       set :app_name, "ownCloud"
       set :project_url, "http://owncloud.org/index.php/Main_Page"
