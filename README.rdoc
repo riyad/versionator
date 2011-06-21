@@ -6,9 +6,11 @@ This is a web application that alows you to check a list of directories which we
 
 \Versionator is able to detect the following applications:
 
+* {Collabtive}[http://collabtive.o-dyn.de]
 * {Drupal}[http://drupal.org]
 * {EGroupware}[http://www.egroupware.org]
 * {MediaWiki}[http://www.mediawiki.org]
+* {ownCloud}[http://owncloud.org/index.php/Main_Page]
 * {phpBB}[http://www.phpbb.com]
 * {phpMyAdmin}[http://www.phpmyadmin.net]
 * {Piwik}[http://piwik.org]
