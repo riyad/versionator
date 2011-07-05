@@ -13,7 +13,7 @@ module Versionator
       set :installed_version_regexp, /^\$setup_info\['admin'\]\['version'\]\s+= '(.+)';$/
 
       set :newest_version_url, 'http://www.egroupware.org/download'
-      set :newest_version_selector, '.contentpane h2'
+      set :newest_version_selector, '.contentpane h3'
       set :newest_version_regexp, /^\s*Current release: (.+)$/
 
       # Overridden to get the full version number on the 2nd round.
