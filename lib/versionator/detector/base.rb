@@ -57,6 +57,7 @@ module Versionator
       #   The first match must be the desired version string.
       #
       # The result will be available as a Versionomy object through #installed_version .
+      # As a fallback the unparsed version string will be avaialble through #@installed_version_text .
       def detect_installed_version
         return @installed_version unless self.class.method_defined?(:installed_version_file)
 
@@ -64,7 +65,10 @@ module Versionator
 
         version = extract_version(:from => version_line, :with => installed_version_regexp)
 
-        @installed_version = Versionomy.parse(version) if version
+        if version
+          @installed_version_text = version
+          @installed_version = Versionomy.parse(@installed_version_text)
+        end
       end
 
       # Tries to detect the newest version by checking online for it.
@@ -81,6 +85,7 @@ module Versionator
       #   The first capture must be the desired version string.
       #
       # The result will be available as a Versionomy object through #newest_version .
+      # As a fallback the unparsed version string will be avaialble through #@newest_version_text .
       #
       # Note: ::    This method can be called without the +base_dir+ set.
       # Warning: :: This method does network access and may therefore take long
@@ -97,7 +102,10 @@ module Versionator
           newest_version_regexp.match(line)
         end
         version = newest_version_regexp.match(version_line)[1] if version_line
-        @newest_version = Versionomy.parse(version) if version
+        if version
+          @newest_version_text = version
+          @newest_version = Versionomy.parse(@newest_version_text)
+        end
       end
 
       # Determines whether an app could be detected in +base_dir+.
