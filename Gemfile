@@ -8,5 +8,6 @@ gem 'sinatra'
 gem 'versionomy'
 
 group :development do
+  gem 'rdoc'
   gem 'sinatra-reloader'
 end
