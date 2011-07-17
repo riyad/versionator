@@ -17,6 +17,7 @@ This is a web application that alows you to check a list of directories which we
 * {Redmine}[http://www.redmine.org]
 * {Review Board}[http://www.reviewboard.org]
 * {Roundcube}[http://roundcube.net]
+* {Tine 2.0}[http://www.tine20.org]
 * {Trac}[http://trac.edgewall.org]
 * {WordPress}[http://wordpress.org]
 
