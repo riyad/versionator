@@ -14,7 +14,7 @@ module Versionator
 
       set :newest_version_url, 'http://www.egroupware.org/download'
       set :newest_version_selector, '.contentpane h3'
-      set :newest_version_regexp, /^\s*Current release: (.+)$/
+      set :newest_version_regexp, /^\s*Current release: ([\d\.]+) .*$/
 
       # Overridden to get the full version number on the 2nd round.
       # Initial detection only gets major and minor version numbers.
