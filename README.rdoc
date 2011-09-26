@@ -9,7 +9,7 @@ This is a web application that alows you to check a list of directories which we
 * {Collabtive}[http://collabtive.o-dyn.de]
 * {Drupal}[http://drupal.org]
 * {MediaWiki}[http://www.mediawiki.org]
-* {ownCloud}[http://owncloud.org/index.php/Main_Page]
+* {ownCloud}[http://owncloud.org/]
 * {phpBB}[http://www.phpbb.com]
 * {phpMyAdmin}[http://www.phpmyadmin.net]
 * {Piwik}[http://piwik.org]

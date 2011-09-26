@@ -1,20 +1,20 @@
 
 module Versionator
   module Detector
-    # Detects {ownCloud}[http://owncloud.org/index.php/Main_Page].
+    # Detects {ownCloud}[http://owncloud.org/].
     class Owncloud < Base
       set :app_name, "ownCloud"
-      set :project_url, "http://owncloud.org/index.php/Main_Page"
+      set :project_url, "http://owncloud.org/"
 
-      set :detect_dirs, %w{admin config css docs files img inc js log ocs plugins settings webdav}
-      set :detect_files, %w{db_structure.xml inc/lib_base.php index.php README}
+      set :detect_dirs, %w{3rdparty apps config core data lib settings}
+      set :detect_files, %w{db_structure.xml index.php lib/util.php README}
 
-      set :installed_version_file, "inc/lib_base.php"
-      set :installed_version_regexp, /^\s*return array\((\d,\d,\d)\);$/
+      set :installed_version_file, "lib/util.php"
+      set :installed_version_regexp, /^\s*return array\((\d+,\d+,\d+)\);$/
 
-      set :newest_version_url, 'http://owncloud.org/index.php/Installation'
-      set :newest_version_selector, 'div#bodyContent ol ul a.external'
-      set :newest_version_regexp, /^stable version (.+)$/
+      set :newest_version_url, 'http://owncloud.org/'
+      set :newest_version_selector, '#content .entry-content a'
+      set :newest_version_regexp, /^download ownCloud (.+)$/
 
       # Overridden because
       # * Versionator cannot handle comma as version delimiter
