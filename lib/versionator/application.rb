@@ -1,6 +1,7 @@
 
 require 'haml'
 require 'json'
+require 'sass'
 require 'sinatra/base'
 require 'sinatra/reloader'
 
