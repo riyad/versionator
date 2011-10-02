@@ -11,10 +11,11 @@ module Versionator
   class Application < Sinatra::Base
 
     configure do
-      # the name of the file containing the directories to be checked
-      set :check_dirs, "check_dirs"
+      # set root to the actual project root
+      set :root, File.dirname(__FILE__) + '/../..'
 
-      set :public, 'public'
+      # the name of the file containing the directories to be checked
+      set :check_dirs, 'check_dirs'
     end
 
     configure(:development) do
