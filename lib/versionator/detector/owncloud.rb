@@ -33,7 +33,7 @@ module Versionator
           # parse including tiny version
           version = Versionomy.parse(version)
           # remove tiny version if 0
-          @installed_version = version.change({}, :optional_fields => [:tiny])
+          @installed_version = version.change({}, :optional_fields => [:minor, :tiny])
         end
       end
     end
