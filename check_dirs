@@ -4,6 +4,3 @@
 # You can also use shell expansions like:
 # /var/www/*
 #
-
-test_apps/*
-test_apps/bla
