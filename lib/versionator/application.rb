@@ -20,7 +20,8 @@ module Versionator
 
     configure(:development) do
       register Sinatra::Reloader
-      also_reload ["*.rb", "lib/**/*.rb"]
+      also_reload "*.rb"
+      also_reload "lib/**/*.rb"
     end
 
 
