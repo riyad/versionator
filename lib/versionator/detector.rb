@@ -1,6 +1,5 @@
 
-require 'active_support'
-include ActiveSupport::Inflector
+require 'active_support/inflector'
 
 require 'versionator/detector/base'
 
