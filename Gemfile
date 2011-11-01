@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 
 gem 'activesupport' # for 'active_support/inflector'
 gem 'haml'
+gem 'i18n'
 gem 'json'
 gem 'nokogiri'
 gem 'sass'
