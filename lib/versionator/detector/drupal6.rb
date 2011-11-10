@@ -9,7 +9,7 @@ module Versionator
       set :project_url, "http://drupal.org"
 
       set :detect_dirs, %w{includes misc modules profiles scripts sites themes}
-      set :detect_files, %w{cron.php index.php install.php xmlrpc.php}
+      set :detect_files, %w{CHANGELOG.txt cron.php index.php install.php xmlrpc.php}
 
       set :installed_version_file, "CHANGELOG.txt"
       set :installed_version_regexp, /^Drupal (.+), .*$/
