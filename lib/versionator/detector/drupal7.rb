@@ -10,7 +10,7 @@ module Versionator
       set :detect_files, %w{CHANGELOG.txt cron.php index.php install.php xmlrpc.php}
 
       set :installed_version_file, "CHANGELOG.txt"
-      set :installed_version_regexp, /^Drupal (7.+), .*$/
+      set :installed_version_regexp, /^Drupal (.+), .*$/
 
       set :newest_version_url, 'http://drupal.org/project/drupal'
       set :newest_version_selector, '.download-table .project-release .views-row-first .views-field-version a'
@@ -18,7 +18,7 @@ module Versionator
 
       # Overridden to make sure that we do only detect Drupal7
       def contents_detected?
-        installed_version.major >= 7
+        installed_version.major >= 7 if super
       end
 
       def project_url_for_version(version)
