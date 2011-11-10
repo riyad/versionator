@@ -18,13 +18,19 @@ module Versionator
       set :newest_version_selector, '.download-table .project-release .release-update-status-0 .views-field-version a'
       set :newest_version_regexp, /^(6.+)$/
 
-      # Overridden to make sure that we do not also detect Drupal7
-      def detected?
-        installed_version.major < 7 if super
+      # Overridden to make sure that we do not also detect Drupal7 or Open Atrium
+      def contents_detected?
+        !is_openatrium? && installed_version.major < 7 if super
       end
 
       def project_url_for_version(version)
         "#{project_url}/drupal-#{version}"
+      end
+
+      private
+
+      def is_openatrium?
+        Dir.exists?(File.expand_path("profiles/openatrium", base_dir))
       end
     end
   end
