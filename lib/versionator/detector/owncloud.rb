@@ -6,7 +6,7 @@ module Versionator
       set :app_name, "ownCloud"
       set :project_url, "http://owncloud.org/"
 
-      set :detect_dirs, %w{3rdparty apps config core data lib settings}
+      set :detect_dirs, %w{3rdparty apps core lib settings}
       set :detect_files, %w{db_structure.xml index.php lib/util.php README}
 
       set :installed_version_file, "lib/util.php"
