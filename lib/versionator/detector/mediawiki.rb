@@ -6,18 +6,30 @@ module Versionator
       set :app_name, "MediaWiki"
       set :project_url, "http://www.mediawiki.org"
 
-      set :detect_dirs, %w{bin config extensions images includes maintenance skins}
-      set :detect_files, %w{api.php index.php redirect.php RELEASE-NOTES thumb.php}
+      set :detect_dirs, %w{bin extensions images includes maintenance skins}
+      set :detect_files, %w{api.php index.php redirect.php thumb.php}
 
-      set :installed_version_file, "RELEASE-NOTES"
+      set :installed_version_file, "RELEASE-NOTES" # see contents_detected?
       set :installed_version_regexp, /^== MediaWiki (.+) ==$/
 
       set :newest_version_url, 'http://www.mediawiki.org/wiki/Download'
       set :newest_version_selector, '#bodyContent .plainlinks a'
       set :newest_version_regexp, /^Download MediaWiki (.+)$/
 
+      # Overriden to detect RELEASE-NOTES-x.yy files form 1.18 onwards
+      def contents_detected?
+        release_notes = Dir.glob(File.expand_path("RELEASE-NOTES*", base_dir))
+        @@installed_version_file = release_notes.first[File.expand_path(base_dir).size..-1]
+
+        !release_notes.empty?
+      end
+
       def project_url_for_version(version)
-        "http://svn.wikimedia.org/svnroot/mediawiki/tags/REL#{version.to_s.gsub('.', '_')}/phase3/RELEASE-NOTES"
+        if version < Versionomy.parse('1.18')
+          "http://svn.wikimedia.org/svnroot/mediawiki/tags/REL#{version.change({}, :optional_fields => []).to_s.gsub('.', '_')}/phase3/RELEASE-NOTES"
+        else
+          "http://svn.wikimedia.org/svnroot/mediawiki/tags/REL#{version.change({}, :optional_fields => []).to_s.gsub('.', '_')}/phase3/RELEASE-NOTES-#{version.to_s}"
+        end
       end
     end
   end
