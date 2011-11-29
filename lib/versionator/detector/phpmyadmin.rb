@@ -17,7 +17,9 @@ module Versionator
       set :newest_version_regexp, /^Download (.+)$/
 
       def project_url_for_version(version)
-        if version >= Versionomy.parse('3.3.9')
+        if version < Versionomy.parse('3.3.9')
+          "http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/#{version}/phpMyAdmin-#{version}-notes.html/view"
+        elsif Versionomy.parse('3.3.9') <= version && version < Versionomy.parse('3.4.7.1')
           "http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/#{version}/phpMyAdmin-#{version}.html/view"
         else
           "http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/#{version}/phpMyAdmin-#{version}-notes.html/view"
