@@ -67,7 +67,7 @@ module Versionator
 
         if version
           @installed_version_text = version
-          @installed_version = Versionomy.parse(@installed_version_text)
+          @installed_version = Versionomy.parse(@installed_version_text).change({}, :optional_fields => [:tiny])
         end
       end
 
@@ -104,7 +104,7 @@ module Versionator
         version = newest_version_regexp.match(version_line)[1] if version_line
         if version
           @newest_version_text = version
-          @newest_version = Versionomy.parse(@newest_version_text)
+          @newest_version = Versionomy.parse(@newest_version_text).change({}, :optional_fields => [:tiny])
         end
       end
 
