@@ -18,8 +18,11 @@ module Versionator
 
       # Overriden to detect RELEASE-NOTES-x.yy files form 1.18 onwards
       def contents_detected?
-        release_notes = Dir.glob(File.expand_path("RELEASE-NOTES*", base_dir))
-        @@installed_version_file = release_notes.first[File.expand_path(base_dir).size..-1]
+        # look for RELEASE-NOTES or RELEASE-NOTES-x.yy files and sort them,
+        # because we want the latest one in case there are multiple
+        release_notes = Dir.glob(File.expand_path("RELEASE-NOTES*", base_dir)).sort
+        # the paths have been expanded, make them relative again
+        @@installed_version_file = release_notes.last[File.expand_path(base_dir).size..-1]
 
         !release_notes.empty?
       end
