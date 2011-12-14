@@ -19,10 +19,10 @@ module Versionator
       def project_url_for_version(version)
         if version < Versionomy.parse('0.5')
           "http://sourceforge.net/projects/roundcubemail/files/roundcubemail/#{version}/release_notes_#{version}.txt/view"
-        elsif Versionomy.parse('0.5') <= version && version < Versionomy.parse('0.5.4')
-            "http://sourceforge.net/projects/roundcubemail/files/roundcubemail/#{version}/README_#{version}.txt/view"
-        else
+        elsif version == Versionomy.parse('0.6')
           "http://sourceforge.net/projects/roundcubemail/files/roundcubemail/#{version}/README-#{version}.txt/view"
+        else
+          "http://sourceforge.net/projects/roundcubemail/files/roundcubemail/#{version}/README_#{version}.txt/view"
         end
       end
     end
