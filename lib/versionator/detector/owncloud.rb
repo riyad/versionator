@@ -19,6 +19,7 @@ module Versionator
       # Overridden because
       # * Versionator cannot handle comma as version delimiter
       # * the tiny version number may need to be cut
+      # * simplify version numbers
       def detect_installed_version
         return @installed_version unless self.class.method_defined?(:installed_version_file)
 
@@ -27,7 +28,10 @@ module Versionator
         version = extract_version(:from => version_line, :with => installed_version_regexp)
 
         # fix version string
-        version.gsub!(',', '.')
+        # 1. split at ','
+        # 2. convert to integer to eliminate leading zeros
+        # 3. join with '.'
+        version = version.split(',').map(&:to_i).join('.')
 
         if version
           # parse including tiny version
