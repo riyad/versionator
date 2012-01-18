@@ -1,12 +1,13 @@
 source 'http://rubygems.org'
 
+gem 'sinatra', :require => 'sinatra/base'
+
 gem 'activesupport' # for 'active_support/inflector'
 gem 'haml'
 gem 'i18n'
 gem 'json'
 gem 'nokogiri'
 gem 'sass'
-gem 'sinatra'
 gem 'versionomy'
 
 group :development do
