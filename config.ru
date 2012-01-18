@@ -1,5 +1,10 @@
 # encoding: UTF-8
 
+require 'rubygems'
+require 'bundler'
+
+Bundler.require
+
 # set the encoding for files being read
 Encoding.default_external = 'UTF-8'
 
