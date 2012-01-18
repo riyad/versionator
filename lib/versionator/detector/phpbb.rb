@@ -12,9 +12,9 @@ module Versionator
       set :installed_version_file, "install/schemas/schema_data.sql"
       set :installed_version_regexp, /^INSERT INTO .+ VALUES \('version', '(.+)'\);$/
 
-      set :newest_version_url, 'http://www.phpbb.com/'
-      set :newest_version_selector, '#home-dl-link .version'
-      set :newest_version_regexp, /^(.+)$/
+      set :newest_version_url, 'http://www.phpbb.com/downloads/'
+      set :newest_version_selector, '#extras .download a'
+      set :newest_version_regexp, /^Version: phpBB (.+)/
 
       def project_url_for_version(version)
         "http://www.phpbb.com/support/documentation/#{version.major}.#{version.minor}/"
