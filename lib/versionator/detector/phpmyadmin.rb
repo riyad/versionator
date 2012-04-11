@@ -6,7 +6,7 @@ module Versionator
       set :app_name, "phpMyAdmin"
       set :project_url, "http://www.phpmyadmin.net"
 
-      set :detect_dirs, %w{contrib js libraries pmd scripts themes}
+      set :detect_dirs, %w{js libraries themes}
       set :detect_files, %w{export.php index.php main.php navigation.php README sql.php themes.php}
 
       set :installed_version_file, "README"
