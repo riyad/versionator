@@ -13,8 +13,8 @@ module Versionator
       set :installed_version_regexp, /^\s*return array\((\d+,\d+,\d+)\);$/
 
       set :newest_version_url, 'http://owncloud.org/install/'
-      set :newest_version_selector, '.content .page-content a.btn'
-      set :newest_version_regexp, /^\((.+)\)$/
+      set :newest_version_selector, '.content .page-content a'
+      set :newest_version_regexp, /^ownCloud-(.+).tar.gz$/
 
       # Overridden because
       # * Versionator cannot handle comma as version delimiter
