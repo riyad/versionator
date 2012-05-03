@@ -10,7 +10,7 @@ module Versionator
       set :detect_files, %w{CHANGELOG.txt cron.php index.php install.php xmlrpc.php}
 
       set :installed_version_file, "CHANGELOG.txt"
-      set :installed_version_regexp, /^Drupal (.+), .*$/
+      set :installed_version_regexp, /^Drupal ([\d\.]+)[,\s].*$/
 
       set :newest_version_url, 'http://drupal.org/project/drupal'
       set :newest_version_selector, '.download-table .project-release .views-row-first .views-field-version a'
