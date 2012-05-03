@@ -8,6 +8,7 @@ This is a web application that alows you to check a list of directories which we
 
 * {Collabtive}[http://collabtive.o-dyn.de]
 * {Drupal}[http://drupal.org]
+* {Etherpad Lite}[http://etherpad.org/]
 * {GitLab}[http://gitlabhq.com]
 * {MediaWiki}[http://www.mediawiki.org]
 * {Open Atrium}[http://openatrium.com/]
