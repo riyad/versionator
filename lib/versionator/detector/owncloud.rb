@@ -14,7 +14,7 @@ module Versionator
 
       set :newest_version_url, 'http://owncloud.org/install/'
       set :newest_version_selector, '.content .page-content a'
-      set :newest_version_regexp, /owncloud-download-(.+)$/
+      set :newest_version_regexp, /owncloud-(.+)\.tar\.bz2$/
 
       # Overridden because
       # * Versionator cannot handle comma as version delimiter
@@ -52,11 +52,11 @@ module Versionator
 
         doc = Nokogiri::HTML(open(newest_version_url))
 
-        p version_selection = doc.css(newest_version_selector)
+        version_selection = doc.css(newest_version_selector)
 
         ### begin custom
         # use href attribute instead of text
-        p version_lines = version_selection.map{ |elem| elem.attr("href") }
+        version_lines = version_selection.map{ |elem| elem.attr("href") }
         ### end custom
 
         version_line = version_lines.find do |line|
@@ -66,11 +66,6 @@ module Versionator
         version = newest_version_regexp.match(version_line)[1] if version_line
 
         ### begin custom
-        # fix version string
-        # 1. split at '-'
-        # 2. convert to integer to eliminate leading zeros
-        # 3. join with '.'
-        version = version.split('-').map(&:to_i).join('.')
         if version
           # parse including tiny version
           version = Versionomy.parse(version)
