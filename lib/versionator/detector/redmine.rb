@@ -13,8 +13,8 @@ module Versionator
       set :installed_version_regexp, /^== \d\d\d\d-\d\d-\d\d v(.+)$/
 
       set :newest_version_url, 'http://www.redmine.org/projects/redmine/wiki/Download'
-      set :newest_version_selector, '#content .wiki h2'
-      set :newest_version_regexp, /^.*Latest stable release: (.+) \(.+\).*$/
+      set :newest_version_selector, '#content .wiki li'
+      set :newest_version_regexp, /^(.*) \([\d-]+\)$/
 
       # Overridden to make sure we detect Redmine and not any RoR app.
       def contents_detected?
