@@ -11,6 +11,7 @@ gem 'sass'
 gem 'versionomy'
 
 group :development do
+  gem 'multi_json'
   gem 'rdoc'
   gem 'sinatra-contrib' # for 'sinatra/reloader'
 end
