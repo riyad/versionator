@@ -13,8 +13,8 @@ module Versionator
       set :installed_version_regexp, /^INSERT INTO .+ VALUES \('version', '(.+)'\);$/
 
       set :newest_version_url, 'http://www.phpbb.com/downloads/'
-      set :newest_version_selector, '#extras .download a'
-      set :newest_version_regexp, /^Version: phpBB (.+)/
+      set :newest_version_selector, '#full-package .download-container a'
+      set :newest_version_regexp, /^Latest stable phpBB: ([\d\.]+)/
 
       def project_url_for_version(version)
         "http://www.phpbb.com/support/documentation/#{version.major}.#{version.minor}/"
