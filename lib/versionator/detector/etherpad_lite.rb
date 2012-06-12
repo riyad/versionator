@@ -6,8 +6,8 @@ module Versionator
       set :app_name, "Etherpad Lite"
       set :project_url, "http://etherpad.org/"
 
-      set :detect_dirs, %w{bin doc node static}
-      set :detect_files, %w{CHANGELOG.md package.json README.md}
+      set :detect_dirs, %w{bin doc src static}
+      set :detect_files, %w{CHANGELOG.md README.md settings.json.template}
 
       set :installed_version_file, "CHANGELOG.md"
       set :installed_version_regexp, /^# v (.+)$/
