@@ -10,11 +10,11 @@ module Versionator
       set :detect_files, %w{tine20.php Tinebase/Core.php}
 
       set :installed_version_file, "Tinebase/Core.php"
-      set :installed_version_regexp, /^\s*define\('TINE20_PACKAGESTRING', '([\d-]+)'\);$/
+      set :installed_version_regexp, /^\s*define\('TINE20_PACKAGESTRING', '([\.\d-]+)'\);$/
 
       set :newest_version_url, 'http://www.tine20.org/download.html'
       set :newest_version_selector, '#cLeft tr'
-      set :newest_version_regexp, /^\s*Package String:\s+([\d-]+)\s+.*$/
+      set :newest_version_regexp, /^\s*Package String:\s+([\.\d-]+)\s+.*$/
 
       def installed_version
         super
