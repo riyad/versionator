@@ -27,33 +27,6 @@ function titelize(text) {
 
 
 
-function setupCollapsableContainer(subjectSelector, initialSubjectState) {
-  var subj = $(subjectSelector);
-  var subjCollapsed = $(subj).find('.collapsable-collapsed');
-  var subjExpanded = $(subj).find('.collapsable-expanded');
-  var button = $(subj).find('.collapsable-button');
-  var expand = $(subj).find('.collapsable-button-expand');
-  var collapse = $(subj).find('.collapsable-button-collapse');
-
-  $(subj).addClass("collapsable-container")
-  $(button).click(function() {
-    expand.toggle();
-    collapse.toggle();
-    subjCollapsed.slideToggle();
-    subjExpanded.slideToggle();
-  });
-
-  if (initialSubjectState == "collapsed") {
-    collapse.hide();
-    subjExpanded.hide();
-  } else {
-    expand.hide();
-    subjCollapsed.hide();
-  }
-}
-
-
-
 // installed version
 
 function checkAllInstalledVersions() {
@@ -71,13 +44,10 @@ function checkAllInstalledVersions() {
 
 function checkInstalledVersionForDirectory(directory) {
   var dir = $("#"+directory);
-  var app = $(dir).parents(".app");
-  var iv = $(app).find($(dir).selector+" .installed-version, .outdated-installs");
-  var ivt = $(iv).find(".version, .installs");
   var installedVersionUrl = "/installations/"+directory+"/installed_version.json";
 
-  $(iv).find(".busy").show(); // show throbbers
-  $(ivt).html(""); // erase installed version text
+  $(dir).find(".installed-app .busy").show(); // show throbbers
+  $(dir).find(".installed-version").html(""); // erase version + link
   $.getJSON(installedVersionUrl).success(function(data) {
     updateInstalledVersionFor(dir, data.installed_version);
     updateVerdicts(dir);
@@ -94,9 +64,8 @@ function checkInstalledVersionForDirectory(directory) {
 <% @directories.each do |directory| %>
   $(function() {
     var dir = $("#<%= directory %>");
-    var iv = $(dir).find(".installed-version");
 
-    $(iv).find(".check-installed-version.button").click(function() {
+    $(dir).find(".check-installed-version.btn").click(function() {
       checkInstalledVersionForDirectory("<%= directory %>");
     });
   });
@@ -105,20 +74,18 @@ function checkInstalledVersionForDirectory(directory) {
 
 
 function updateInstalledVersionFor(dir, html) {
-  var iv = $(dir).find(".installed-version");
-  $(dir).parents(".app").find(".outdated-installs .busy").hide(); // hide throbber
-  $(iv).find(".busy").hide(); // hide throbber
-  $(iv).find(".version").html(html); // set installed version text
+  var ia = $(dir).find(".installed-app");
+  $(ia).find(".busy").hide();
+  $(ia).find(".installed-version").html(html); // set installed version text
   // update button
-  $(iv).find(".check-installed-version.button").html('<%= image("version-check-installed") %> Recheck');
+  $(ia).find(".check-installed-version.btn").html('<i class="icon-refresh"/> Recheck');
 }
 
 function addInstalledVersionLink(dir, data) {
   if (data.project_url_for_installed_version) {
-    var links = $(dir).find(".project-links, .dir-project-links");
-    var iv = $(links).find(".installed-version");
+    var ivl = $(dir).find(".installed-version-link");
     var linkText = '<%= link_to_external("#{image("link")} Installed Release", "'+data.project_url_for_installed_version+'", :class => "installed-version") %>';
-    $(iv).replaceWith(linkText);
+    $(ivl).html(linkText);
   }
 }
 
@@ -165,7 +132,7 @@ function checkNewestVersionForApplication(app) {
     var inst = $(".<%= detector.basic_name %>-app");
     var nv = $(inst).find(".newest-version");
 
-    $(nv).find(".check-newest-version.button").click(function() {
+    $(nv).find(".check-newest-version.btn").click(function() {
       checkNewestVersionForApplication("<%= detector.basic_name %>");
     });
   });
@@ -187,7 +154,7 @@ function updateNewestVersionFor(inst, html) {
   $(nv).find(".busy").hide(); // hide throbber
   $(nv).find(".version, .installs").html(html); // set newest version text
   // update button
-  $(nv).find(".check-newest-version.button").html('<%= image("version-check-newest") %> Recheck');
+  $(nv).find(".check-newest-version.btn").html('<%= image("version-check-newest") %> Recheck');
 }
 
 function updateVerdicts(inst) {
@@ -208,12 +175,10 @@ function checkAllVersions() {
 // hook up buttons
 
 $(function() {
-  $(".check-all-versions.button").click(checkAllVersions);
-  $(".check-all-installed-versions.button").click(checkAllInstalledVersions);
-  $(".check-all-newest-versions.button").click(checkAllNewestVersions);
-
   // initialize collapsers
   $(".collapser").click(function() {
     $(this).toggleClass("in");
   });
+
+  $(".check-all-versions.btn").click(checkAllVersions);
 });

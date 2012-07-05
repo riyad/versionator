@@ -34,8 +34,8 @@
             = dir
     - else
       .row-fluid
-        %section{ :class => "app #{app.basic_name}-app span12" }
-          %a.collapser.row-fluid{ :data => {:toggle => "collapse", :target => "##{dom_id_for_dir(dir)}"} }
+        %section{ :id => dom_id_for_dir(dir), :class => "app #{app.basic_name}-app span12" }
+          %a.collapser.row-fluid{ :data => {:toggle => "collapse", :target => "##{dom_id_for_dir(dir)}-details"} }
             %h3.span8
               = mini_logo_for(app)
               = dir
@@ -43,23 +43,25 @@
             .assessment.assessment-unknown.span2
               %i.icon-question-sign
               Status Unknown
-          .collapse{ :id => dom_id_for_dir(dir) }
+          .collapse{ :id => "#{dom_id_for_dir(dir)}-details" }
             .row-fluid
               .span4
                 %h4.app-name= app.app_name
-                .version
+                .installed-app
                   Installed Version:
-                  %span.installed-version= busy_indicator
+                  %span.installed-version
+                  = busy_indicator
                   %a.check-installed-version.btn.btn-mini
                     %i.icon-repeat
                     Check
-                .version
+                .newest-app
                   Newest Version:
-                  %span.newest-version= busy_indicator
+                  %span.newest-version
+                  = busy_indicator
                   %a.check-newest-version.btn.btn-mini
                     %i.icon-repeat
                     Check
-              .span4
+              .span4.links
                 .project-link= link_to_app_project(app)
                 .installed-version-link
                 .newest-version-link
@@ -79,12 +81,12 @@
          !isEmpty(newest_version) &&
          newest_version != "unknown"
       ) {
-        $(this).addClass("verdict striped");
+        /*$(this).addClass("verdict striped");
         if(installed_version == newest_version) {
           $(this).addClass("up-to-date");
         } else {
           $(this).addClass("outdated");
-        }
+        }*/
       }
     });
   }
