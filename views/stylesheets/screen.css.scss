@@ -2,6 +2,22 @@ body {
   padding-top: 40px;
 }
 
+ul {
+  li img {
+    margin-top: -4px;
+  }
+}
+
+#errors {
+
+}
+
 .busy {
   display: none;
+}
+.collapsable-content {
+  margin-top: 12px;
+}
+.collapsable-indicator {
+  margin: 4px 12px 0 0;
 }
