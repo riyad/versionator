@@ -123,8 +123,6 @@ module Versionator
 
 
     get '/' do
-      @apps = detectors
-      @dirs = directories.sort
 
       haml :index
     end
