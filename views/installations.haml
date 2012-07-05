@@ -1,23 +1,28 @@
 
 #installations
-  %h2
-    Installations
+  %h2 Installations
+
+
   %p
     %a.check-all-versions.btn
       = busy_indicator
       %i.icon-retweet
       Check all versions
+
+
   - unless @dirs_that_dont_exist.empty?
-    #errors.collapsable.alert.alert-error
-      = make_collapsable("#errors", :expanded)
-      %h3.collapsable-button Directories not found
-      .collapsable-content.collapsable-expanded
+    %section.alert.alert-error
+      %a.collapser.in{ :data => {:toggle => "collapse", :target => "#error-details"} }
+        %h3 Directories not found
+      #error-details.collapse.in
         %p The following directories could not be found:
-        %ul
+        %ul.unstyled
           - @dirs_that_dont_exist.each do |dir|
             %li
               = image("folder-exists-not")
               = dir
+
+
   - @dirs_that_exist.each do |dir|
     - app = @app_for_dir[dir]
     - unless app
@@ -28,7 +33,6 @@
             = dir
     - else
       %div{ :id => dom_id_for_dir(dir), :class => "container app #{app.basic_name}-app" }
-        = make_collapsable("##{dom_id_for_dir(dir)}")
         .collapsable-collapsed
           %h3.collapsable-button
             = mini_logo_for(app)
@@ -69,6 +73,8 @@
               = link_to_app_project(app)
               %span.installed-version
               %span.newest-version
+
+
 :javascript
   function updateVerdicts(inst) {
     $(inst).each(function() {

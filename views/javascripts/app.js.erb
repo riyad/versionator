@@ -211,4 +211,9 @@ $(function() {
   $(".check-all-versions.button").click(checkAllVersions);
   $(".check-all-installed-versions.button").click(checkAllInstalledVersions);
   $(".check-all-newest-versions.button").click(checkAllNewestVersions);
+
+  // initialize collapsers
+  $(".collapser").click(function() {
+    $(this).toggleClass("in");
+  });
 });

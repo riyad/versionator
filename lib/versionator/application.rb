@@ -118,22 +118,6 @@ module Versionator
       def mini_logo_for(detector)
         logo("#{detector.basic_name}-mini")
       end
-
-      # Inserts buttons to toggle the expansion/collapse of the element represented by _subj_selector_.
-      # This must be inserted as a decendant of the subject element.
-      # The subject must have +.head+ and +.body+ decendants.
-      # You can also specify the initial state of the subject element using the _initial_subj_state_ param with either the +:collapsed+ or +:expanded+ values.
-      def make_collapsable(subj_selector, initial_subj_state = :collapsed)
-        %Q{<div class="collapsable-button collapsable-indicator pull-left">} +
-          image("container-expand", :class => "collapsable-button-expand", :style => ("display: none;" if initial_subj_state == :expanded)) +
-          image("container-collapse", :class => "collapsable-button-collapse", :style => ("display: none;" if initial_subj_state == :collapsed)) +
-          %Q{<script defer="defer">
-            $(function() {
-              setupCollapsableContainer("#{subj_selector}", "#{initial_subj_state}");
-            });
-        </script>} +
-        %Q{</div>}
-      end
     end
 
 

@@ -8,16 +8,16 @@ ul {
   }
 }
 
-#errors {
-
-}
-
 .busy {
   display: none;
 }
-.collapsable-content {
-  margin-top: 12px;
-}
-.collapsable-indicator {
-  margin: 4px 12px 0 0;
+.collapser {
+  background-image: url('/images/container-expand.png');
+  background-position: 0px 4px;
+  background-repeat: no-repeat;
+  display: block;
+  padding-left: 28px;
+  &.in {
+    background-image: url('/images/container-collapse.png');
+  }
 }
