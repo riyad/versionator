@@ -3,10 +3,17 @@
 
 %html
   %head
-    %title Versionator
+    / jQuery
+    %script{ :src => "lib/jquery/js/jquery-1.7.1.min.js", :async => true }
+
+    / Bootstrap
+    %script{ :src => "lib/bootstrap/js/bootstrap.min.js", :defer => true }
+    %link{ :href => "lib/bootstrap/css/bootstrap.min.css", :rel => "stylesheet", :type => "text/css" }
+
+    / App
+    %script{ :src => "javascripts/app.js", :defer => true }
     %link{ :href => "stylesheets/screen.css", :rel => "stylesheet", :type => "text/css" }
-    %script{ :src => "lib/jquery/js/jquery-1.7.1.min.js" }
-    %script{ :src => "javascripts/app.js" }
+    %title Versionator
   %body
     #header
       %h1 Versionator
