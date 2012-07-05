@@ -3,7 +3,7 @@
   %h2 Installations
 
 
-  %p
+  %p.row-fluid
     %a.check-all-versions.btn
       = busy_indicator
       %i.icon-retweet
@@ -11,75 +11,68 @@
 
 
   - unless @dirs_that_dont_exist.empty?
-    %section.alert.alert-error
-      %a.collapser.in{ :data => {:toggle => "collapse", :target => "#error-details"} }
-        %h3 Directories not found
-      #error-details.collapse.in
-        %p The following directories could not be found:
-        %ul.unstyled
-          - @dirs_that_dont_exist.each do |dir|
-            %li
-              = image("folder-exists-not")
-              = dir
+    %section.row-fluid
+      .alert.alert-error
+        %a.collapser.in{ :data => {:toggle => "collapse", :target => "#error-details"} }
+          %h3 Directories not found
+        #error-details.collapse.in
+          %p The following directories could not be found:
+          %ul.unstyled
+            - @dirs_that_dont_exist.each do |dir|
+              %li
+                = image("folder-exists-not")
+                = dir
 
 
   - @dirs_that_exist.each do |dir|
     - app = @app_for_dir[dir]
     - unless app
-      %div{ :id => dom_id_for_dir(dir), :class => "container app" }
-        .collapsable-collapsed
+      .row-fluid
+        %section{ :id => dom_id_for_dir(dir), :class => "app span12" }
           %h3
             = image("folder")
             = dir
     - else
-      %div{ :id => dom_id_for_dir(dir), :class => "container app #{app.basic_name}-app" }
-        .collapsable-collapsed
-          %h3.collapsable-button
-            = mini_logo_for(app)
-            = dir
-            %span.description
-              %span.installed-version
-                Installed:
-                %span.version> unknown
-                = busy_indicator
-              &nbsp;
-              %span.newest-version
-                Newest:
-                %span.version> unknown
-                = busy_indicator
-        .collapsable-expanded
-          .logo= logo_for(app)
-          %h3.collapsable-button
-            = image("folder")
-            = dir
-          .content
-            %h4
-              %span.name= app.app_name
-            .installed-version
-              Installed Version:
-              %span.version
-              = busy_indicator
-              %a.check-installed-version.button
-                = image("version-check-installed")
-                Check
-            .newest-version
-              Newest Version:
-              %span.version
-              = busy_indicator
-              %a.check-newest-version.button
-                = image("version-check-newest")
-                Check
-            .project-links
-              = link_to_app_project(app)
-              %span.installed-version
-              %span.newest-version
+      .row-fluid
+        %section{ :class => "app #{app.basic_name}-app span12" }
+          %a.collapser.row-fluid{ :data => {:toggle => "collapse", :target => "##{dom_id_for_dir(dir)}"} }
+            %h3.span8
+              = mini_logo_for(app)
+              = dir
+            %h4.app-name.span2= app.app_name
+            .assessment.assessment-unknown.span2
+              %i.icon-question-sign
+              Status Unknown
+          .collapse{ :id => dom_id_for_dir(dir) }
+            .row-fluid
+              .span4
+                %h4.app-name= app.app_name
+                .version
+                  Installed Version:
+                  %span.installed-version= busy_indicator
+                  %a.check-installed-version.btn.btn-mini
+                    %i.icon-repeat
+                    Check
+                .version
+                  Newest Version:
+                  %span.newest-version= busy_indicator
+                  %a.check-newest-version.btn.btn-mini
+                    %i.icon-repeat
+                    Check
+              .span4
+                .project-link= link_to_app_project(app)
+                .installed-version-link
+                .newest-version-link
+              .span4
+                .logo.pull-right= logo_for(app)
+
 
 
 :javascript
   function updateVerdicts(inst) {
     $(inst).each(function() {
-      var installed_version = $(this).find(".installed-version .version").text();
-      var newest_version = $(this).find(".newest-version .version").text();
+      var installed_version = $(this).find(".version .installed-version").text();
+      var newest_version = $(this).find(".version .newest-version").text();
 
       if(!isEmpty(installed_version) &&
          installed_version != "unknown" &&

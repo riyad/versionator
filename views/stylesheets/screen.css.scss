@@ -2,9 +2,18 @@ body {
   padding-top: 40px;
 }
 
-ul {
-  li img {
-    margin-top: -4px;
+a  img,
+li img {
+  margin-top: -4px;
+}
+
+section.app {
+  border: #eee solid 1px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  padding: 8px 35px 6px 14px;
+  .logo {
+    padding: 8px 0 6px 14px;
   }
 }
 
