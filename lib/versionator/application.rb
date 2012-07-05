@@ -28,9 +28,9 @@ module Versionator
 
     helpers do
       # Inserts a throbber image which will be hidden by default.
-      # The image will have the +ajax-loader+ class.
-      def ajax_loader
-        %Q{<img src="ajax-loader.gif" class="ajax-loader" />}
+      # The image will have the +busy+ class.
+      def busy_indicator
+        %Q{<img src="images/busy.gif" class="busy" />}
       end
 
       def app_for_dir(dir)
