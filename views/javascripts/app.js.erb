@@ -46,7 +46,7 @@ function checkInstalledVersionForDirectory(directory) {
   var dir = $("#"+directory);
   var installedVersionUrl = "/installations/"+directory+"/installed_version.json";
 
-  $(dir).find(".installed-app .busy").show(); // show throbbers
+  $(dir).find(".installed-app .busy").show(); // show busy
   $(dir).find(".installed-version").html(""); // erase version + link
   $.getJSON(installedVersionUrl).success(function(data) {
     updateInstalledVersionFor(dir, data.installed_version);
@@ -108,12 +108,10 @@ function checkAllNewestVersions() {
 
 function checkNewestVersionForApplication(app) {
   var inst = $("."+app+"-app");
-  var nv = $(inst).find(".newest-version, .outdated-installs");
-  var nvt = $(nv).find(".version, .installs");
   var newestVersionUrl = "/applications/"+app+"/newest_version.json";
 
-  $(nv).find(".busy").show(); // show throbber
-  $(nvt).html(""); // erase newest version text
+  $(inst).find(".newest-app .busy").show(); // show busy
+  $(inst).find(".newest-version").html(""); // erase version + link
   $.getJSON(newestVersionUrl).success(function(data) {
     updateNewestVersionFor(inst, data.newest_version);
     updateVerdicts(inst);
@@ -130,9 +128,8 @@ function checkNewestVersionForApplication(app) {
 <% @detectors.each do |detector| %>
   $(function() {
     var inst = $(".<%= detector.basic_name %>-app");
-    var nv = $(inst).find(".newest-version");
 
-    $(nv).find(".check-newest-version.btn").click(function() {
+    $(inst).find(".check-newest-version.btn").click(function() {
       checkNewestVersionForApplication("<%= detector.basic_name %>");
     });
   });
@@ -142,19 +139,18 @@ function checkNewestVersionForApplication(app) {
 
 function addNewestVersionLink(inst, data) {
   if (data.project_url_for_newest_version) {
-    var links = $(inst).find(".project-links");
-    var nv = $(links).find(".newest-version");
+    var nvl = $(inst).find(".newest-version-link");
     var linkText = '<%= link_to_external("#{image("link")} Newest Release", "'+data.project_url_for_newest_version+'", :class => "newest-version") %>';
-    $(nv).replaceWith(linkText);
+    $(nvl).html(linkText);
   }
 }
 
 function updateNewestVersionFor(inst, html) {
-  var nv = $(inst).find(".newest-version, .outdated-installs");
-  $(nv).find(".busy").hide(); // hide throbber
-  $(nv).find(".version, .installs").html(html); // set newest version text
+  var na = $(inst).find(".newest-app");
+  $(na).find(".busy").hide();
+  $(na).find(".newest-version").html(html); // set newest version text
   // update button
-  $(nv).find(".check-newest-version.btn").html('<%= image("version-check-newest") %> Recheck');
+  $(na).find(".check-newest-version.btn").html('<i class="icon-refresh"/> Recheck');
 }
 
 function updateVerdicts(inst) {
