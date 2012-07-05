@@ -1,1 +1,70 @@
 
+#installations
+  %h2 Installations
+
+
+  %p.row-fluid
+    %a.check-all-versions.btn
+      = busy_indicator
+      %i.icon-retweet
+      Check all versions
+
+
+  - unless @dirs_that_dont_exist.empty?
+    %section.row-fluid
+      .alert.alert-error
+        %a.collapser.in{ :data => {:toggle => "collapse", :target => "#error-details"} }
+          %h3 Directories not found
+        #error-details.collapse.in
+          %p The following directories could not be found:
+          %ul.unstyled
+            - @dirs_that_dont_exist.each do |dir|
+              %li
+                = image("folder-exists-not")
+                = dir
+
+
+  - @dirs_that_exist.each do |dir|
+    - app = @app_for_dir[dir]
+    - unless app
+      .row-fluid
+        %section{ :id => dom_id_for_dir(dir), :class => "app span12" }
+          %h3
+            = image("folder")
+            = dir
+    - else
+      .row-fluid
+        %section{ :id => dom_id_for_dir(dir), :class => "app #{app.basic_name}-app span12" }
+          %a.collapser.row-fluid{ :data => {:toggle => "collapse", :target => "##{dom_id_for_dir(dir)}-details"} }
+            %h3.span8= dir
+            %h4.app-name.span2
+              = mini_logo_for(app)
+              = app.app_name
+            .span2
+              .assessment-summary.btn.disabled
+                %i.icon-question-sign
+                Status Unknown
+          .collapse{ :id => "#{dom_id_for_dir(dir)}-details" }
+            .row-fluid
+              .span4
+                %h4.app-name= app.app_name
+                .installed-app
+                  Installed Version:
+                  %span.installed-version
+                  = busy_indicator
+                  %a.check-installed-version.btn.btn-mini
+                    %i.icon-repeat
+                    Check
+                .newest-app
+                  Newest Version:
+                  %span.newest-version
+                  = busy_indicator
+                  %a.check-newest-version.btn.btn-mini
+                    %i.icon-repeat
+                    Check
+              .span4.links
+                .project-link= link_to_app_project(app)
+                .installed-version-link
+                .newest-version-link
+              .span4
+                .logo.pull-right= logo_for(app)

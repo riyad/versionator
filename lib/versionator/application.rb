@@ -123,14 +123,28 @@ module Versionator
 
 
     get '/' do
+      dirs = directories
+      dirs_that_dont_exist = dirs.reject { |dir| Dir.exists?(dir) }
+      dirs_that_exist = dirs - dirs_that_dont_exist
 
-      haml :index
+      app_for_dir = {}
+      dirs_that_exist.each do |dir|
+        app_for_dir[dir] = app_for_dir(dir)
+      end
+
+      @app_for_dir = app_for_dir
+      @detectors = detectors
+      @dirs_that_dont_exist = dirs_that_dont_exist
+      @dirs_that_exist = dirs_that_exist
+
+      haml :index, :layout => !request.xhr?
     end
 
     get '/about' do
       haml :about
     end
 
+    # FIXME: remove
     get '/applications' do
       all_apps = detectors
       installs_for_app = Hash.new([])
@@ -158,22 +172,8 @@ module Versionator
       result.to_json
     end
 
-    get '/installations' do
-      dirs = directories
-      dirs_that_dont_exist = dirs.reject { |dir| Dir.exists?(dir) }
-      dirs_that_exist = dirs - dirs_that_dont_exist
+    get '/installations.json' do
 
-      app_for_dir = {}
-      dirs_that_exist.each do |dir|
-        app_for_dir[dir] = app_for_dir(dir)
-      end
-
-      @app_for_dir = app_for_dir
-      @detectors = detectors
-      @dirs_that_dont_exist = dirs_that_dont_exist
-      @dirs_that_exist = dirs_that_exist
-
-      haml :installations, :layout => !request.xhr?
     end
 
     get '/installations/:dir_id/installed_version.json' do
