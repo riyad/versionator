@@ -111,7 +111,7 @@ module Versionator
       end
 
       def logo(basic_name)
-        %Q{<img src="logos/#{basic_name}.png" alt="#{basic_name}" />}
+        %Q{<img src="images/logos/#{basic_name}.png" alt="#{basic_name}" />}
       end
 
       # Inserts the mini logo for the given _detector_.
