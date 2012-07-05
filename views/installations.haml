@@ -36,10 +36,10 @@
       .row-fluid
         %section{ :id => dom_id_for_dir(dir), :class => "app #{app.basic_name}-app span12" }
           %a.collapser.row-fluid{ :data => {:toggle => "collapse", :target => "##{dom_id_for_dir(dir)}-details"} }
-            %h3.span8
+            %h3.span8= dir
+            %h4.app-name.span2
               = mini_logo_for(app)
-              = dir
-            %h4.app-name.span2= app.app_name
+              = app.app_name
             .span2
               .assessment-summary.btn.disabled
                 %i.icon-question-sign
