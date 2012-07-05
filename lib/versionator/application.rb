@@ -83,7 +83,7 @@ module Versionator
       # Inserts the image named _name_.
       # You can add html options using the _html_options_ hash.
       def image(name, html_options = {})
-        %Q{<img src="images/#{name}.png" alt="#{name}" #{%Q{id="#{html_options[:id]}"} if html_options[:id]} #{%Q{class="#{html_options[:class]}"} if html_options[:class]}/>}
+        %Q{<img src="images/#{name}.png" alt="#{name}" #{%Q{id="#{html_options[:id]}"} if html_options[:id]} #{%Q{class="#{html_options[:class]}"} if html_options[:class]} #{%Q{style="#{html_options[:style]}"} if html_options[:style]}/>}
       end
 
       # Instert a link to _href_ showing the given _text_.
@@ -125,8 +125,8 @@ module Versionator
       # You can also specify the initial state of the subject element using the _initial_subj_state_ param with either the +:collapsed+ or +:expanded+ values.
       def make_collapsable(subj_selector, initial_subj_state = :collapsed)
         %Q{<div class="collapsable-button collapsable-indicator pull-left">} +
-          image("container-expand", :class => "collapsable-button-expand") +
-          image("container-collapse", :class => "collapsable-button-collapse") +
+          image("container-expand", :class => "collapsable-button-expand", :style => ("display: none;" if initial_subj_state == :expanded)) +
+          image("container-collapse", :class => "collapsable-button-collapse", :style => ("display: none;" if initial_subj_state == :collapsed)) +
           %Q{<script defer="defer">
             $(function() {
               setupCollapsableContainer("#{subj_selector}", "#{initial_subj_state}");
