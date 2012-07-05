@@ -50,7 +50,7 @@ function checkInstalledVersionForDirectory(directory) {
   $(dir).find(".installed-version").html(""); // erase version + link
   $.getJSON(installedVersionUrl).success(function(data) {
     updateInstalledVersionFor(dir, data.installed_version);
-    updateVerdicts(dir);
+    updateAssessments(dir);
     addInstalledVersionLink(dir, data);
   }).error(function(xhr, error, exception) {
     console.log(xhr);
@@ -114,7 +114,7 @@ function checkNewestVersionForApplication(app) {
   $(inst).find(".newest-version").html(""); // erase version + link
   $.getJSON(newestVersionUrl).success(function(data) {
     updateNewestVersionFor(inst, data.newest_version);
-    updateVerdicts(inst);
+    updateAssessments(inst);
     addNewestVersionLink(inst, data);
   }).error(function(xhr, error, exception) {
     console.log(xhr);
@@ -153,10 +153,6 @@ function updateNewestVersionFor(inst, html) {
   $(na).find(".check-newest-version.btn").html('<i class="icon-refresh"/> Recheck');
 }
 
-function updateVerdicts(inst) {
-  console.log("override this"); 
-}
-
 
 
 // all versions
@@ -164,6 +160,38 @@ function updateVerdicts(inst) {
 function checkAllVersions() {
   checkAllInstalledVersions();
   checkAllNewestVersions();
+}
+
+function updateAssessments(inst) {
+  $(inst).each(function() {
+    var installed_version = $(this).find(".installed-app .installed-version").text();
+    var newest_version = $(this).find(".newest-app .newest-version").text();
+    var as = $(this).find(".assessment-summary");
+
+    // reset styles
+    $(this).removeClass("alert-success");
+    $(this).removeClass("alert-warning");
+    $(as).removeClass("btn-success");
+    $(as).removeClass("btn-warning");
+    $(as).html("<i class='icon-question-sign' /> Status Unknown");
+
+    if(!isEmpty(installed_version) &&
+       installed_version != "unknown" &&
+       !isEmpty(newest_version) &&
+       newest_version != "unknown"
+    ) {
+      $(this).addClass("alert");
+      if(installed_version == newest_version) {
+        $(this).addClass("alert-success");
+        $(as).addClass("btn-success");
+        $(as).html("<i class='icon-ok-sign icon-white' /> Up-to-Date");
+      } else {
+        $(this).addClass("alert-warning");
+        $(as).addClass("btn-warning");
+        $(as).html("<i class='icon-exclamation-sign icon-white' /> Needs Attention");
+      }
+    }
+  });
 }
 
 

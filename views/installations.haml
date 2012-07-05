@@ -40,9 +40,10 @@
               = mini_logo_for(app)
               = dir
             %h4.app-name.span2= app.app_name
-            .assessment.assessment-unknown.span2
-              %i.icon-question-sign
-              Status Unknown
+            .span2
+              .assessment-summary.btn.disabled
+                %i.icon-question-sign
+                Status Unknown
           .collapse{ :id => "#{dom_id_for_dir(dir)}-details" }
             .row-fluid
               .span4
@@ -67,26 +68,3 @@
                 .newest-version-link
               .span4
                 .logo.pull-right= logo_for(app)
-
-
-
-:javascript
-  function updateVerdicts(inst) {
-    $(inst).each(function() {
-      var installed_version = $(this).find(".version .installed-version").text();
-      var newest_version = $(this).find(".version .newest-version").text();
-
-      if(!isEmpty(installed_version) &&
-         installed_version != "unknown" &&
-         !isEmpty(newest_version) &&
-         newest_version != "unknown"
-      ) {
-        /*$(this).addClass("verdict striped");
-        if(installed_version == newest_version) {
-          $(this).addClass("up-to-date");
-        } else {
-          $(this).addClass("outdated");
-        }*/
-      }
-    });
-  }
