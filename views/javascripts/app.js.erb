@@ -76,7 +76,7 @@ function checkInstalledVersionForDirectory(directory) {
   var ivt = $(iv).find(".version, .installs");
   var installedVersionUrl = "/installations/"+directory+"/installed_version.json";
 
-  $(iv).find(".ajax-loader").show(); // show throbbers
+  $(iv).find(".busy").show(); // show throbbers
   $(ivt).html(""); // erase installed version text
   $.getJSON(installedVersionUrl).success(function(data) {
     updateInstalledVersionFor(dir, data.installed_version);
@@ -106,8 +106,8 @@ function checkInstalledVersionForDirectory(directory) {
 
 function updateInstalledVersionFor(dir, html) {
   var iv = $(dir).find(".installed-version");
-  $(dir).parents(".app").find(".outdated-installs .ajax-loader").hide(); // hide throbber
-  $(iv).find(".ajax-loader").hide(); // hide throbber
+  $(dir).parents(".app").find(".outdated-installs .busy").hide(); // hide throbber
+  $(iv).find(".busy").hide(); // hide throbber
   $(iv).find(".version").html(html); // set installed version text
   // update button
   $(iv).find(".check-installed-version.button").html('<%= image("version-check-installed") %> Recheck');
@@ -145,7 +145,7 @@ function checkNewestVersionForApplication(app) {
   var nvt = $(nv).find(".version, .installs");
   var newestVersionUrl = "/applications/"+app+"/newest_version.json";
 
-  $(nv).find(".ajax-loader").show(); // show throbber
+  $(nv).find(".busy").show(); // show throbber
   $(nvt).html(""); // erase newest version text
   $.getJSON(newestVersionUrl).success(function(data) {
     updateNewestVersionFor(inst, data.newest_version);
@@ -184,7 +184,7 @@ function addNewestVersionLink(inst, data) {
 
 function updateNewestVersionFor(inst, html) {
   var nv = $(inst).find(".newest-version, .outdated-installs");
-  $(nv).find(".ajax-loader").hide(); // hide throbber
+  $(nv).find(".busy").hide(); // hide throbber
   $(nv).find(".version, .installs").html(html); // set newest version text
   // update button
   $(nv).find(".check-newest-version.button").html('<%= image("version-check-newest") %> Recheck');

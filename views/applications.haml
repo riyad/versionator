@@ -4,18 +4,18 @@
     Applications
   %p
     %a.check-all-versions.button
-      = ajax_loader
+      = busy_indicator
       = image("version-check-all")
       Check all versions
     /
       &nbsp;
       %a.check-all-installed-versions.button
-        = ajax_loader
+        = busy_indicator
         = image("version-check-installed")
         Check all installed versions
       &nbsp;
       %a.check-all-newest-versions.button
-        = ajax_loader
+        = busy_indicator
         = image("version-check-newest")
         Check all newest versions
   - @apps.each do |app|
@@ -33,7 +33,7 @@
             %span.outdated-installs
               Outdated:
               %span.installs> unknown
-              = ajax_loader
+              = busy_indicator
       .collapsable-expanded
         .logo= logo_for(app)
         %h3.collapsable-button
@@ -43,7 +43,7 @@
           .newest-version
             Newest Version:
             %span.version
-            = ajax_loader
+            = busy_indicator
             %a.check-newest-version.button
               = image("version-check-newest")
               Check
@@ -60,7 +60,7 @@
                     %span.installed-version
                       Installed:
                       %span.version
-                      = ajax_loader
+                      = busy_indicator
                       %a.check-installed-version.button
                         = image("version-check-installed")
                         Check
