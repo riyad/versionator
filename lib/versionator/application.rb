@@ -95,13 +95,13 @@ module Versionator
       end
 
       def link_to_app_project(app)
-        link_to_external("#{mini_logo_for(app)} #{app.app_name} Website", app.project_url)
+        link_to_external("#{app.app_name} Website", app.project_url)
       end
 
       def link_to_external(text, href, html_options = {})
         %Q{<a href="#{href}" #{%Q{id="#{html_options[:id]}"} if html_options[:id]} #{%Q{class="#{html_options[:class]}"} if html_options[:class]}>} +
           text +
-          image("link-external", :class => "link-external") +
+          %Q{ <i class="icon-share link-external"></i>} +
         %Q{</a> }
       end
 
