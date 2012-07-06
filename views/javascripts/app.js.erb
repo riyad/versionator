@@ -228,6 +228,7 @@ function updateAssessments(inst) {
         $(as).addClass("btn-warning");
         $(as).html("<i class='icon-exclamation-sign icon-white' /> Needs Attention");
       }
+      $(this).find("button.check-app").html('<i class="icon-refresh"/> Recheck');
     }
   });
 }
@@ -273,7 +274,6 @@ function renderAppDirs(app_dirs) {
     $(this).parents('.collapser').click(); // to prevent it from toggling
     checkInstalledVersionForDirectory($(this).parents("section").data('dir_id'));
     checkNewestVersionForApplication($(this).parents("section").data('basic_name'));
-    $(this).html('<i class="icon-refresh"/> Recheck');
   });
   $(list).find("button.check-installed-version").click(function() {
     checkInstalledVersionForDirectory($(this).parents("section").data('dir_id'));
