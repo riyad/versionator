@@ -169,6 +169,7 @@ module Versionator
       result[:newest_version] = app.newest_version
       result[:project_url_for_newest_version] = app.project_url_for_newest_version
 
+      content_type 'application/json', :charset => 'utf-8'
       result.to_json
     end
 
@@ -195,6 +196,7 @@ module Versionator
       result[:app_dirs] = app_dirs
       result[:error_dirs] = dirs_that_dont_exist
 
+      content_type 'application/json', :charset => 'utf-8'
       result.to_json
     end
 
@@ -209,6 +211,7 @@ module Versionator
       result[:installed_version] = app.installed_version
       result[:project_url_for_installed_version] = app.project_url_for_installed_version
 
+      content_type 'application/json', :charset => 'utf-8'
       result.to_json
     end
 
@@ -216,6 +219,7 @@ module Versionator
       @detectors = detectors
       @directories = directories.map { |d| dom_id_for_dir(d) }
 
+      content_type 'application/javascript', :charset => 'utf-8'
       erb "javascripts/#{params[:name]}.js".to_sym
     end
 
