@@ -30,4 +30,12 @@ section.app {
   &.in {
     background-image: url('/images/container-collapse.png');
   }
+  .app-name {
+    margin-bottom: -6px;
+    margin-top: 6px;
+    img {
+      margin-right: 4px;
+      margin-top: -4px;
+    }
+  }
 }
