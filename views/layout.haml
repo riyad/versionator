@@ -3,18 +3,29 @@
 
 %html
   %head
-    %title Versionator
+    / jQuery
+    %script{ :src => "lib/jquery/js/jquery.min.js" }
+
+    / Bootstrap
+    %script{ :src => "lib/bootstrap/js/bootstrap.min.js" }
+    %link{ :href => "lib/bootstrap/css/bootstrap.min.css", :rel => "stylesheet", :type => "text/css" }
+
+    / App
+    %script{ :src => "javascripts/app.js", :defer => true }
     %link{ :href => "stylesheets/screen.css", :rel => "stylesheet", :type => "text/css" }
-    %script{ :src => "jquery-1.7.1.min.js" }
-    %script{ :src => "javascript.js" }
+    %title Versionator
   %body
-    #header
-      %h1 Versionator
-    #nav
-      %ul.horizontal.tabs
-        %li= link_to(image("index"), '/')
-        %li= link_to("#{image("folder")} Installations", '/installations')
-        %li= link_to("#{image("app")} Applications", '/applications')
-        %li.about= link_to("#{image("about")} About", '/about')
-    #content
+    %nav
+      .navbar.navbar-fixed-top
+        .navbar-inner
+          .container
+            =link_to "#{image("nav-index")} Versionator", '/', :class => "brand"
+
+            %ul.nav
+              %li= link_to("#{image("nav-installations")} Installations", '/')
+
+            %ul.nav.pull-right
+              %li.about= link_to("#{image("nav-about")} About", '/about')
+
+    #content.container-fluid
       = yield

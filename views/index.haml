@@ -1,56 +1,85 @@
+%h1
+  Installations
+  = busy_indicator
+  %button#refresh-installations-button.btn
+    %i.icon-refresh
+    Reload
 
-%h2 Overview
-%ul.vertical.icon.list
-  %li
-    = image("folder-big")
-    %h2 Installations
-    %p This will list all the directories you have configured to check.
-    %p It will detect the installed application and the its version.
-    %p
-      You will then have the opportunity to check for the most recent version online and get an overview on which of your applications might need an update.
-  %li
-    = image("app-big")
-    %h2 Applications
-    %p
-      This will list all the applications you have installed in the directories you have configured to check.
-    %p
-      It will allow you to check for the most recent version online and show you which installation might need an update.
 
-#dirs.container
-  = make_collapsable("#dirs", :collapsed)
-  .collapsable-collapsed
-    %h3.collapsable-button
+%section#errors.row-fluid
+
+%section#error-dirs.row-fluid.hide
+  .alert.alert-error
+    .collapser.in{ :data => {:toggle => "collapse", :target => "#error-dirs-details"} }
+      %h3 Directories not found
+    #error-dirs-details.collapse.in
+      %p The following directories could not be found:
+      %ul.unstyled
+
+
+%p.row-fluid
+  %button#check-all-versions.btn.hide
+    = busy_indicator
+    %i.icon-retweet
+    Check all versions
+
+#app-dirs
+
+
+
+#new-unrecognized-app.row-fluid.hide
+  -# set id to dom_id_for_dir(dir) on section
+  %section{ :class => "app span12" }
+    %h3
       = image("folder")
-      Directories
-      .description This is a list of all the directories you have configured to check.
-  .collapsable-expanded
-    %h3.collapsable-button
-      = image("folder")
-      Directories
-    .content
-      %p
-        This is a list of all the directories you have configured to check.
-      %ul.vertical.list
-        - @dirs.each do |dir|
-          %li
-            = image("folder")
-            = dir
+      %span.dir
+        -# paste dir
 
-#apps.container
-  = make_collapsable("#apps", :collapsed)
-  .collapsable-collapsed
-    %h3.collapsable-button
-      = image("app")
-      Applications
-      .description This is a list of all the applications we are able to check.
-  .collapsable-expanded
-    %h3.collapsable-button
-      = image("app")
-      Applications
-    .content
-      %p
-        This is a list of all the applications we are able to check.
-      %ul.vertical.list
-        - @apps.each do |app|
-          %li
-            = link_to("#{mini_logo_for(app)} #{app.app_name}", app.project_url)
+#new-app.row-fluid.hide
+  -# set id to dom_id_for_dir(dir) on section
+  -# add class "#{app.basic_name}-app" on section
+  %section{ :class => "app span12" }
+    -# set data-target to "##{dom_id_for_dir(dir)}-details" on .collapser
+    .collapser.row-fluid{ :data => {:toggle => "collapse"} }
+      %h3.span8
+        %span.dir
+          -# paste dir
+        %button.check-app.btn.btn-mini
+          %i.icon-repeat
+          Check
+        %span.installed-app.newest-app= busy_indicator
+      %h4.app-name.span2
+        -# add mini logo for app
+        -# paste app_name
+      .span2
+        .assessment-summary.btn.disabled
+          %i.icon-question-sign
+          Status Unknown
+    -# set id to "#{dom_id_for_dir(dir)}-details" on .collapse
+    .collapse
+      .row-fluid
+        .span4
+          %h4.app-name
+            -# pasete app_name
+          .installed-app
+            Installed Version:
+            %span.installed-version
+            = busy_indicator
+            %button.check-installed-version.btn.btn-mini
+              %i.icon-repeat
+              Check
+          .newest-app
+            Newest Version:
+            %span.newest-version
+            = busy_indicator
+            %button.check-newest-version.btn.btn-mini
+              %i.icon-repeat
+              Check
+        .span4.links
+          .project-link
+            -# paste link_to_project
+          .installed-version-link
+          .newest-version-link
+        .span4
+          .logo.pull-right
+            -# add logo for app

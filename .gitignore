@@ -10,6 +10,8 @@ test_apps/
 
 # others
 .sass-cache/
-Gemfile.lock
 log/
 tmp/
+
+# Mac stuff
+.DS_Store
