@@ -12,9 +12,9 @@ module Versionator
       set :installed_version_file, "VERSION"
       set :installed_version_regexp, /^(.+)$/
 
-      set :newest_version_url, 'http://gitlabhq.com/'
-      set :newest_version_selector, 'h4'
-      set :newest_version_regexp, /^Gitlab (.+) released\./
+      set :newest_version_url, 'https://github.com/gitlabhq/gitlabhq/tags'
+      set :newest_version_selector, '.download-list h4 a'
+      set :newest_version_regexp, /^v(.+).zip$/
 
       # Overridden to make sure we detect Gitlab and not just any RoR app.
       def contents_detected?
