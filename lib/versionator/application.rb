@@ -165,6 +165,9 @@ module Versionator
           result_app[:dir] = app.base_dir
           result_app[:dir_id] = dom_id_for_dir(app.base_dir)
           result_app[:project_url] = app.project_url
+        else
+          result_app[:dir] = dir
+          result_app[:unrecognized] = true
         end
         app_dirs << result_app
       end

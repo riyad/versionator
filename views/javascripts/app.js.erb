@@ -241,7 +241,7 @@ function renderAppDirs(app_dirs) {
   // list dirs
   $(app_dirs).each(function() {
     var app = this;
-    var new_app = $("#new-app").clone();
+    var new_app = app.unrecognized ? $("#new-unrecognized-app").clone() : $("#new-app").clone();
 
     $(new_app).removeProp('id'); // erase cloded id
     for (prop in app) { // have all data available for later use
@@ -252,7 +252,7 @@ function renderAppDirs(app_dirs) {
     $(new_app).find("section").prop('id', app.dir_id);
     $(new_app).find("section").addClass(app.basic_name+"-app");
     $(new_app).find(".collapser").data('target', "#"+app.dir_id+"-details");
-    $(new_app).find(".collapser .dir").append(app.dir);
+    $(new_app).find(".dir").append(app.dir);
     $(new_app).find(".collapser .app-name").append(miniAppLogo(app.basic_name));
     $(new_app).find(".collapser .app-name").append(app.app_name);
     $(new_app).find(".collapse").attr('id', app.dir_id+"-details");
