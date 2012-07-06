@@ -10,11 +10,11 @@ module Versionator
       set :detect_files, %w{CHANGELOG.md README.md settings.json.template}
 
       set :installed_version_file, "CHANGELOG.md"
-      set :installed_version_regexp, /^# v (.+)$/
+      set :installed_version_regexp, /^# v\s*(.+)$/
 
       set :newest_version_url, 'https://github.com/Pita/etherpad-lite/blob/master/CHANGELOG.md'
       set :newest_version_selector, '#files .blob article h1'
-      set :newest_version_regexp, /^v (.+)$/
+      set :newest_version_regexp, /^v\s*(.+)$/
 
       def project_url_for_version(version)
          "https://github.com/Pita/etherpad-lite"
