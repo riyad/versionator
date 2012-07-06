@@ -119,22 +119,6 @@ module Versionator
       haml :about
     end
 
-    # FIXME: remove
-    get '/applications' do
-      all_apps = detectors
-      installs_for_app = Hash.new([])
-      directories.each do |dir|
-        app = app_for_dir(dir)
-        installs_for_app[app.class] += [app] if app
-      end
-
-      # only show apps that have actual installs
-      @apps = installs_for_app.keys.sort_by(&:basic_name)
-      @installs_for_app = installs_for_app
-
-      haml :applications, :layout => !request.xhr?
-    end
-
     get '/applications/:app_name/newest_version.json' do
       app_name = params[:app_name]
       detector = detectors.find { |det| det.basic_name == app_name }
