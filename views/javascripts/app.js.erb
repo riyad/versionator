@@ -21,6 +21,25 @@ function isEmpty(mixed_var) {
   return false;
 }
 
+function appLogo(basic_name) {
+  return '<img src="images/logos/'+basic_name+'.png" alt="'+basic_name+'" />';
+}
+
+function externalLink(text, url, options) {
+  if (isEmpty(options)) {
+    options = {};
+  }
+  return '<a href="'+url+'" '+(isEmpty(options.class) ? '' : 'class="'+options.class+'"')+'>'+text+' <i class="icon-share link-external"></i></a>';
+}
+
+function miniAppLogo(basic_name) {
+  return '<img src="images/logos/'+basic_name+'-mini.png" alt="'+basic_name+'" />';
+}
+
+function appProjectLink(app_name, project_url) {
+  return externalLink(app_name+" Website", project_url);
+}
+
 function titelize(text) {
   return text.substr(0,1).toUpperCase() + text.substr(1);
 }
