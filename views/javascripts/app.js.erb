@@ -103,8 +103,7 @@ function updateInstalledVersionFor(dir, html) {
 function addInstalledVersionLink(dir, data) {
   if (data.project_url_for_installed_version) {
     var ivl = $(dir).find(".installed-version-link");
-    var linkText = '<%= link_to_external("Installed Release", "'+data.project_url_for_installed_version+'", :class => "installed-version") %>';
-    $(ivl).html(linkText);
+    $(ivl).html(externalLink("Installed Release", data.project_url_for_installed_version, "installed-version"));
   }
 }
 
@@ -159,8 +158,7 @@ function checkNewestVersionForApplication(app) {
 function addNewestVersionLink(inst, data) {
   if (data.project_url_for_newest_version) {
     var nvl = $(inst).find(".newest-version-link");
-    var linkText = '<%= link_to_external("Newest Release", "'+data.project_url_for_newest_version+'", :class => "newest-version") %>';
-    $(nvl).html(linkText);
+    $(nvl).html(externalLink("Newest Release", data.project_url_for_newest_version, "newest-version"));
   }
 }
 
