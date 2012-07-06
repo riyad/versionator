@@ -1,6 +1,9 @@
 %h1
   Installations
   = busy_indicator
+  %button#refresh-installations-button.btn
+    %i.icon-refresh
+    Reload
 
 
 %section#errors.row-fluid.hide
@@ -13,7 +16,7 @@
 
 
 %p.row-fluid
-  %a.check-all-versions.btn
+  %button#check-all-versions.btn
     = busy_indicator
     %i.icon-retweet
     Check all versions

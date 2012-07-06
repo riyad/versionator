@@ -217,9 +217,12 @@ function updateErrors(error_dirs) {
   // reset list
   $(list).html("");
 
+  // list errors
   $(error_dirs).each(function() {
     $(list).append('<li><%= image("folder-exists-not") %> ' + this + '</li>');
   });
+
+  // show errors only of there are any
   if (!isEmpty(error_dirs)) {
     $("#errors").slideDown();
   }
@@ -235,7 +238,8 @@ $(function() {
     $(this).toggleClass("in");
   });
 
-  $(".check-all-versions.btn").click(checkAllVersions);
+  $("button#check-all-versions").click(checkAllVersions);
+  $("button#refresh-installations-button").click(getInstallations);
 
   getInstallations();
 });
