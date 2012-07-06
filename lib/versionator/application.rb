@@ -93,31 +93,6 @@ module Versionator
           text +
         %Q{</a> }
       end
-
-      def link_to_app_project(app)
-        link_to_external("#{app.app_name} Website", app.project_url)
-      end
-
-      def link_to_external(text, href, html_options = {})
-        %Q{<a href="#{href}" #{%Q{id="#{html_options[:id]}"} if html_options[:id]} #{%Q{class="#{html_options[:class]}"} if html_options[:class]}>} +
-          text +
-          %Q{ <i class="icon-share link-external"></i>} +
-        %Q{</a> }
-      end
-
-      # Inserts the (big) logo for the given _detector_.
-      def logo_for(detector)
-        logo(detector.basic_name)
-      end
-
-      def logo(basic_name)
-        %Q{<img src="images/logos/#{basic_name}.png" alt="#{basic_name}" />}
-      end
-
-      # Inserts the mini logo for the given _detector_.
-      def mini_logo_for(detector)
-        logo("#{detector.basic_name}-mini")
-      end
     end
 
 
