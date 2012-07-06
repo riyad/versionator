@@ -187,6 +187,7 @@ module Versionator
           result_app[:app_name] = app.app_name
           result_app[:basic_name] = app.basic_name
           result_app[:dir] = app.base_dir
+          result_app[:project_url] = app.project_url
         end
         app_dirs << result_app
       end
