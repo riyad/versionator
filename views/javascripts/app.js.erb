@@ -126,21 +126,21 @@ function checkAllNewestVersions() {
 }
 
 function checkNewestVersionForApplication(app) {
-  var inst = $("."+app+"-app");
+  var apps = $("."+app+"-app");
   var newestVersionUrl = "/applications/"+app+"/newest_version.json";
 
-  $(inst).find(".newest-app .busy").show(); // show busy
-  $(inst).find(".newest-version").html(""); // erase version + link
+  $(apps).find(".newest-app .busy").show(); // show busy
+  $(apps).find(".newest-version").html(""); // erase version + link
   $.getJSON(newestVersionUrl).success(function(data) {
-    updateNewestVersionFor(inst, data.newest_version);
-    updateAssessments(inst);
-    addNewestVersionLink(inst, data);
+    updateNewestVersionFor(apps, data.newest_version);
+    updateAssessments(apps);
+    addNewestVersionLink(apps, data);
   }).error(function(xhr, error, exception) {
     console.log(xhr);
     console.log(error);
     console.log(exception);
     error = titelize(error);
-    updateNewestVersionFor(inst, '<span class="message error">'+error+': '+exception+'</span>');
+    updateNewestVersionFor(apps, '<span class="message error">'+error+': '+exception+'</span>');
   });
 }
 
