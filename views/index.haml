@@ -8,7 +8,7 @@
 
 %section#errors.row-fluid.hide
   .alert.alert-error
-    %a.collapser.in{ :data => {:toggle => "collapse", :target => "#error-details"} }
+    .collapser.in{ :data => {:toggle => "collapse", :target => "#error-details"} }
       %h3 Directories not found
     #error-details.collapse.in
       %p The following directories could not be found:
@@ -38,7 +38,7 @@
   -# add class "#{app.basic_name}-app" on section
   %section{ :class => "app span12" }
     -# set data-target to "##{dom_id_for_dir(dir)}-details" on .collapser
-    %a.collapser.row-fluid{ :data => {:toggle => "collapse"} }
+    .collapser.row-fluid{ :data => {:toggle => "collapse"} }
       %h3.span8
         %span.dir
           -# paste dir

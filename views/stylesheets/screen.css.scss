@@ -24,6 +24,7 @@ section.app {
   background-image: url('/images/container-expand.png');
   background-position: 0px 4px;
   background-repeat: no-repeat;
+  cursor: pointer;
   display: block;
   padding-left: 28px;
   &.in {

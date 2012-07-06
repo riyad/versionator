@@ -265,7 +265,7 @@ function renderAppDirs(app_dirs) {
   });
 
   $(list).slideDown();
-  $(list).find(".collapser").click(function() {
+  $(".collapser").click(function() {
     $($(this).data("target")).collapse('toggle');
     $(this).toggleClass("in");
   });
