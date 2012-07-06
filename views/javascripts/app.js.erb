@@ -269,6 +269,12 @@ function renderAppDirs(app_dirs) {
     $($(this).data("target")).collapse('toggle');
     $(this).toggleClass("in");
   });
+  $(list).find("button.check-app").click(function() {
+    $(this).parents('.collapser').click(); // to prevent it from toggling
+    checkInstalledVersionForDirectory($(this).parents("section").data('dir_id'));
+    checkNewestVersionForApplication($(this).parents("section").data('basic_name'));
+    $(this).html('<i class="icon-refresh"/> Recheck');
+  });
   $(list).find("button.check-installed-version").click(function() {
     checkInstalledVersionForDirectory($(this).parents("section").data('dir_id'));
   });
