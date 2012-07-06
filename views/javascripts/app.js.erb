@@ -182,7 +182,7 @@ function checkAllVersions() {
 function loadInstallations() {
   $("h1 .busy").show();
   $("#check-all-versions").fadeOut();
-  $("#errors").slideUp();
+  $("#error-dirs").slideUp();
   $("#app-dirs").slideUp();
 
   $.getJSON("/installations.json").success(function(data) {
@@ -278,7 +278,7 @@ function renderAppDirs(app_dirs) {
 }
 
 function renderErrorDirs(error_dirs) {
-  var list = $("#error-details ul");
+  var list = $("#error-dirs-details ul");
 
   // reset list
   $(list).html("");
@@ -290,7 +290,7 @@ function renderErrorDirs(error_dirs) {
 
   // show errors only of there are any
   if (!isEmpty(error_dirs)) {
-    $("#errors").slideDown();
+    $("#error-dirs").slideDown();
   }
 }
 
