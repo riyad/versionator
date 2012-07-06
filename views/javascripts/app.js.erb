@@ -174,20 +174,24 @@ function updateNewestVersionFor(inst, html) {
 
 
 
-// all versions
+// global
 
 function checkAllVersions() {
   checkAllInstalledVersions();
   checkAllNewestVersions();
 }
 
-function getInstallations() {
+function loadInstallations() {
   $("h1 .busy").show();
+  $("#check-all-versions").fadeOut();
   $("#errors").slideUp();
+  $("#app-dirs").slideUp();
 
   $.getJSON("/installations.json").success(function(data) {
-    updateErrors(data.error_dirs);
+    renderErrorDirs(data.error_dirs);
+    renderAppDirs(data.app_dirs)
     $("h1 .busy").hide();
+    $("#check-all-versions").fadeIn();
   }).error(function(xhr, error, exception) {
     console.log(xhr);
     console.log(error);
@@ -230,13 +234,58 @@ function updateAssessments(inst) {
   });
 }
 
-function updateErrors(error_dirs) {
+function renderAppDirs(app_dirs) {
+  var list = $("#app-dirs");
+
+  // reset list
+  $(list).html("");
+
+  // list dirs
+  $(app_dirs).each(function() {
+    var app = this;
+    var new_app = $("#new-app").clone();
+
+    $(new_app).removeProp('id'); // erase cloded id
+    for (prop in app) { // have all data available for later use
+      $(new_app).find("section").data(prop, app[prop]);
+    }
+
+    // set values
+    $(new_app).find("section").prop('id', app.dir_id);
+    $(new_app).find("section").addClass(app.basic_name+"-app");
+    $(new_app).find(".collapser").data('target', "#"+app.dir_id+"-details");
+    $(new_app).find(".collapser .dir").append(app.dir);
+    $(new_app).find(".collapser .app-name").append(miniAppLogo(app.basic_name));
+    $(new_app).find(".collapser .app-name").append(app.app_name);
+    $(new_app).find(".collapse").attr('id', app.dir_id+"-details");
+    $(new_app).find(".collapse .app-name").append(app.app_name);
+    $(new_app).find(".collapse .project-link").append(appProjectLink(app.app_name, app.project_url));
+    $(new_app).find(".collapse .logo").append(appLogo(app.basic_name));
+    $(new_app).show();
+
+    $(list).append(new_app);
+  });
+
+  $(list).slideDown();
+  $(list).find(".collapser").click(function() {
+    $($(this).data("target")).collapse('toggle');
+    $(this).toggleClass("in");
+  });
+  $(list).find("button.check-installed-version").click(function() {
+    checkInstalledVersionForDirectory($(this).parents("section").data('dir_id'));
+  });
+  $(list).find("button.check-newest-version").click(function() {
+    checkNewestVersionForApplication($(this).parents("section").data('basic_name'));
+  });
+}
+
+function renderErrorDirs(error_dirs) {
   var list = $("#error-details ul");
 
   // reset list
   $(list).html("");
 
-  // list errors
+  // list dirs
   $(error_dirs).each(function() {
     $(list).append('<li><%= image("folder-exists-not") %> ' + this + '</li>');
   });
@@ -252,13 +301,8 @@ function updateErrors(error_dirs) {
 // on load
 
 $(function() {
-  // initialize collapsers
-  $(".collapser").click(function() {
-    $(this).toggleClass("in");
-  });
-
   $("button#check-all-versions").click(checkAllVersions);
-  $("button#refresh-installations-button").click(getInstallations);
+  $("button#refresh-installations-button").click(loadInstallations);
 
-  getInstallations();
+  loadInstallations();
 });
