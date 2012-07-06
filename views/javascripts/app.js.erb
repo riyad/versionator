@@ -182,6 +182,7 @@ function checkAllVersions() {
 function loadInstallations() {
   $("h1 .busy").show();
   $("#check-all-versions").fadeOut();
+  $("#errors").slideUp();
   $("#error-dirs").slideUp();
   $("#app-dirs").slideUp();
 
@@ -194,9 +195,8 @@ function loadInstallations() {
     console.log(xhr);
     console.log(error);
     console.log(exception);
-    error = titelize(error);
-    // FIXME: show server error
     $("h1 .busy").hide();
+    $("#errors").html('<div class="alert alert-error"><h4 class="alert-heading">'+titelize(error)+'</h4> '+exception+'</div>').slideDown();
   });
 }
 
