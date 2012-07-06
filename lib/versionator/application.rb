@@ -173,7 +173,27 @@ module Versionator
     end
 
     get '/installations.json' do
+      result = Hash.new
 
+      dirs = directories
+      dirs_that_dont_exist = dirs.reject { |dir| Dir.exists?(dir) }
+      dirs_that_exist = dirs - dirs_that_dont_exist
+
+      app_dirs = []
+      dirs_that_exist.each do |dir|
+        result_app = {}
+        app = app_for_dir(dir)
+        if app
+          result_app[:app_name] = app.app_name
+          result_app[:basic_name] = app.basic_name
+          result_app[:dir] = app.base_dir
+        end
+        app_dirs << result_app
+      end
+      result[:app_dirs] = app_dirs
+      result[:error_dirs] = dirs_that_dont_exist
+
+      result.to_json
     end
 
     get '/installations/:dir_id/installed_version.json' do
