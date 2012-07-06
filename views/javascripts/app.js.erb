@@ -162,6 +162,23 @@ function checkAllVersions() {
   checkAllNewestVersions();
 }
 
+function getInstallations() {
+  $("h1 .busy").show();
+  $("#errors").slideUp();
+
+  $.getJSON("/installations.json").success(function(data) {
+    updateErrors(data.error_dirs);
+    $("h1 .busy").hide();
+  }).error(function(xhr, error, exception) {
+    console.log(xhr);
+    console.log(error);
+    console.log(exception);
+    error = titelize(error);
+    // FIXME: show server error
+    $("h1 .busy").hide();
+  });
+}
+
 function updateAssessments(inst) {
   $(inst).each(function() {
     var installed_version = $(this).find(".installed-app .installed-version").text();
@@ -194,9 +211,23 @@ function updateAssessments(inst) {
   });
 }
 
+function updateErrors(error_dirs) {
+  var list = $("#error-details ul");
+
+  // reset list
+  $(list).html("");
+
+  $(error_dirs).each(function() {
+    $(list).append('<li><%= image("folder-exists-not") %> ' + this + '</li>');
+  });
+  if (!isEmpty(error_dirs)) {
+    $("#errors").slideDown();
+  }
+}
 
 
-// hook up buttons
+
+// on load
 
 $(function() {
   // initialize collapsers
@@ -205,4 +236,6 @@ $(function() {
   });
 
   $(".check-all-versions.btn").click(checkAllVersions);
+
+  getInstallations();
 });
