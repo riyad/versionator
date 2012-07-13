@@ -21,27 +21,27 @@ function isEmpty(mixed_var) {
   return false;
 }
 
-function appLogo(basic_name) {
+function renderAppProjectLink(app_name, project_url) {
+  return renderExternalLink(app_name+" Website", project_url);
+}
+
+function renderAppLogo(basic_name) {
   return renderImage('logos/'+basic_name+'.png', basic_name);
 }
 
-function externalLink(text, url, options) {
+function renderExternalLink(text, url, options) {
   if (isEmpty(options)) {
     options = {};
   }
   return '<a href="'+url+'" '+(isEmpty(options.class) ? '' : 'class="'+options.class+'"')+'>'+text+' <i class="icon-share link-external"></i></a>';
 }
 
-function miniAppLogo(basic_name) {
-return renderImage('logos/'+basic_name+'-mini.png', basic_name);
-}
-
-function appProjectLink(app_name, project_url) {
-  return externalLink(app_name+" Website", project_url);
-}
-
 function renderImage(name, alt) {
   return '<img src="images/'+name+'" alt="'+alt+'" />';
+}
+
+function renderMiniAppLogo(basic_name) {
+  return renderImage('logos/'+basic_name+'-mini.png', basic_name);
 }
 
 function titelize(text) {
@@ -99,7 +99,7 @@ function updateInstalledVersionFor(dir, html) {
 function addInstalledVersionLink(dir, data) {
   if (data.project_url_for_installed_version) {
     var ivl = $(dir).find(".installed-version-link");
-    $(ivl).html(externalLink("Installed Release", data.project_url_for_installed_version, "installed-version"));
+    $(ivl).html(renderExternalLink("Installed Release", data.project_url_for_installed_version, "installed-version"));
   }
 }
 
@@ -149,7 +149,7 @@ function checkNewestVersionForApplication(app) {
 function addNewestVersionLink(inst, data) {
   if (data.project_url_for_newest_version) {
     var nvl = $(inst).find(".newest-version-link");
-    $(nvl).html(externalLink("Newest Release", data.project_url_for_newest_version, "newest-version"));
+    $(nvl).html(renderExternalLink("Newest Release", data.project_url_for_newest_version, "newest-version"));
   }
 }
 
@@ -246,12 +246,12 @@ function renderAppDirs(app_dirs) {
     $(new_app).find("section").addClass(app.basic_name+"-app");
     $(new_app).find(".collapser").data('target', "#"+app.dir_id+"-details");
     $(new_app).find(".dir").append(app.dir);
-    $(new_app).find(".collapser .app-name").append(miniAppLogo(app.basic_name));
+    $(new_app).find(".collapser .app-name").append(renderMiniAppLogo(app.basic_name));
     $(new_app).find(".collapser .app-name").append(app.app_name);
     $(new_app).find(".collapse").attr('id', app.dir_id+"-details");
     $(new_app).find(".collapse .app-name").append(app.app_name);
-    $(new_app).find(".collapse .project-link").append(appProjectLink(app.app_name, app.project_url));
-    $(new_app).find(".collapse .logo").append(appLogo(app.basic_name));
+    $(new_app).find(".collapse .project-link").append(renderAppProjectLink(app.app_name, app.project_url));
+    $(new_app).find(".collapse .logo").append(renderAppLogo(app.basic_name));
     $(new_app).removeClass("hide").show();
 
     $(list).append(new_app);
