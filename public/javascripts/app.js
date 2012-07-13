@@ -22,7 +22,7 @@ function isEmpty(mixed_var) {
 }
 
 function appLogo(basic_name) {
-  return '<img src="images/logos/'+basic_name+'.png" alt="'+basic_name+'" />';
+  return renderImage('logos/'+basic_name+'.png', basic_name);
 }
 
 function externalLink(text, url, options) {
@@ -33,11 +33,15 @@ function externalLink(text, url, options) {
 }
 
 function miniAppLogo(basic_name) {
-  return '<img src="images/logos/'+basic_name+'-mini.png" alt="'+basic_name+'" />';
+return renderImage('logos/'+basic_name+'-mini.png', basic_name);
 }
 
 function appProjectLink(app_name, project_url) {
   return externalLink(app_name+" Website", project_url);
+}
+
+function renderImage(name, alt) {
+  return '<img src="images/'+name+'" alt="'+alt+'" />';
 }
 
 function titelize(text) {
@@ -51,14 +55,16 @@ function titelize(text) {
 function checkAllInstalledVersions() {
   var delayBetweenRequests = 250; // in ms
   var currentDelay = 0;
-  <% @directories.each do |directory| %>
-    if (!isEmpty($("#<%= directory %>").toArray())) {
+  
+  $("section.app").each(function() {
+    var section = $(this);
+    if (!$(section).data("unrecognized")) {
       setTimeout(function() {
-        checkInstalledVersionForDirectory("<%= directory %>")
+        checkInstalledVersionForDirectory($(section).data("dir_id"))
       }, currentDelay);
       currentDelay += delayBetweenRequests;
     }
-  <% end %>
+  });
 }
 
 function checkInstalledVersionForDirectory(directory) {
@@ -79,16 +85,6 @@ function checkInstalledVersionForDirectory(directory) {
     addInstalledVersionLink(dir, '<span class="message error">'+error+': '+exception+'</span>');
   });
 }
-
-<% @directories.each do |directory| %>
-  $(function() {
-    var dir = $("#<%= directory %>");
-
-    $(dir).find(".check-installed-version.btn").click(function() {
-      checkInstalledVersionForDirectory("<%= directory %>");
-    });
-  });
-<% end %>
 
 
 
@@ -114,14 +110,19 @@ function addInstalledVersionLink(dir, data) {
 function checkAllNewestVersions() {
   var delayBetweenRequests = 250; // in ms
   var currentDelay = 0;
-  <% @detectors.each do |detector| %>
-    if (!isEmpty($(".<%= detector.basic_name %>-app").toArray())) {
+
+  var apps = $.unique($("section.app").map(function() {
+      return $(this).data("basic_name");
+  }));
+  $(apps).each(function() {
+    var app = this;
+    if (!isEmpty($("."+app+"-app").toArray())) {
       setTimeout(function() {
-        checkNewestVersionForApplication("<%= detector.basic_name %>");
+        checkNewestVersionForApplication(app);
       }, currentDelay);
       currentDelay += delayBetweenRequests;
     }
-  <% end %>
+  });
 }
 
 function checkNewestVersionForApplication(app) {
@@ -142,16 +143,6 @@ function checkNewestVersionForApplication(app) {
     updateNewestVersionFor(apps, '<span class="message error">'+error+': '+exception+'</span>');
   });
 }
-
-<% @detectors.each do |detector| %>
-  $(function() {
-    var inst = $(".<%= detector.basic_name %>-app");
-
-    $(inst).find(".check-newest-version.btn").click(function() {
-      checkNewestVersionForApplication("<%= detector.basic_name %>");
-    });
-  });
-<% end %>
 
 
 
@@ -251,6 +242,7 @@ function renderAppDirs(app_dirs) {
 
     // set values
     $(new_app).find("section").prop('id', app.dir_id);
+    $(new_app).find("section").addClass("app");
     $(new_app).find("section").addClass(app.basic_name+"-app");
     $(new_app).find(".collapser").data('target', "#"+app.dir_id+"-details");
     $(new_app).find(".dir").append(app.dir);
@@ -291,7 +283,7 @@ function renderErrorDirs(error_dirs) {
 
   // list dirs
   $(error_dirs).each(function() {
-    $(list).append('<li><%= image("folder-exists-not") %> ' + this + '</li>');
+    $(list).append('<li>'+renderImage('folder-exists-not.png')+' ' + this + '</li>');
   });
 
   // show errors only of there are any
