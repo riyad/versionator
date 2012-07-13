@@ -29,7 +29,7 @@
 
 #new-unrecognized-app.row-fluid.hide
   -# set id to dom_id_for_dir(dir) on section
-  %section{ :class => "app span12" }
+  %section{ :class => "span12" }
     %h3
       = image("folder")
       %span.dir
@@ -38,7 +38,7 @@
 #new-app.row-fluid.hide
   -# set id to dom_id_for_dir(dir) on section
   -# add class "#{app.basic_name}-app" on section
-  %section{ :class => "app span12" }
+  %section{ :class => "span12" }
     -# set data-target to "##{dom_id_for_dir(dir)}-details" on .collapser
     .collapser.row-fluid{ :data => {:toggle => "collapse"} }
       %h3.span8
