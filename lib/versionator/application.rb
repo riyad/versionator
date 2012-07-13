@@ -177,14 +177,6 @@ module Versionator
       result.to_json
     end
 
-    get '/javascripts/:name.js' do
-      @detectors = detectors
-      @directories = directories.map { |d| dom_id_for_dir(d) }
-
-      content_type 'application/javascript', :charset => 'utf-8'
-      erb "javascripts/#{params[:name]}.js".to_sym
-    end
-
     # at a minimum, the main sass file must reside within the ./views directory. here, we create a ./views/stylesheets directory where all of the sass files can safely reside.
     get '/stylesheets/:name.css' do
       content_type 'text/css', :charset => 'utf-8'
