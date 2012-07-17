@@ -3,15 +3,7 @@
 
 %html
   %head
-    / jQuery
-    %script{ :src => "lib/jquery/js/jquery.min.js" }
-
-    / Bootstrap
-    %script{ :src => "lib/bootstrap/js/bootstrap.min.js" }
     %link{ :href => "lib/bootstrap/css/bootstrap.min.css", :rel => "stylesheet", :type => "text/css" }
-
-    / App
-    %script{ :src => "javascripts/app.js", :defer => true }
     %link{ :href => "stylesheets/screen.css", :rel => "stylesheet", :type => "text/css" }
     %title Versionator
   %body
@@ -29,3 +21,7 @@
 
     #content.container-fluid
       = yield
+
+    %script{ :src => "lib/jquery/js/jquery.min.js" }
+    %script{ :src => "lib/bootstrap/js/bootstrap.min.js" }
+    %script{ :src => "javascripts/app.js", :defer => true }
