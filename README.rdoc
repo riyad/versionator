@@ -55,11 +55,11 @@ Also the use of some sort of authentication is recommeded.
 
 == Issues
 
-Please, report all issues on our issue tracker on GitHub: http://github.com/riyad/versionator/issues
+Please, report all issues on our issue tracker on GitHub: https://github.com/riyad/versionator/issues
 
 == Code
 
-The main repository can be found on GitHub: http://github.com/riyad/versionator
+The main repository can be found on GitHub: https://github.com/riyad/versionator
 
 == License
 
