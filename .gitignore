@@ -5,9 +5,6 @@ check_dirs
 # generated documentation
 doc/
 
-# test applications
-test_apps/
-
 # others
 .sass-cache/
 log/
