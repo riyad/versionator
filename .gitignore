@@ -5,10 +5,12 @@ check_dirs
 # generated documentation
 doc/
 
-# others
+# production
+.bundle/
 .sass-cache/
 log/
 tmp/
+vendor/
 
 # Mac stuff
 .DS_Store
