@@ -11,7 +11,7 @@
 %section#error-dirs.row-fluid.hide
   .alert.alert-error
     .collapser.in{ :data => {:toggle => "collapse", :target => "#error-dirs-details"} }
-      %h3 Directories not found
+      %h4 Directories not found
     #error-dirs-details.collapse.in
       %p The following directories could not be found:
       %ul.unstyled
@@ -29,8 +29,8 @@
 
 #new-unrecognized-app.row-fluid.hide
   -# set id to dom_id_for_dir(dir) on section
-  %section{ :class => "span12" }
-    %h3
+  %section.span12
+    %h4
       = image("folder")
       %span.dir
         -# paste dir
@@ -38,10 +38,10 @@
 #new-app.row-fluid.hide
   -# set id to dom_id_for_dir(dir) on section
   -# add class "#{app.basic_name}-app" on section
-  %section{ :class => "span12" }
+  %section.span12
     -# set data-target to "##{dom_id_for_dir(dir)}-details" on .collapser
     .collapser.row-fluid{ :data => {:toggle => "collapse"} }
-      %h3.span8
+      %h4.span8
         %span.dir
           -# paste dir
         %button.check-app.btn.btn-mini

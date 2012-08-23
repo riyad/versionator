@@ -11,6 +11,14 @@ li img {
   margin-top: -4px;
 }
 
+h4 {
+  margin: 0;
+  line-height: 30px;
+  button {
+    margin-bottom: 4px;
+  }
+}
+
 section.app {
   border: #eee solid 1px;
   border-radius: 4px;
@@ -21,26 +29,23 @@ section.app {
   }
 }
 
+.app-name img,
+.undefined-app img {
+  margin-right: 4px;
+  margin-top: -4px;
+}
 .busy {
   display: none;
 }
 .collapser {
   background-image: url('/images/container-expand.png');
-  background-position: 0px 4px;
+  background-position: 0px 6px;
   background-repeat: no-repeat;
   cursor: pointer;
   display: block;
   padding-left: 28px;
   &.in {
     background-image: url('/images/container-collapse.png');
-  }
-  .app-name {
-    margin-bottom: -6px;
-    margin-top: 6px;
-    img {
-      margin-right: 4px;
-      margin-top: -4px;
-    }
   }
 }
 
