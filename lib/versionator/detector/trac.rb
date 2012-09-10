@@ -6,7 +6,7 @@ module Versionator
       set :app_name, "Trac"
       set :project_url, "http://trac.edgewall.org"
 
-      set :detect_dirs, %w{cgi-bin contrib trac wiki-macros}
+      set :detect_dirs, %w{contrib doc trac tracopt}
       set :detect_files, %w{PKG-INFO setup.cfg setup.py}
 
       set :installed_version_file, "PKG-INFO"
@@ -14,7 +14,7 @@ module Versionator
 
       set :newest_version_url, 'http://trac.edgewall.org/wiki/TracDownload'
       set :newest_version_selector, 'h2#LatestStableRelease'
-      set :newest_version_regexp, /^.+ - (.+)$/
+      set :newest_version_regexp, /^.+ - Trac (.+)$/
 
       def project_url_for_version(version)
         "#{project_url}/browser/tags/trac-#{version}/RELEASE"
