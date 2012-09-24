@@ -15,6 +15,10 @@
 
             %ul.nav
               %li= link_to("#{image("nav-installations")} Installations", '/')
+              %button#refresh-installations-button.btn
+                %i.icon-refresh
+                Reload
+                = busy_indicator
 
             %ul.nav.pull-right
               %li.about= link_to("#{image("nav-about")} About", '/about')
