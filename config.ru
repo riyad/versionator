@@ -1,9 +1,11 @@
 # encoding: UTF-8
 
 require 'rubygems'
-require 'bundler'
+require 'bundler/setup'
 
-Bundler.require
+# this will require all the gems not specified to a given group (default)
+# and gems specified in the production group
+Bundler.require(:default, :production)
 
 # set the encoding for files being read
 Encoding.default_external = 'UTF-8'

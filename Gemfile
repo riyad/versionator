@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'sinatra', :require => 'sinatra/base'
+gem 'sinatra'
 
 gem 'activesupport' # for 'active_support/inflector'
 gem 'haml'

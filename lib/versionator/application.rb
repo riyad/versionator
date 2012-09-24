@@ -1,9 +1,4 @@
 
-require 'haml'
-require 'json'
-require 'sass'
-require 'sinatra/base'
-
 require 'versionator/detector'
 
 module Versionator
