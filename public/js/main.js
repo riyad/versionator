@@ -171,7 +171,7 @@ function checkAllVersions() {
 }
 
 function loadInstallations() {
-  $("h1 .busy").show();
+  $("#refresh-installations-button .busy").show();
   $("#check-all-versions").fadeOut();
   $("#errors").slideUp();
   $("#error-dirs").slideUp();
@@ -180,13 +180,13 @@ function loadInstallations() {
   $.getJSON("/installations.json").success(function(data) {
     renderErrorDirs(data.error_dirs);
     renderAppDirs(data.app_dirs)
-    $("h1 .busy").hide();
+    $("#refresh-installations-button .busy").hide();
     $("#check-all-versions").fadeIn();
   }).error(function(xhr, error, exception) {
     console.log(xhr);
     console.log(error);
     console.log(exception);
-    $("h1 .busy").hide();
+    $(" .busy").hide();
     $("#errors").html('<div class="alert alert-error"><h4 class="alert-heading">'+titelize(error)+'</h4> '+exception+'</div>').slideDown();
   });
 }
