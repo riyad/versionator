@@ -65,6 +65,9 @@ module Versionator
 
         version = extract_version(:from => version_line, :with => installed_version_regexp)
 
+        # convert commas into dots so Versionomy can parse them too
+        version = version.split(',').map(&:to_i).join('.') if version.include? ','
+
         if version
           @installed_version_text = version
           @installed_version = Versionomy.parse(@installed_version_text).change({}, :optional_fields => [:tiny])
