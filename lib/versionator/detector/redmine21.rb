@@ -19,7 +19,7 @@ module Versionator
       def contents_detected?
         # Overridden to make sure we detect Redmine and not any RoR app.
         if super && find_first_line(:matching => /^= Redmine/, :in_file => "README.rdoc")
-          installed_version.major == 2 && installed_version.minor == 1
+          installed_version.major == 2
         end
       end
 
