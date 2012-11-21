@@ -2,10 +2,6 @@ html {
     overflow-y: scroll;
 }
 
-body {
-  padding-top: 50px;
-}
-
 a  img,
 li img {
   margin-top: -4px;
@@ -52,4 +48,13 @@ section.app {
 #errors,
 #error-dirs {
   margin-top: 18px;
+}
+
+
+
+// fix responsive design stuff
+@media (min-width: 979px) {
+  body {
+    padding-top: 50px;
+  }
 }
