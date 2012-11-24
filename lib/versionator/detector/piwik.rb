@@ -13,8 +13,8 @@ module Versionator
       set :installed_version_regexp, /^\sconst VERSION = '(.+)';$/
 
       set :newest_version_url, 'http://piwik.org/'
-      set :newest_version_selector, '#sidebar a.download-button strong'
-      set :newest_version_regexp, /^Download Piwik (.+)\s*$/
+      set :newest_version_selector, '.download-button .title'
+      set :newest_version_regexp, /^\s*Download Piwik (.+)\s*$/
 
       def project_url_for_version(version)
         "#{project_url}/blog/piwik-#{version.to_s.gsub('.','-')}/"
