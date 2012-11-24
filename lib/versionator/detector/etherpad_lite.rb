@@ -9,7 +9,7 @@ module Versionator
       set :detect_files, %w{CHANGELOG.md README.md settings.json.template}
 
       set :installed_version_file, "CHANGELOG.md"
-      set :installed_version_regexp, /^# v\s*(.+)$/
+      set :installed_version_regexp, /^# v?\s?(.+)$/
 
       set :newest_version_url, 'http://etherpad.org/'
       set :newest_version_selector, '#downloadbutton'
