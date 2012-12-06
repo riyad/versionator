@@ -12,7 +12,7 @@ module Versionator
       set :detect_files, %w{db_structure.xml index.php lib/util.php README}
 
       set :installed_version_file, "lib/util.php"
-      set :installed_version_regexp, /^\s*return array\((\d+,\d+,\d+)\);$/
+      set :installed_version_regexp, /return '(\d+\.\d+(\.\d+)?).*';$/
 
       set :newest_version_url, 'http://owncloud.org/install/'
       set :newest_version_selector, '.content .page-content h4'
@@ -20,7 +20,7 @@ module Versionator
 
       # Overridden to make sure that we do only detect ownCloud 4.0 or previous
       def contents_detected?
-        installed_version.major < 4 || (installed_version.major == 4 && installed_version.minor <= 5) if super
+        installed_version.major < 4 || (installed_version.major == 4 && installed_version.minor < 5) if super
       end
     end
   end
