@@ -183,9 +183,6 @@ function loadInstallations() {
     $("#refresh-installations-button .busy").hide();
     $("#check-all-versions").fadeIn();
   }).error(function(xhr, error, exception) {
-    console.log(xhr);
-    console.log(error);
-    console.log(exception);
     $(" .busy").hide();
     $("#errors").html('<div class="alert alert-error"><h4 class="alert-heading">'+titelize(error)+'</h4> '+exception+'</div>').slideDown();
   });
@@ -262,8 +259,8 @@ function renderAppDirs(app_dirs) {
     $($(this).data("target")).collapse('toggle');
     $(this).toggleClass("in");
   });
-  $(list).find("button.check-app").click(function() {
-    $(this).parents('.collapser').click(); // to prevent it from toggling
+  $(list).find("button.check-app").click(function(e) {
+    e.stopPropagation(); // to prevent .collapser to trigger
     checkInstalledVersionForDirectory($(this).parents("section").data('dir_id'));
     checkNewestVersionForApplication($(this).parents("section").data('basic_name'));
   });
