@@ -13,7 +13,7 @@ module Versionator
       set :installed_version_regexp, /return '(\d+\.\d+(\.\d+)?).*';$/
 
       set :newest_version_url, 'http://owncloud.org/install/'
-      set :newest_version_selector, '.content .page-content h4'
+      set :newest_version_selector, '.content h4'
       set :newest_version_regexp, /^Latest 4.5 \((.+)\)$/
       
       # Overridden to make sure that we do only detect ownCloud 4.0 or previous
