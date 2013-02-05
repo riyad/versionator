@@ -21,6 +21,7 @@ This is a web application that alows you to check a list of directories which we
 * {Roundcube}[http://roundcube.net]
 * {Tine 2.0}[http://www.tine20.org]
 * {Trac}[http://trac.edgewall.org]
+* {Vanilla}[http://vanillaforums.org/]
 * {WordPress}[http://wordpress.org]
 
 If your favorite web application is not in the list,
