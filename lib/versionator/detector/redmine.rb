@@ -2,8 +2,8 @@
 module Versionator
   module Detector
     # Detects {Redmine}[http://www.redmine.org]
-    class Redmine22 < Base
-      set :app_name, "Redmine 2.2"
+    class Redmine < Base
+      set :app_name, "Redmine"
       set :project_url, "http://www.redmine.org"
 
       set :detect_dirs, %w{app config lib public vendor}
@@ -14,17 +14,11 @@ module Versionator
 
       set :newest_version_url, 'http://www.redmine.org/projects/redmine/wiki/Download'
       set :newest_version_selector, '#content .wiki li'
-      set :newest_version_regexp, /^(2\.2.*) \([\d-]+\)$/
+      set :newest_version_regexp, /^(.+) \([\d-]+\)$/
 
       def contents_detected?
         # Overridden to make sure we detect Redmine and not any RoR app.
-        if super && find_first_line(:matching => /^= Redmine/, :in_file => "README.rdoc")
-          installed_version.major < 2 || (installed_version.major == 2 && installed_version.minor >= 2)
-        end
-      end
-
-      def project_url_for_version(version)
-        "#{project_url}/projects/redmine/wiki/Changelog_#{version.major}_#{version.minor}"
+        super && find_first_line(:matching => /^= Redmine/, :in_file => "README.rdoc")
       end
     end
   end
