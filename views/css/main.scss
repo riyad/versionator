@@ -2,7 +2,7 @@ html {
     overflow-y: scroll;
 }
 
-a  img,
+a img,
 li img {
   margin-top: -4px;
 }
@@ -15,13 +15,16 @@ h4 {
   }
 }
 
-section.app {
+.app {
   border: #eee solid 1px;
   border-radius: 4px;
   margin-bottom: 8px;
   padding: 8px 35px 6px 14px;
+  .app-name {
+    margin-left: -28px;
+  }
   .logo {
-    padding: 8px 0 6px 14px;
+    padding: 8px 0 6px 0;
   }
 }
 
@@ -30,9 +33,11 @@ section.app {
   margin-right: 4px;
   margin-top: -4px;
 }
+
 .busy {
   display: none;
 }
+
 .collapser {
   background-image: url('/img/container-expand.png');
   background-position: 0px 6px;
@@ -45,9 +50,13 @@ section.app {
   }
 }
 
-#errors,
-#error-dirs {
+.errors {
   margin-top: 18px;
+}
+
+.links,
+.versions {
+  line-height: 30px;
 }
 
 

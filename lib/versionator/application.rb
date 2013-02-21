@@ -25,7 +25,7 @@ module Versionator
       # Inserts a throbber image which will be hidden by default.
       # The image will have the +busy+ class.
       def busy_indicator
-        %Q{<img src="img/busy.gif" class="busy" />}
+        %Q{<img src="img/busy.gif" class="busy js-busy" />}
       end
 
       def app_for_dir(dir)

@@ -1,77 +1,75 @@
-%section#errors.row-fluid
+%section.errors.row-fluid.js-load-errors
 
-%section#error-dirs.row-fluid.hide
-  .alert.alert-error
-    .collapser.in{ :data => {:toggle => "collapse", :target => "#error-dirs-details"} }
+%section.errors.row-fluid.hide.js-dir-errors
+  .alert.alert-block.alert-error
+    .collapser.js-collapser.in{ :data => {:toggle => "collapse", :target => "#error-dirs-details"} }
       %h4 Directories not found
-    #error-dirs-details.collapse.in
+    #error-dirs-details
       %p The following directories could not be found:
-      %ul.unstyled
+      %ul.js-missing-dirs.unstyled
 
 
 %p.row-fluid
-  %button#check-all-versions.btn.hide
+  %button.btn.hide.js-check-all-versions-button
     = busy_indicator
     %i.icon-retweet
     Check all versions
 
-#app-dirs
+.js-app-dirs
 
 
 
-#new-unrecognized-app.row-fluid.hide
-  -# set id to dom_id_for_dir(dir) on section
-  %section.span12
-    %h4
-      = image("folder")
-      %span.dir
-        -# paste dir
-
-#new-app.row-fluid.hide
-  -# set id to dom_id_for_dir(dir) on section
-  -# add class "#{app.basic_name}-app" on section
-  %section.span12
-    -# set data-target to "##{dom_id_for_dir(dir)}-details" on .collapser
-    .collapser.row-fluid{ :data => {:toggle => "collapse"} }
-      %h4.span8
-        %span.dir
+%section.app.hide.js-new-unrecognized-app
+  .row-fluid
+    .span12
+      %h4
+        = image("folder")
+        %span.js-dir
           -# paste dir
-        %button.check-app.btn.btn-mini
-          %i.icon-repeat
-          Check
-        %span.installed-app.newest-app= busy_indicator
-      %h4.app-name.span2
-        -# add mini logo for app
-        -# paste app_name
+
+%section.app.hide.js-app.js-new-app
+  .row-fluid
+    -# set data-target to "##{dom_id_for_dir(dir)}-details" on .collapser
+    .collapser.row-fluid.js-collapser{ :data => {:toggle => "collapse"} }
+      .span8
+        %h4
+          %span.js-dir
+            -# paste dir
+          %button.btn.btn-mini.js-check-app-button
+            %i.icon-repeat
+            Check
+          %span.js-installed-app.js-newest-app= busy_indicator
       .span2
-        .assessment-summary.btn.disabled
+        %h4.app-name.js-app-name
+          -# add mini logo for app
+          -# paste app_name
+      .span2
+        .btn.disabled.js-assessment-summary
           %i.icon-question-sign
           Status Unknown
-    -# set id to "#{dom_id_for_dir(dir)}-details" on .collapse
-    .collapse
-      .row-fluid
-        .span4
-          %h4.app-name
-            -# pasete app_name
-          .installed-app
-            Installed Version:
-            %span.installed-version
-            = busy_indicator
-            %button.check-installed-version.btn.btn-mini
-              %i.icon-repeat
-              Check
-          .newest-app
-            Newest Version:
-            %span.newest-version
-            = busy_indicator
-            %button.check-newest-version.btn.btn-mini
-              %i.icon-repeat
-              Check
-        .span4.links
-          .project-link
-            -# paste link_to_project
-          .installed-version-link
-          .newest-version-link
-        .span4
-          .logo.pull-right
-            -# add logo for app
+  -# set id to "#{dom_id_for_dir(dir)}-details" on .js-collapse
+  .row-fluid
+    .collapse.js-collapse
+      .span3
+        .logo.js-logo
+          -# add logo for app
+      .versions.span3
+        .js-installed-app
+          Installed Version:
+          %strong.js-installed-version
+          = busy_indicator
+          %button.btn.btn-mini.js-check-installed-version-button
+            %i.icon-repeat
+            Check
+        .js-newest-app
+          Newest Version:
+          %strong.js-newest-version
+          = busy_indicator
+          %button.btn.btn-mini.js-check-newest-version-button
+            %i.icon-repeat
+            Check
+      .links.offset2.span3
+        .js-project-website-link
+          -# paste link_to_project_website
+        .js-project-download-link
+          -# paste link_to_project_download

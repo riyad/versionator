@@ -17,7 +17,7 @@
             %ul.nav
               %li= link_to("#{image("nav-installations")} Installations", '/')
               %li
-                %button#refresh-installations-button.btn
+                %button.btn.js-refresh-installations-button
                   %i.icon-refresh
                   Reload
                   = busy_indicator
@@ -30,4 +30,6 @@
 
     %script{ :src => "js/jquery.min.js" }
     %script{ :src => "js/bootstrap.min.js" }
-    %script{ :src => "js/main.js", :defer => true }
+    %script{ :src => "js/handlers.js", :defer => true }
+    %script{ :src => "js/misc.js", :defer => true }
+    %script{ :src => "js/render.js", :defer => true }
