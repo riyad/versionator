@@ -28,7 +28,7 @@ var Render = {
       $(new_app).find(".js-app-name").append(app.app_name);
       $(new_app).find(".js-logo").append(Render.appLogo(app.basic_name));
       $(new_app).find(".js-project-website-link").append(Render.appProjectWebsiteLink(app.project_url));
-      $(new_app).find(".js-project-download-link").append(Render.appProjectDownloadLink(app.project_url));
+      $(new_app).find(".js-project-download-link").append(Render.appProjectDownloadLink(app.project_download_url));
       $(new_app).removeClass("hide").show();
 
       $(list).append(new_app);

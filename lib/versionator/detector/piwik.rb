@@ -5,6 +5,7 @@ module Versionator
     class Piwik < Base
       set :app_name, "Piwik"
       set :project_url, "http://piwik.org"
+      set :project_download_url, "http://piwik.org/download-piwik/"
 
       set :detect_dirs, %w{config core js libs misc plugins themes}
       set :detect_files, %w{core/Version.php index.php piwik.php}

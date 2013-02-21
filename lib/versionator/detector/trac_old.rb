@@ -5,6 +5,7 @@ module Versionator
     class TracOld < Base
       set :app_name, "Trac (LTS)"
       set :project_url, "http://trac.edgewall.org"
+      set :project_download_url, "http://trac.edgewall.org/wiki/TracDownload#PreviousStableRelease"
 
       set :detect_dirs, %w{contrib doc trac}
       set :detect_files, %w{PKG-INFO setup.cfg setup.py}

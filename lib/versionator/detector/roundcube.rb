@@ -5,6 +5,7 @@ module Versionator
     class Roundcube < Base
       set :app_name, "Roundcube"
       set :project_url, "http://roundcube.net/"
+      set :project_download_url, "http://roundcube.net/download"
 
       set :detect_dirs, %w{bin config installer plugins program skins}
       set :detect_files, %w{index.php}

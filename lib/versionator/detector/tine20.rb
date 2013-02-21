@@ -5,6 +5,7 @@ module Versionator
     class Tine20 < Base
       set :app_name, "Tine 2.0"
       set :project_url, "http://www.tine20.org"
+      set :project_download_url, "http://www.tine20.org/download.html"
 
       set :detect_dirs, %w{Tinebase}
       set :detect_files, %w{tine20.php Tinebase/Core.php}

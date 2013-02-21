@@ -7,6 +7,7 @@ module Versionator
     class Drupal6 < Base
       set :app_name, "Drupal 6"
       set :project_url, "http://drupal.org"
+      set :project_download_url, "http://drupal.org/project/drupal"
 
       set :detect_dirs, %w{includes misc modules profiles scripts sites themes}
       set :detect_files, %w{CHANGELOG.txt cron.php index.php install.php xmlrpc.php}

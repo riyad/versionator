@@ -5,6 +5,7 @@ module Versionator
     class Phpbb < Base
       set :app_name, "phpBB"
       set :project_url, "https://www.phpbb.com/"
+      set :project_download_url, "https://www.phpbb.com/downloads/?from=header&sid=0f55061cbffad8107ecbf18dad0c1069"
 
       set :detect_dirs, %w{adm download files includes install store styles}
       set :detect_files, %w{common.php cron.php faq.php index.php install/schemas/schema_data.sql posting.php search.php viewforum.php viewonline.php viewtopic.php}
