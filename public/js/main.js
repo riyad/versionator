@@ -37,7 +37,7 @@ function renderExternalLink(text, url, options) {
 }
 
 function renderImage(name, alt) {
-  return '<img src="images/'+name+'" alt="'+alt+'" />';
+  return '<img src="img/'+name+'" alt="'+alt+'" />';
 }
 
 function renderMiniAppLogo(basic_name) {

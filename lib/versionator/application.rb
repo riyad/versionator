@@ -25,7 +25,7 @@ module Versionator
       # Inserts a throbber image which will be hidden by default.
       # The image will have the +busy+ class.
       def busy_indicator
-        %Q{<img src="images/busy.gif" class="busy" />}
+        %Q{<img src="img/busy.gif" class="busy" />}
       end
 
       def app_for_dir(dir)
@@ -78,7 +78,7 @@ module Versionator
       # Inserts the image named _name_.
       # You can add html options using the _html_options_ hash.
       def image(name, html_options = {})
-        %Q{<img src="images/#{name}.png" alt="#{name}" #{%Q{id="#{html_options[:id]}"} if html_options[:id]} #{%Q{class="#{html_options[:class]}"} if html_options[:class]} #{%Q{style="#{html_options[:style]}"} if html_options[:style]}/>}
+        %Q{<img src="img/#{name}.png" alt="#{name}" #{%Q{id="#{html_options[:id]}"} if html_options[:id]} #{%Q{class="#{html_options[:class]}"} if html_options[:class]} #{%Q{style="#{html_options[:style]}"} if html_options[:style]}/>}
       end
 
       # Instert a link to _href_ showing the given _text_.

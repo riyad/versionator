@@ -34,14 +34,14 @@ section.app {
   display: none;
 }
 .collapser {
-  background-image: url('/images/container-expand.png');
+  background-image: url('/img/container-expand.png');
   background-position: 0px 6px;
   background-repeat: no-repeat;
   cursor: pointer;
   display: block;
   padding-left: 28px;
   &.in {
-    background-image: url('/images/container-collapse.png');
+    background-image: url('/img/container-collapse.png');
   }
 }
 
