@@ -14,7 +14,6 @@ module Versionator
     # * #contents_detected?
     # * #detect_installed_version
     # * #detect_newest_version
-    # * #project_url_for_version
     class Base
       # Specifies an unknown version.
       # This is eqivalent to version "0.0".
@@ -143,30 +142,6 @@ module Versionator
         detect_newest_version if @newest_version == UnknownVersion
 
         @newest_version
-      end
-
-      # Gives a version specific link for the app.
-      # The default implementation returns +nil+.
-      #
-      # Override this method and return a URL to the release notes or the release announcement for the given _version_.
-      def project_url_for_version(version)
-      end
-
-      # This is a convenenience equivalent to:
-      #   project_url_for_version(installed_version)
-      #
-      # See also: #project_url_for_version
-      def project_url_for_installed_version
-        project_url_for_version(installed_version)
-      end
-
-
-      # This is a convenenience equivalent to:
-      #   project_url_for_version(newest_version)
-      #
-      # See also: #project_url_for_version
-      def project_url_for_newest_version
-        project_url_for_version(newest_version)
       end
 
       protected

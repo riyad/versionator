@@ -15,14 +15,6 @@ module Versionator
       set :newest_version_url, 'http://www.mediawiki.org/wiki/Download'
       set :newest_version_selector, '#bodyContent .plainlinks a'
       set :newest_version_regexp, /^Download MediaWiki (.+)$/
-
-      def project_url_for_version(version)
-        if version < Versionomy.parse('1.18')
-          "http://svn.wikimedia.org/svnroot/mediawiki/tags/REL#{version.change({}, :optional_fields => []).to_s.gsub('.', '_')}/phase3/RELEASE-NOTES"
-        else
-          "http://svn.wikimedia.org/svnroot/mediawiki/tags/REL#{version.change({}, :optional_fields => []).to_s.gsub('.', '_')}/phase3/RELEASE-NOTES-#{version.to_s}"
-        end
-      end
     end
   end
 end

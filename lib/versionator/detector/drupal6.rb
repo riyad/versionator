@@ -23,10 +23,6 @@ module Versionator
         !is_openatrium? && installed_version.major < 7 if super
       end
 
-      def project_url_for_version(version)
-        "#{project_url}/drupal-#{version}"
-      end
-
       private
 
       def is_openatrium?

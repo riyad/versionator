@@ -15,10 +15,6 @@ module Versionator
       set :newest_version_url, 'http://piwik.org/'
       set :newest_version_selector, '.download-button .title'
       set :newest_version_regexp, /^\s*Download Piwik (.+)\s*$/
-
-      def project_url_for_version(version)
-        "#{project_url}/blog/piwik-#{version.to_s.gsub('.','-')}/"
-      end
     end
   end
 end

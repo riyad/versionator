@@ -15,10 +15,6 @@ module Versionator
       set :newest_version_url, 'http://openatrium.com/download'
       set :newest_version_selector, '#block-views-openatrium_releases-block_1 .field-content'
       set :newest_version_regexp, /^Download (.+)$/
-
-      def project_url_for_version(version)
-        "#{project_url}/download"
-      end
     end
   end
 end

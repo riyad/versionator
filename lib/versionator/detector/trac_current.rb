@@ -19,10 +19,6 @@ module Versionator
       def contents_detected?
         super && installed_version.major > 0
       end
-
-      def project_url_for_version(version)
-        "#{project_url}/browser/tags/trac-#{version}/RELEASE"
-      end
     end
   end
 end

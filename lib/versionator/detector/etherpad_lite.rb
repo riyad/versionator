@@ -14,10 +14,6 @@ module Versionator
       set :newest_version_url, 'http://etherpad.org/'
       set :newest_version_selector, '#downloadbutton'
       set :newest_version_regexp, /Version (.+)$/
-
-      def project_url_for_version(version)
-         "https://github.com/ether/etherpad-lite/blob/master/CHANGELOG.md#v#{version.to_s.gsub('.', '')}"
-      end
     end
   end
 end

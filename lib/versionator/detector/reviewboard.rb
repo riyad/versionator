@@ -15,10 +15,6 @@ module Versionator
       set :newest_version_url, 'http://www.reviewboard.org/'
       set :newest_version_selector, '#announcebox p'
       set :newest_version_regexp, /^\s*Stable:\s+([^\s]+)\s*$/
-
-      def project_url_for_version(version)
-        "#{project_url}/docs/releasenotes/dev/reviewboard/#{version}/"
-      end
     end
   end
 end

@@ -15,10 +15,6 @@ module Versionator
       set :newest_version_url, 'https://www.phpbb.com/downloads/'
       set :newest_version_selector, '#full-package .download-container a'
       set :newest_version_regexp, /^Latest stable phpBB: ([\d\.]+)/
-
-      def project_url_for_version(version)
-        "http://www.phpbb.com/support/documentation/#{version.major}.#{version.minor}/"
-      end
     end
   end
 end

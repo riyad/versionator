@@ -121,7 +121,6 @@ module Versionator
 
       result = Hash.new
       result[:newest_version] = app.newest_version
-      result[:project_url_for_newest_version] = app.project_url_for_newest_version
 
       content_type 'application/json', :charset => 'utf-8'
       result.to_json
@@ -166,7 +165,6 @@ module Versionator
 
       result = Hash.new
       result[:installed_version] = app.installed_version
-      result[:project_url_for_installed_version] = app.project_url_for_installed_version
 
       content_type 'application/json', :charset => 'utf-8'
       result.to_json
