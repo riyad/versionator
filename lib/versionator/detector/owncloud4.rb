@@ -14,7 +14,7 @@ module Versionator
       set :installed_version_file, "lib/util.php"
       set :installed_version_regexp, /return '(\d+\.\d+(\.\d+)?).*';$/
 
-      set :newest_version_url, 'http://owncloud.org/install/'
+      set :newest_version_url, 'http://owncloud.org/support/install/'
       set :newest_version_selector, '.content small a'
       set :newest_version_regexp, /^ownCloud Server ([\d\.]+)/
 
