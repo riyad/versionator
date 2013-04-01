@@ -13,7 +13,7 @@ module Versionator
       set :installed_version_regexp, /^\s*Version (.+)$/
 
       set :newest_version_url, 'http://www.phpmyadmin.net/home_page/index.php'
-      set :newest_version_selector, '#body .rightbuttons .downloadbutton .dlname a'
+      set :newest_version_selector, '#body .downloadbutton a'
       set :newest_version_regexp, /^Download (.+)$/
     end
   end
