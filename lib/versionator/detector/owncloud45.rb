@@ -14,9 +14,9 @@ module Versionator
       set :installed_version_file, "lib/util.php"
       set :installed_version_regexp, /return '(\d+\.\d+(\.\d+)?).*';$/
 
-      set :newest_version_url, 'http://owncloud.org/support/install/'
-      set :newest_version_selector, '.content small a'
-      set :newest_version_regexp, /^ownCloud Server (4\.5\.[\d]+)/
+      set :newest_version_url, 'http://owncloud.org/changelog/'
+      set :newest_version_selector, 'h3'
+      set :newest_version_regexp, /^Version (4\.5\.[\d]+)/
       
       # Overridden to make sure that we do only detect the 4.5 series
       def contents_detected?
