@@ -4,6 +4,7 @@ module Versionator
     class Vanilla < Base
       set :app_name, "Vanilla"
       set :project_url, "http://vanillaforums.org/"
+      set :project_download_url, "http://vanillaforums.org/download"
 
       set :detect_dirs, %w{applications/vanilla conf js library themes uploads}
       set :detect_files, %w{bootstrap.php index.php LICENSE.txt readme.html}

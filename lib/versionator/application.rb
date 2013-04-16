@@ -25,7 +25,7 @@ module Versionator
       # Inserts a throbber image which will be hidden by default.
       # The image will have the +busy+ class.
       def busy_indicator
-        %Q{<img src="images/busy.gif" class="busy" />}
+        %Q{<img src="img/busy.gif" class="busy js-busy" />}
       end
 
       def app_for_dir(dir)
@@ -78,7 +78,7 @@ module Versionator
       # Inserts the image named _name_.
       # You can add html options using the _html_options_ hash.
       def image(name, html_options = {})
-        %Q{<img src="images/#{name}.png" alt="#{name}" #{%Q{id="#{html_options[:id]}"} if html_options[:id]} #{%Q{class="#{html_options[:class]}"} if html_options[:class]} #{%Q{style="#{html_options[:style]}"} if html_options[:style]}/>}
+        %Q{<img src="img/#{name}.png" alt="#{name}" #{%Q{id="#{html_options[:id]}"} if html_options[:id]} #{%Q{class="#{html_options[:class]}"} if html_options[:class]} #{%Q{style="#{html_options[:style]}"} if html_options[:style]}/>}
       end
 
       # Instert a link to _href_ showing the given _text_.
@@ -121,7 +121,6 @@ module Versionator
 
       result = Hash.new
       result[:newest_version] = app.newest_version
-      result[:project_url_for_newest_version] = app.project_url_for_newest_version
 
       content_type 'application/json', :charset => 'utf-8'
       result.to_json
@@ -144,6 +143,7 @@ module Versionator
           result_app[:dir] = app.base_dir
           result_app[:dir_id] = dom_id_for_dir(app.base_dir)
           result_app[:project_url] = app.project_url
+          result_app[:project_download_url] = app.project_download_url
         else
           result_app[:dir] = dir
           result_app[:unrecognized] = true
@@ -166,7 +166,6 @@ module Versionator
 
       result = Hash.new
       result[:installed_version] = app.installed_version
-      result[:project_url_for_installed_version] = app.project_url_for_installed_version
 
       content_type 'application/json', :charset => 'utf-8'
       result.to_json

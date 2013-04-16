@@ -5,6 +5,7 @@ module Versionator
     class Collabtive < Base
       set :app_name, "Collabtive"
       set :project_url, "http://collabtive.o-dyn.de/"
+      set :project_download_url, "http://collabtive.o-dyn.de/downloadref.php"
 
       set :detect_dirs, %w{config files include templates}
       set :detect_files, %w{admin.php changelog.txt index.php init.php install.php license.txt manageajax.php myprojects.php mytasks.php}

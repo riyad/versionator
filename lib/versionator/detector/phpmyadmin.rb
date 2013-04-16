@@ -5,6 +5,7 @@ module Versionator
     class Phpmyadmin < Base
       set :app_name, "phpMyAdmin"
       set :project_url, "http://www.phpmyadmin.net"
+      set :project_download_url, "http://www.phpmyadmin.net/home_page/downloads.php"
 
       set :detect_dirs, %w{js libraries themes}
       set :detect_files, %w{export.php index.php navigation.php README sql.php themes.php}

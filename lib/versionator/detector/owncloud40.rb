@@ -7,6 +7,7 @@ module Versionator
     class Owncloud40 < Base
       set :app_name, "ownCloud 4.0"
       set :project_url, "http://owncloud.org/"
+      set :project_download_url, "http://owncloud.org/support/install/"
 
       set :detect_dirs, %w{3rdparty apps core lib settings}
       set :detect_files, %w{db_structure.xml index.php lib/util.php README}

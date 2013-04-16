@@ -6,6 +6,7 @@ module Versionator
     class Wordpress < Base
       set :app_name, "WordPress"
       set :project_url, "http://wordpress.org"
+      set :project_download_url, "http://wordpress.org/download/"
 
       set :detect_dirs, %w{wp-admin wp-content wp-includes}
       set :detect_files, %w{index.php wp-includes/version.php wp-load.php wp-settings.php xmlrpc.php}
@@ -16,10 +17,6 @@ module Versionator
       set :newest_version_url, 'http://wordpress.org/download'
       set :newest_version_selector, '.download-meta .download-button'
       set :newest_version_regexp, /^Download.WordPress.(.+)$/
-
-      def project_url_for_version(version)
-        "#{project_url}/news/wordpress-#{version.to_s.gsub('.', '-')}"
-      end
     end
   end
 end

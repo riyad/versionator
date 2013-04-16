@@ -5,6 +5,7 @@ module Versionator
     class Redmine < Base
       set :app_name, "Redmine"
       set :project_url, "http://www.redmine.org"
+      set :project_download_url, "http://www.redmine.org/projects/redmine/wiki/Download"
 
       set :detect_dirs, %w{app config lib public vendor}
       set :detect_files, %w{doc/CHANGELOG Rakefile README.rdoc}
