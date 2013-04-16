@@ -64,6 +64,7 @@ var Render = {
   missingDirs: function(missing_dirs) {
     // reset list
     list = $("<ul></ul>");
+	list.addClass("unstyled");
 
     // list dirs
     $(missing_dirs).each(function() {
