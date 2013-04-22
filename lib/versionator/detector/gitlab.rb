@@ -4,7 +4,7 @@ module Versionator
     # Detects {GitLab}[http://gitlabhq.com].
     class Gitlab < Base
       set :app_name, "GitLab"
-      set :project_url, "http://gitlabhq.org"
+      set :project_url, "http://gitlab.org/"
       set :project_download_url, "https://github.com/gitlabhq/gitlabhq/tags"
 
       set :detect_dirs, %w{app config lib public vendor}
