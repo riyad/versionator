@@ -5,7 +5,7 @@ module Versionator
     class Reviewboard < Base
       set :app_name, "Review Board"
       set :project_url, "http://www.reviewboard.org"
-      set :project_download_url, "http://www.reviewboard.org/downloads/"
+      set :project_download_url, "http://www.reviewboard.org/downloads/download/"
 
       set :detect_dirs, %w{contrib docs reviewboard}
       set :detect_files, %w{ez_setup.py PKG-INFO setup.cfg setup.py}
