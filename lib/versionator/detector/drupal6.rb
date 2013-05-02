@@ -24,8 +24,6 @@ module Versionator
         !is_openatrium? && installed_version.major < 7 if super
       end
 
-      private
-
       def is_openatrium?
         Dir.exists?(File.expand_path("profiles/openatrium", base_dir))
       end
