@@ -19,7 +19,11 @@ module Versionator
 
       # Overridden to make sure that we do only detect Drupal7
       def contents_detected?
-        installed_version.major >= 7 if super
+        !is_openatrium? && installed_version.major >= 7 if super
+      end
+
+      def is_openatrium?
+        Dir.exists?(File.expand_path("profiles/openatrium", base_dir))
       end
     end
   end
