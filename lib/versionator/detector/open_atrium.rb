@@ -8,14 +8,46 @@ module Versionator
       set :project_download_url, "http://openatrium.com/download"
 
       set :detect_dirs, %w{includes misc modules profiles profiles/openatrium scripts sites themes}
-      set :detect_files, %w{cron.php index.php install.php profiles/openatrium/VERSION.txt xmlrpc.php}
+      set :detect_files, %w{cron.php index.php install.php xmlrpc.php}
 
-      set :installed_version_file, "profiles/openatrium/VERSION.txt" # broken for 1.5 and 1.7
-      set :installed_version_regexp, /^(.+)$/
+      set :installed_version_file, "foo" # placeholder
+      set :installed_version_regexp, /^(foo)$/ # placeholder
 
       set :newest_version_url, 'http://openatrium.com/download'
       set :newest_version_selector, '#block-views-openatrium_releases-block_1 .field-content'
       set :newest_version_regexp, /^Download(?: openatrium) (?:7.x-)?(.+)$/
+
+      # Overridden to take into account different files for different versions
+      def detected?
+        super && (
+          File.readable?(File.join(base_dir, "profiles/openatrium/openatrium.info")) ||
+          File.readable?(File.join(base_dir, "profiles/openatrium/VERSION.txt"))
+        )
+      end
+
+      def version_2x?
+        File.readable?(File.join(base_dir, "profiles/openatrium/openatrium.info"))
+      end
+
+      protected
+
+      # Overridden to take into account different files for different versions
+      def installed_version_file
+        if version_2x?
+          "profiles/openatrium/openatrium.info"
+        else
+          "profiles/openatrium/VERSION.txt"
+        end
+      end
+
+      # Overridden to take into account different files for different versions
+      def installed_version_regexp
+        if version_2x?
+          /^version = "7.x-(.+)"$/
+        else
+          /^(.+)$/
+        end
+      end
     end
   end
 end
