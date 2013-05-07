@@ -2,7 +2,7 @@ module Versionator
   module Detector
     # Detects {Vanilla}[http://vanillaforums.org/]
     class Vanilla < Base
-      set :app_name, "Vanilla"
+      set :app_name, "Vanilla Forums"
       set :project_url, "http://vanillaforums.org/"
       set :project_download_url, "http://vanillaforums.org/download"
 
