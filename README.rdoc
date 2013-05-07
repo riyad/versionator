@@ -45,7 +45,7 @@ please either report an issue (see below) or fork the repository and send a merg
 
     ./versionator.rb
 
-0. Open your web browser and go to your \Versionator URL or http://localhost:4567 if  have started it by hand
+0. Open your web browser and go to your \Versionator URL or http://localhost:4567 if you started it by hand
 
 == A Word of Warning
 
@@ -59,9 +59,19 @@ Also the use of some sort of authentication is recommeded.
 
 Please, report all issues on our issue tracker on GitHub: https://github.com/riyad/versionator/issues
 
-== Code
+== Code Contributions
 
 The main repository can be found on GitHub: https://github.com/riyad/versionator
+
+=== Other App Detectors
+
+* Fork the repo
+* Create a branch for your contribution
+* Add your detector to the lib/versionator/detector directory
+* Add the necessary logos in PNG format. (mini: favicon-like 16x16px square, normal: original logo scaled down to 48px height)
+* Add it to the README
+* Push it to your fork on GitHub
+* Create a Pull Request
 
 == License
 
