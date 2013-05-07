@@ -22,6 +22,7 @@ This is a web application that alows you to check a list of directories which we
 * {Tine 2.0}[http://www.tine20.org]
 * {Trac}[http://trac.edgewall.org]
 * {Vanilla Forums}[http://vanillaforums.org/]
+* {Versionator}[https://github.com/riyad/versionator]
 * {WordPress}[http://wordpress.org]
 
 If your favorite web application is not in the list,
