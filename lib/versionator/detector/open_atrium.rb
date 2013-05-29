@@ -15,7 +15,7 @@ module Versionator
 
       set :newest_version_url, 'http://openatrium.com/download'
       set :newest_version_selector, '#block-views-openatrium_releases-block_1 .field-content'
-      set :newest_version_regexp, /^Download(?: openatrium) (?:7.x-)?(.+)$/
+      set :newest_version_regexp, /^Download ?(.+)$/
 
       # Overridden to take into account different files for different versions
       def detected?
