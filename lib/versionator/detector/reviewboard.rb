@@ -14,8 +14,8 @@ module Versionator
       set :installed_version_regexp, /^Version: (.+)$/
 
       set :newest_version_url, 'http://www.reviewboard.org/'
-      set :newest_version_selector, '#announcebox p'
-      set :newest_version_regexp, /^\s*Stable:\s+([^\s]+)\s*$/
+      set :newest_version_selector, '#latest_releases a'
+      set :newest_version_regexp, /^(.+)$/
     end
   end
 end
