@@ -11,7 +11,7 @@ module Versionator
       set :detect_files, %w{core/Version.php index.php piwik.php}
 
       set :installed_version_file, "core/Version.php"
-      set :installed_version_regexp, /^\sconst VERSION = '(.+)';$/
+      set :installed_version_regexp, /^\s*const VERSION = '(.+)';$/
 
       set :newest_version_url, 'http://piwik.org/'
       set :newest_version_selector, '.download-button .title'
