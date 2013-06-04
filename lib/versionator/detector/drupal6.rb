@@ -6,8 +6,8 @@ module Versionator
     # But it will only check for the most recent version of the 6 series.
     class Drupal6 < Base
       set :app_name, "Drupal 6"
-      set :project_url, "http://drupal.org"
-      set :project_download_url, "http://drupal.org/project/drupal"
+      set :project_url, "https://drupal.org"
+      set :project_download_url, "https://drupal.org/project/drupal"
 
       set :detect_dirs, %w{includes misc modules profiles scripts sites themes}
       set :detect_files, %w{CHANGELOG.txt cron.php index.php install.php xmlrpc.php}
@@ -15,8 +15,8 @@ module Versionator
       set :installed_version_file, "CHANGELOG.txt"
       set :installed_version_regexp, /^Drupal (.+), .*$/
 
-      set :newest_version_url, 'http://drupal.org/project/drupal'
-      set :newest_version_selector, '.download-table .project-release .release-update-status-0 .views-field-version a'
+      set :newest_version_url, 'https://drupal.org/project/drupal'
+      set :newest_version_selector, '.download-table .project-release .views-field-version a'
       set :newest_version_regexp, /^(6.+)$/
 
       # Overridden to make sure that we do not also detect Drupal7 or Open Atrium
