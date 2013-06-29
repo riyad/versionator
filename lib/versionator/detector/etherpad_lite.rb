@@ -13,7 +13,7 @@ module Versionator
       set :installed_version_regexp, /^# v?\s?(.+)$/
 
       set :newest_version_url, 'http://etherpad.org/'
-      set :newest_version_selector, '#downloadbutton'
+      set :newest_version_selector, '.button'
       set :newest_version_regexp, /Version (.+)$/
     end
   end
