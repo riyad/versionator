@@ -9,6 +9,7 @@
 ######################
 .kateproject*
 .ruby-version
+.ruby-gemset
 .rvmrc
 doc/
 
