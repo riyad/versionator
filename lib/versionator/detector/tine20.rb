@@ -4,8 +4,8 @@ module Versionator
     # Detects {Tine 2.0}[http://www.tine20.org].
     class Tine20 < Base
       set :app_name, "Tine 2.0"
-      set :project_url, "http://www.tine20.org"
-      set :project_download_url, "http://www.tine20.org/download.html"
+      set :project_url, "http://www.tine20.org/en/home.html"
+      set :project_download_url, "http://www.tine20.org/en/download/download.html"
 
       set :detect_dirs, %w{Tinebase}
       set :detect_files, %w{tine20.php Tinebase/Core.php}
@@ -13,9 +13,9 @@ module Versionator
       set :installed_version_file, "Tinebase/Core.php"
       set :installed_version_regexp, /^\s*define\('TINE20_PACKAGESTRING', '([\.\d-]+)'\);$/
 
-      set :newest_version_url, 'http://www.tine20.org/download.html'
-      set :newest_version_selector, '#cLeft tr'
-      set :newest_version_regexp, /^\s*Package String:\s+([\.\d-]+)\s+.*$/
+      set :newest_version_url, 'http://www.tine20.org/en/download/download.html'
+      set :newest_version_selector, '.downloadArea .tableheader'
+      set :newest_version_regexp, /^Stable: \w+ \(([\.\d-]+)\)$/
 
       def installed_version
         super
