@@ -13,9 +13,9 @@ module Versionator
       set :installed_version_file, "foo" # placeholder
       set :installed_version_regexp, /^(foo)$/ # placeholder
 
-      set :newest_version_url, 'http://openatrium.com/download'
-      set :newest_version_selector, '#block-views-openatrium_releases-block_1 .field-content'
-      set :newest_version_regexp, /^Download ?(.+)$/
+      set :newest_version_url, 'https://drupal.org/project/openatrium'
+      set :newest_version_selector, '.view-project-release-download-table .views-field-field-release-version a'
+      set :newest_version_regexp, /^7\.x-(.+)$/
 
       # Overridden to take into account different files for different versions
       def detected?
