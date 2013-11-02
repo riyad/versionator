@@ -14,7 +14,7 @@ module Versionator
       set :installed_version_regexp, /^Drupal ([\d\.]+)[,\s].*$/
 
       set :newest_version_url, 'https://drupal.org/project/drupal'
-      set :newest_version_selector, '.download-table .project-release .views-field-version a'
+      set :newest_version_selector, '.view-project-release-download-table .views-field-field-release-version a'
       set :newest_version_regexp, /^(7.+)$/
 
       # Overridden to make sure that we do only detect Drupal7
