@@ -8,27 +8,27 @@ function checkAllInstalledVersions() {
   $(".js-app").not(".js-new-app").each(function() {
     var app = $(this);
     setTimeout(function() {
-      checkInstalledVersionForDirectory($(app).data("dir_id"));
+      checkInstalledVersionForApplication(app);
     }, currentDelay);
     currentDelay += delayBetweenRequests;
   });
 }
 
-function checkInstalledVersionForDirectory(directory) {
-  var dir = $("[data-dir_id='"+directory+"']");
-  var installedVersionUrl = "/installations/"+directory+"/installed_version.json";
+function checkInstalledVersionForApplication(app) {
+  var dirId = $(app).data("dir_id");
+  var installedVersionUrl = "/installations/"+dirId+"/installed_version.json";
 
-  $(dir).find(".js-installed-app .js-busy").show(); // show busy
-  $(dir).find(".js-installed-version").html(""); // erase version + link
+  $(app).find(".js-installed-app .js-busy").show(); // show busy
+  $(app).find(".js-installed-version").html(""); // erase version + link
   $.getJSON(installedVersionUrl).success(function(data) {
-    updateInstalledVersionFor(dir, data.installed_version);
-    updateAssessments(dir);
+    updateInstalledVersionFor(app, data.installed_version);
+    updateAssessments(app);
   }).error(function(xhr, error, exception) {
     console.log(xhr);
     console.log(error);
     console.log(exception);
     error = titelize(error);
-    updateInstalledVersionFor(dir, Render.ajaxError(error, exception));
+    updateInstalledVersionFor(app, Render.ajaxError(error, exception));
   });
 }
 
@@ -50,23 +50,23 @@ function checkAllNewestVersions() {
   var delayBetweenRequests = 250; // in ms
   var currentDelay = 0;
 
-  var apps = $.unique($(".js-app").map(function() {
+  var basicNames = $.unique($(".js-app").map(function() {
       return $(this).data("basic_name");
   }));
-  $(apps).each(function() {
-    var app = this;
-    if (!isEmpty($("[data-basic_name='"+app+"']").toArray())) {
+  $(basicNames).each(function() {
+    var basicName = this;
+    if (!isEmpty($("[data-basic_name='"+basicName+"']").toArray())) {
       setTimeout(function() {
-        checkNewestVersionForApplication(app);
+        checkNewestVersionForApplicationByName(basicName);
       }, currentDelay);
       currentDelay += delayBetweenRequests;
     }
   });
 }
 
-function checkNewestVersionForApplication(app) {
-  var apps = $("[data-basic_name='"+app+"']");
-  var newestVersionUrl = "/applications/"+app+"/newest_version.json";
+function checkNewestVersionForApplicationByName(basicName) {
+  var apps = $("[data-basic_name='"+basicName+"']");
+  var newestVersionUrl = "/applications/"+basicName+"/newest_version.json";
 
   $(apps).find(".js-newest-app .js-busy").show(); // show busy
   $(apps).find(".js-newest-version").html(""); // erase version + link
@@ -172,14 +172,14 @@ $(function() {
 
   $("body").on("click", ".js-check-app-button", function(e) {
     e.stopPropagation(); // to prevent .collapser to trigger
-    checkInstalledVersionForDirectory($(this).parents(".js-app").data('dir_id'));
+    checkInstalledVersionForApplication($(this).parents(".js-app"));
     checkNewestVersionForApplication($(this).parents(".js-app").data('basic_name'));
   });
   $("body").on("click", ".js-check-installed-version-button", function() {
-    checkInstalledVersionForDirectory($(this).parents(".js-app").data('dir_id'));
+    checkInstalledVersionForApplication($(this).parents(".js-app"));
   });
   $("body").on("click", ".js-check-newest-version-button", function() {
-    checkNewestVersionForApplication($(this).parents(".js-app").data('basic_name'));
+    checkNewestVersionForApplicationByName($(this).parents(".js-app").data('basic_name'));
   });
 
   loadInstallations();
