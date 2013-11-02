@@ -5,14 +5,12 @@ function checkAllInstalledVersions() {
   var delayBetweenRequests = 250; // in ms
   var currentDelay = 0;
 
-  $(".js-app").each(function() {
-    var section = $(this);
-    if (!$(section).data("unrecognized")) {
-      setTimeout(function() {
-        checkInstalledVersionForDirectory($(section).data("dir_id"));
-      }, currentDelay);
-      currentDelay += delayBetweenRequests;
-    }
+  $(".js-app").not(".js-new-app").each(function() {
+    var app = $(this);
+    setTimeout(function() {
+      checkInstalledVersionForDirectory($(app).data("dir_id"));
+    }, currentDelay);
+    currentDelay += delayBetweenRequests;
   });
 }
 
