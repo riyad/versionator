@@ -5,7 +5,7 @@ module Versionator
     class OpenAtrium < Base
       set :app_name, "Open Atrium"
       set :project_url, "http://openatrium.com"
-      set :project_download_url, "http://openatrium.com/download"
+      set :project_download_url, "https://drupal.org/project/openatrium"
 
       set :detect_dirs, %w{includes misc modules profiles profiles/openatrium scripts sites themes}
       set :detect_files, %w{cron.php index.php install.php xmlrpc.php}
