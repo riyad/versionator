@@ -8,7 +8,7 @@ module Versionator
       set :project_download_url, "http://www.mediawiki.org/wiki/Download"
 
       set :detect_dirs, %w{extensions images includes maintenance skins}
-      set :detect_files, %w{api.php includes/DefaultSettings.php index.php redirect.php thumb.php}
+      set :detect_files, %w{api.php includes/DefaultSettings.php index.php thumb.php}
 
       set :installed_version_file, "includes/DefaultSettings.php" # see contents_detected?
       set :installed_version_regexp, /^\$wgVersion\s*= '(.+)';$/
