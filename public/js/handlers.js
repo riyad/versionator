@@ -173,7 +173,7 @@ $(function() {
   $("body").on("click", ".js-check-app-button", function(e) {
     e.stopPropagation(); // to prevent .collapser to trigger
     checkInstalledVersionForApplication($(this).parents(".js-app"));
-    checkNewestVersionForApplication($(this).parents(".js-app").data('basic_name'));
+    checkNewestVersionForApplicationByName($(this).parents(".js-app").data('basic_name'));
   });
   $("body").on("click", ".js-check-installed-version-button", function() {
     checkInstalledVersionForApplication($(this).parents(".js-app"));
