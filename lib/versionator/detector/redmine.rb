@@ -14,7 +14,7 @@ module Versionator
       set :installed_version_regexp, /^== \d\d\d\d-\d\d-\d\d v(.+)$/
 
       set :newest_version_url, 'http://www.redmine.org/projects/redmine/wiki/Download'
-      set :newest_version_selector, '#content .wiki li'
+      set :newest_version_selector, '#sidebar .wiki-page'
       set :newest_version_regexp, /^(.+) \([\d-]+\)$/
 
       def contents_detected?
