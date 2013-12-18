@@ -8,24 +8,18 @@ module Versionator
       set :project_download_url, "http://owncloud.org/support/install/"
 
       set :detect_dirs, %w{3rdparty apps core lib settings}
-      set :detect_files, %w{db_structure.xml index.php lib/util.php README}
+      set :detect_files, %w{db_structure.xml index.php version.php}
 
-      set :installed_version_file, "lib/util.php"
-      set :installed_version_regexp, /return '(\d+\.\d+(\.\d+)?).*';$/
+      set :installed_version_file, "version.php"
+      set :installed_version_regexp, /\$OC_VersionString = '(.+)'/
 
       set :newest_version_url, 'http://owncloud.org/changelog/'
       set :newest_version_selector, 'h3'
-      set :newest_version_regexp, /^Version ([\d\.]+)/
+      set :newest_version_regexp, /^Version (6[\d\.]+a?)/
 
       # Overridden to make sure that we do only detect the 5+ series
       def contents_detected?
-        installed_version.major > 4 if super
-      end
-
-      # Overridden to make the minor version number optional
-      def detect_installed_version
-        super
-        @installed_version = @installed_version.change({}, :optional_fields => [:minor, :tiny])
+        installed_version.major >= 6 if super
       end
     end
   end
