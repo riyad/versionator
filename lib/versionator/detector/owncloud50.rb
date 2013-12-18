@@ -1,11 +1,11 @@
 
 module Versionator
   module Detector
-    # Detects {ownCloud}[http://owncloud.org/] 4.0.
-    # This will also detect installed versions prior to the 4.0 series.
-    # But it will only check for the most recent version of the 4.0 series.
-    class Owncloud40 < Base
-      set :app_name, "ownCloud 4.0"
+    # Detects {ownCloud}[http://owncloud.org/] 5.0.
+    # This will also detect installed versions prior to the 5.0 series.
+    # But it will only check for the most recent version of the 5.0 series.
+    class Owncloud50 < Base
+      set :app_name, "ownCloud 5.0"
       set :project_url, "http://owncloud.org/"
       set :project_download_url, "http://owncloud.org/support/install/"
 
@@ -17,11 +17,11 @@ module Versionator
 
       set :newest_version_url, 'http://owncloud.org/changelog/'
       set :newest_version_selector, 'h3'
-      set :newest_version_regexp, /^Version (4\.0\.[\d]+)/
+      set :newest_version_regexp, /^Version (5\.0\.[\d]+)/
 
-      # Overridden to make sure that we do only detect the 4.0 series
+      # Overridden to make sure that we do only detect the 5.0 and lower series
       def contents_detected?
-        installed_version.major < 4 || (installed_version.major == 4 && installed_version.minor < 5) if super
+        installed_version.major <= 5 if super
       end
     end
   end
