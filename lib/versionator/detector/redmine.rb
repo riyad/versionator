@@ -19,7 +19,7 @@ module Versionator
 
       def contents_detected?
         # Overridden to make sure we detect Redmine and not any RoR app.
-        super && find_first_line(:matching => /^= Redmine/, :in_file => "README.rdoc")
+        super && find_first_match(:matching => /^= Redmine/, :in_file => "README.rdoc")
       end
     end
   end
