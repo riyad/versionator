@@ -13,7 +13,7 @@ module Versionator
       set :detect_files, %w{db_structure.xml index.php lib/util.php README}
 
       set :installed_version_file, "lib/util.php"
-      set :installed_version_regexp, /return '(\d+\.\d+(\.\d+)?).*';$/
+      set :installed_version_regexp, /return '(\d+\.\d+(?:\.\d+)?).*';$/
 
       set :newest_version_url, 'http://owncloud.org/changelog/'
       set :newest_version_selector, 'h3'
