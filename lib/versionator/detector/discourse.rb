@@ -11,7 +11,7 @@ module Versionator
       set :detect_files, %w{lib/version.rb Rakefile README.md}
 
       set :installed_version_file, "lib/version.rb"
-      set :installed_version_regexp, /MAJOR = (\d)\s+MINOR = (\d)\s+TINY  = (\d)\s+PRE   = (\d)/m
+      set :installed_version_regexp, /MAJOR = (\d)\s+MINOR = (\d)\s+TINY  = (\d)\s+PRE   = (\d)?/m
 
       set :newest_version_url, 'https://github.com/discourse/discourse/releases'
       set :newest_version_selector, 'h3 .tag-name'
