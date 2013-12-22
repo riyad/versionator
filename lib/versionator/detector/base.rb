@@ -60,12 +60,13 @@ module Versionator
       def detect_installed_version
         return @installed_version unless self.class.method_defined?(:installed_version_file)
 
-        version_line = find_first_line(:matching => installed_version_regexp, :in_file => installed_version_file)
+        version_match = find_first_match(:matching => installed_version_regexp, :in_file => installed_version_file)
 
-        version = extract_version(:from => version_line, :with => installed_version_regexp)
+        # if multiple parts are matched,
+        version = version_match.captures.join(".")
 
         # convert commas into dots so Versionomy can parse them too
-        version = version.split(',').map(&:to_i).join('.') if version.include? ','
+        version = version.gsub(',', '.')
 
         if version
           @installed_version_text = version.strip
@@ -146,32 +147,19 @@ module Versionator
 
       protected
 
-      # Finds the frist line in a file.
+      # Finds the frist match in a file.
       #
       # Options:
       # +:in_file+::        The file (relative to +base_dir+) to search in
-      # +:matching+::       Find the first line matching this *regex*
-      # +:starting_with+::  Find the line starting with this *string*
-      def find_first_line(options)
+      # +:matching+::       Find the first match of this *regex*
+      # +:starting_with+::  Find the first line starting with this *string*
+      def find_first_match(options)
         return unless options[:in_file]
 
-        lines = File.readlines(File.join(base_dir, options[:in_file]))
-        if options[:matching]
-          lines.select! { |line| line =~ options[:matching] }
-        elsif options[:starting_with]
-          lines.select! { |line| line.start_with? options[:starting_with] }
+        open(File.join(base_dir, options[:in_file])) do |file|
+          regexp = options[:matching] || Regexp.new("^#{options[:starting_with]}")
+          regexp.match(file.read)
         end
-        lines.first
-      end
-
-      # This will extract the first capture of a regexp from a string.
-      #
-      # Options:
-      # +:from+:: String
-      # +:with+:: Regexp
-      def extract_version(options)
-        m = options[:with].match(options[:from])
-        m[1]
       end
 
       # Supported settings:
