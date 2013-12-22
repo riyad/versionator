@@ -62,8 +62,8 @@ module Versionator
 
         version_match = find_first_match(:matching => installed_version_regexp, :in_file => installed_version_file)
 
-        # if multiple parts are matched,
-        version = version_match.captures.join(".")
+        # if multiple parts are matched, join them back
+        version = version_match.captures.reject(&:nil?).join(".")
 
         # convert commas into dots so Versionomy can parse them too
         version = version.gsub(',', '.')
