@@ -11,7 +11,7 @@ module Versionator
       set :detect_files, %w{admin.php changelog.txt index.php init.php install.php license.txt manageajax.php myprojects.php mytasks.php}
 
       set :installed_version_file, "changelog.txt"
-      set :installed_version_regexp, /^Collabtive (.+)$/
+      set :installed_version_regexp, /^.?Collabtive (.+)$/
 
       set :newest_version_url, 'http://collabtive.o-dyn.de/'
       set :newest_version_selector, 'div.content_right div.content_right_in_right p'
