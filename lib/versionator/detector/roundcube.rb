@@ -14,7 +14,7 @@ module Versionator
       set :installed_version_regexp, /^ \| Version ([^ ]+)\s+\|$/
 
       set :newest_version_url, 'http://roundcube.net/'
-      set :newest_version_selector, '#main .downloadButton'
+      set :newest_version_selector, '#main .btn-download .version'
       set :newest_version_regexp, /^Version (.+) \(.+\)$/
     end
   end
