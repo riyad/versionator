@@ -7,7 +7,7 @@ module Versionator
       set :project_download_url, "http://vanillaforums.org/download"
 
       set :detect_dirs, %w{applications/vanilla conf js library themes uploads}
-      set :detect_files, %w{bootstrap.php index.php LICENSE.txt readme.html}
+      set :detect_files, %w{bootstrap.php index.php}
 
       set :installed_version_file, "index.php"
       set :installed_version_regexp, /^define\('APPLICATION_VERSION', '(.+)'\);$/
