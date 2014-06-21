@@ -17,6 +17,7 @@ This is a web application that alows you to check a list of directories which we
 * {phpBB}[http://www.phpbb.com]
 * {phpMyAdmin}[http://www.phpmyadmin.net]
 * {Piwik}[http://piwik.org]
+* {RainLoop}[http://rainloop.net/]
 * {Redmine}[http://www.redmine.org]
 * {Review Board}[http://www.reviewboard.org]
 * {Roundcube}[http://roundcube.net]
