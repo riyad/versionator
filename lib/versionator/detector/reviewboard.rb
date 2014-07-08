@@ -13,7 +13,7 @@ module Versionator
       set :installed_version_file, "PKG-INFO"
       set :installed_version_regexp, /^Version: (.+)$/
 
-      set :newest_version_url, 'http://www.reviewboard.org/'
+      set :newest_version_url, 'https://www.reviewboard.org/'
       set :newest_version_selector, '.top-downloads a'
       set :newest_version_regexp, /^\s+Download Review Board v(.+)\s+$/
     end
