@@ -17,7 +17,7 @@ module Versionator
 
       set :newest_version_url, 'http://owncloud.org/changelog/'
       set :newest_version_selector, 'h3'
-      set :newest_version_regexp, /^Version (5\.0\.[\d]+)/
+      set :newest_version_regexp, /^Version (5\.[\d\.]+)/
 
       # Overridden to make sure that we do only detect the 5.0 and lower series
       def contents_detected?
