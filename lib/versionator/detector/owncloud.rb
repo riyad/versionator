@@ -13,13 +13,13 @@ module Versionator
       set :installed_version_file, "version.php"
       set :installed_version_regexp, /\$OC_VersionString = '(.+)'/
 
-      set :newest_version_url, 'http://owncloud.org/changelog/'
-      set :newest_version_selector, 'h3'
-      set :newest_version_regexp, /^Version (6[\d\.]+a?)/
+      set :newest_version_url, 'http://owncloud.org/install/'
+      set :newest_version_selector, '.install .main p'
+      set :newest_version_regexp, /^Latest stable version: (7[\d\.]+)/
 
       # Overridden to make sure that we do only detect the 5+ series
       def contents_detected?
-        installed_version.major >= 6 if super
+        installed_version.major >= 7 if super
       end
     end
   end
