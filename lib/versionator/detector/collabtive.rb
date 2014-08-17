@@ -14,8 +14,8 @@ module Versionator
       set :installed_version_regexp, /^.?Collabtive (.+)$/
 
       set :newest_version_url, 'http://collabtive.o-dyn.de/'
-      set :newest_version_selector, 'div.content_right div.content_right_in_right p'
-      set :newest_version_regexp, /^\s*Current Release: (.+)\s*.*$/
+      set :newest_version_selector, '.content_right .content_right_in_right p'
+      set :newest_version_regexp, /^\s*Latest version: (.+)\s*.*$/
     end
   end
 end
