@@ -29,10 +29,7 @@
     #content.container-fluid
       = yield
 
-    %script{ :src => "//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" }
-    -# fall back if CDN fails
-    :javascript
-      window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>');
+    %script{ src: "js/jquery.min.js" }
     %script{ src: "js/bootstrap.min.js", defer: true }
     %script{ src: "js/handlers.js", defer: true }
     %script{ src: "js/misc.js", defer: true }
