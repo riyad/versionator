@@ -2,7 +2,7 @@
 
 %section.errors.row-fluid.hide.js-dir-errors
   .alert.alert-block.alert-error
-    .collapser.js-collapser.in{ :data => {:toggle => "collapse", :target => "#error-dirs-details"} }
+    .collapser.js-collapser.in{ data: {toggle: "collapse", target: "#error-dirs-details"} }
       %h4 Directories not found
     #error-dirs-details
       %p The following directories could not be found:
@@ -30,7 +30,7 @@
 %section.app.hide.js-app.js-new-app
   .row-fluid
     -# set data-target to "##{dom_id_for_dir(dir)}-details" on .collapser
-    .collapser.row-fluid.js-collapser{ :data => {:toggle => "collapse"} }
+    .collapser.row-fluid.js-collapser{ data: {toggle: "collapse"} }
       .span8
         %h4
           %span.js-dir
