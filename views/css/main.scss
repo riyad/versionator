@@ -2,6 +2,10 @@ html {
     overflow-y: scroll;
 }
 
+body {
+    padding-top: 70px;
+}
+
 a img,
 li img {
   margin-top: -4px;
@@ -57,13 +61,4 @@ h4 {
 .links,
 .versions {
   line-height: 30px;
-}
-
-
-
-// fix responsive design stuff
-@media (min-width: 979px) {
-  body {
-    padding-top: 50px;
-  }
 }

@@ -9,22 +9,20 @@
     %link{ href: "css/main.css", rel: "stylesheet" }
     %title Versionator
   %body
-    %nav
-      .navbar.navbar-fixed-top
-        .navbar-inner
-          .container
-            =link_to "#{image("nav-index")} Versionator", '/', :class => "brand"
+    %nav.navbar.navbar-default.navbar-fixed-top{ role: "navigation" }
+      .container-fluid
+        =link_to "#{image("nav-index")} Versionator", '/', class: "navbar-brand"
 
-            %ul.nav
-              %li= link_to("#{image("nav-installations")} Installations", '/')
-              %li
-                %button.btn.js-refresh-installations-button
-                  %i.icon-refresh
-                  Reload
-                  = busy_indicator
+        %ul.nav.navbar-nav
+          %li= link_to("#{image("nav-installations")} Installations", '/')
+          %li
+            %button.btn.navbar-btn.js-refresh-installations-button
+              %i.icon-refresh
+              Reload
+              = busy_indicator
 
-            %ul.nav.pull-right
-              %li.about= link_to("#{image("nav-about")} About", '/about')
+        %ul.nav.navbar-nav.navbar-right
+          %li.about= link_to("#{image("nav-about")} About", '/about')
 
     #content.container-fluid
       = yield
