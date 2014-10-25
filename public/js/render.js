@@ -50,15 +50,15 @@ var Render = {
   },
 
   appStatusNeedsAttention: function() {
-    return '<i class="icon-exclamation-sign icon-white"></i> Needs Attention';
+    return '<span class="glyphicon glyphicon-exclamation-sign glyphicon-white"></span> Needs Attention';
   },
 
   appStatusUnknown: function() {
-    return '<i class="icon-question-sign"></i> Status Unknown';
+    return '<span class="glyphicon glyphicon-question-sign"></span> Status Unknown';
   },
 
   appStatusUpToDate: function() {
-    return '<i class="icon-ok-sign icon-white"></i> Up-to-Date';
+    return '<span class="glyphicon glyphicon-ok-sign glyphicon-white"></span> Up-to-Date';
   },
   
   missingDirs: function(missing_dirs) {

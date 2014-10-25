@@ -12,7 +12,7 @@
 %p.row-fluid
   %button.btn.hide.js-check-all-versions-button
     = busy_indicator
-    %i.icon-retweet
+    %span.glyphicon.glyphicon-retweet
     Check all versions
 
 .js-app-dirs
@@ -36,7 +36,7 @@
           %span.js-dir
             -# paste dir
           %button.btn.btn-mini.js-check-app-button
-            %i.icon-repeat
+            %span.glyphicon.glyphicon-repeat
             Check
           %span.js-installed-app.js-newest-app= busy_indicator
       .span2
@@ -59,14 +59,14 @@
           %strong.js-installed-version
           = busy_indicator
           %button.btn.btn-mini.js-check-installed-version-button
-            %i.icon-repeat
+            %span.glyphicon.glyphicon-repeat
             Check
         .js-newest-app
           Newest Version:
           %strong.js-newest-version
           = busy_indicator
           %button.btn.btn-mini.js-check-newest-version-button
-            %i.icon-repeat
+            %span.glyphicon.glyphicon-repeat
             Check
       .links.offset2.span3
         .js-project-website-link
