@@ -109,13 +109,12 @@ function loadInstallations() {
 
   $.getJSON("/installations.json").success(function(data) {
     // update content
-    $(".js-missing-dirs").html(Render.missingDirs(data.error_dirs));
-    Render.appDirs(data.app_dirs);
+    if (!isEmpty(data.error_dirs)) {
+      Render.missingDirs(data.error_dirs).slideDown();
+    }
+    Render.appDirs(data.app_dirs).slideDown();
 
     // show content
-    if (!isEmpty(data.error_dirs)) {
-      $(".js-dir-errors").slideDown();
-    }
     $(".js-refresh-installations-button .js-busy").hide();
     $(".js-check-all-versions-button").fadeIn();
   }).error(function(xhr, error, exception) {
@@ -165,8 +164,9 @@ $(function() {
   $(".js-check-all-versions-button").click(checkAllVersions);
   $(".js-refresh-installations-button").click(loadInstallations);
 
+  // make sure the trigger for the collapse (i.e. the collapser) does get the
+  // "same" treatment (i.e. toggling the "in" class) as the target
   $("body").on("click", ".js-collapser", function() {
-    $($(this).data("target")).collapse('toggle');
     $(this).toggleClass("in");
   });
 

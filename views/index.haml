@@ -1,75 +1,81 @@
-%section.errors.row-fluid.js-load-errors
+%section.errors.row.js-load-errors
+%section.errors.row.js-missing-dirs
 
-%section.errors.row-fluid.hide.js-dir-errors
-  .alert.alert-block.alert-error
+%script#tpl-missing-dirs{type: "text/x-handlebars-template"}
+  .alert.alert-danger
     .collapser.js-collapser.in{ data: {toggle: "collapse", target: "#error-dirs-details"} }
       %h4 Directories not found
-    #error-dirs-details
+    #error-dirs-details.in.collapse
       %p The following directories could not be found:
-      .js-missing-dirs
+      %ul.list-unstyled
+        {{#each dirs}}
+        %li
+          %img{src: "{{../folder_image}}"}
+          {{this}}
+        {{/each}}
 
-
-%p.row-fluid
-  %button.btn.hide.js-check-all-versions-button
-    = busy_indicator
-    %span.glyphicon.glyphicon-retweet
-    Check all versions
+.row
+  %p
+    %button.btn.hidden.js-check-all-versions-button
+      = busy_indicator
+      %span.glyphicon.glyphicon-retweet
+      Check all versions
 
 .js-app-dirs
 
 
-
-%section.app.hide.js-new-unrecognized-app
-  .row-fluid
-    .span12
-      %h4
-        = image("folder")
-        %span.js-dir
-          -# paste dir
-
-%section.app.hide.js-app.js-new-app
-  .row-fluid
-    -# set data-target to "##{dom_id_for_dir(dir)}-details" on .collapser
-    .collapser.row-fluid.js-collapser{ data: {toggle: "collapse"} }
-      .span8
+%script#tpl-unrecognized-app{type: "text/x-handlebars-template"}
+  %section.app
+    .row
+      .col-xs-12
         %h4
-          %span.js-dir
-            -# paste dir
-          %button.btn.btn-mini.js-check-app-button
-            %span.glyphicon.glyphicon-repeat
-            Check
-          %span.js-installed-app.js-newest-app= busy_indicator
-      .span2
-        %h4.app-name.js-app-name
-          -# add mini logo for app
-          -# paste app_name
-      .span2
-        .btn.disabled.js-assessment-summary
-          %i.icon-question-sign
-          Status Unknown
-  -# set id to "#{dom_id_for_dir(dir)}-details" on .js-collapse
-  .row-fluid
-    .collapse.js-collapse
-      .span3
-        .logo.js-logo
-          -# add logo for app
-      .versions.span3
-        .js-installed-app
-          Installed Version:
-          %strong.js-installed-version
-          = busy_indicator
-          %button.btn.btn-mini.js-check-installed-version-button
-            %span.glyphicon.glyphicon-repeat
-            Check
-        .js-newest-app
-          Newest Version:
-          %strong.js-newest-version
-          = busy_indicator
-          %button.btn.btn-mini.js-check-newest-version-button
-            %span.glyphicon.glyphicon-repeat
-            Check
-      .links.offset2.span3
-        .js-project-website-link
-          -# paste link_to_project_website
-        .js-project-download-link
-          -# paste link_to_project_download
+          %img{src: "img/folder.png"}
+          {{dir}}
+
+
+%script#tpl-app{type: "text/x-handlebars-template"}
+  %section.app.js-app
+    .row
+      .collapser.col-xs-12.js-collapser{ data: {toggle: 'collapse', target: '#{{dir_id}}-details'} }
+        .row
+          .col-xs-8
+            %h4
+              {{dir}}
+              %button.btn.btn-mini.js-check-app-button
+                %span.glyphicon.glyphicon-repeat
+                Check
+              %span.js-installed-app.js-newest-app= busy_indicator
+          .col-xs-2
+            %h4.app-name
+              %img{src: "img/logos/{{basic_name}}-mini.png", alt:"{{basic_name}}"}
+              {{app_name}}
+          .col-xs-2
+            .btn.disabled.js-assessment-summary
+              %i.icon-question-sign
+              Status Unknown
+    -# set id to "#{dom_id_for_dir(dir)}-details" on .js-collapse
+    .row
+      .collapse.js-collapse{ id: '{{dir_id}}-details' }
+        .col-xs-3
+          .logo
+            %img{src: "img/logos/{{basic_name}}.png", alt:"{{basic_name}}"}
+        .versions.col-xs-3
+          .js-installed-app
+            Installed Version:
+            %strong.js-installed-version
+            = busy_indicator
+            %button.btn.btn-mini.js-check-installed-version-button
+              %span.glyphicon.glyphicon-repeat
+              Check
+          .js-newest-app
+            Newest Version:
+            %strong.js-newest-version
+            = busy_indicator
+            %button.btn.btn-mini.js-check-newest-version-button
+              %span.glyphicon.glyphicon-repeat
+              Check
+        .links.col-xs-offset-2.col-xs-3
+          .js-project-website-link
+            {{website_link}}
+          .js-project-download-link
+            {{download_link}}
