@@ -33,10 +33,6 @@ var Render = {
           website_link: new Handlebars.SafeString(Render.appProjectWebsiteLink(app.project_url)),
         };
         var new_app = template(context);
-
-        for (prop in app) { // have all data available for later use
-          $(new_app).attr('data-'+prop, app[prop]);
-        }
       }
 
       $(list).append(new_app);

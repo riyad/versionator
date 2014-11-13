@@ -15,7 +15,7 @@ function checkAllInstalledVersions() {
 }
 
 function checkInstalledVersionForApplication(app) {
-  var dirId = $(app).data("dir_id");
+  var dirId = $(app).data("dir-id");
   var installedVersionUrl = "/installations/"+dirId+"/installed_version.json";
 
   $(app).find(".js-installed-app .js-busy").show(); // show busy
@@ -51,11 +51,11 @@ function checkAllNewestVersions() {
   var currentDelay = 0;
 
   var basicNames = $.unique($(".js-app").map(function() {
-      return $(this).data("basic_name");
+      return $(this).data("basic-name");
   }));
   $(basicNames).each(function() {
     var basicName = this;
-    if (!isEmpty($("[data-basic_name='"+basicName+"']").toArray())) {
+    if (!isEmpty($("[data-basic-name='"+basicName+"']").toArray())) {
       setTimeout(function() {
         checkNewestVersionForApplicationByName(basicName);
       }, currentDelay);
@@ -65,7 +65,7 @@ function checkAllNewestVersions() {
 }
 
 function checkNewestVersionForApplicationByName(basicName) {
-  var apps = $("[data-basic_name='"+basicName+"']");
+  var apps = $("[data-basic-name='"+basicName+"']");
   var newestVersionUrl = "/applications/"+basicName+"/newest_version.json";
 
   $(apps).find(".js-newest-app .js-busy").show(); // show busy
@@ -173,13 +173,13 @@ $(function() {
   $("body").on("click", ".js-check-app-button", function(e) {
     e.stopPropagation(); // to prevent .collapser to trigger
     checkInstalledVersionForApplication($(this).parents(".js-app"));
-    checkNewestVersionForApplicationByName($(this).parents(".js-app").data('basic_name'));
+    checkNewestVersionForApplicationByName($(this).parents(".js-app").data('basic-name'));
   });
   $("body").on("click", ".js-check-installed-version-button", function() {
     checkInstalledVersionForApplication($(this).parents(".js-app"));
   });
   $("body").on("click", ".js-check-newest-version-button", function() {
-    checkNewestVersionForApplicationByName($(this).parents(".js-app").data('basic_name'));
+    checkNewestVersionForApplicationByName($(this).parents(".js-app").data('basic-name'));
   });
 
   loadInstallations();

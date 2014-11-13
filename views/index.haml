@@ -34,7 +34,7 @@
 
 
 %script#tpl-app{type: "text/x-handlebars-template"}
-  %section.app.js-app
+  %section.app.js-app{ data: {basic_name: '{{basic_name}}', dir_id: '{{dir_id}}'} }
     .row
       .collapser.col-xs-12.js-collapser{ data: {toggle: 'collapse', target: '#{{dir_id}}-details'} }
         .row
