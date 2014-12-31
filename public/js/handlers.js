@@ -5,7 +5,7 @@ function checkAllInstalledVersions() {
   var delayBetweenRequests = 250; // in ms
   var currentDelay = 0;
 
-  $(".js-app").not(".js-new-app").each(function() {
+  $(".js-app").each(function() {
     var app = $(this);
     setTimeout(function() {
       checkInstalledVersionForApplication(app);
@@ -18,7 +18,7 @@ function checkInstalledVersionForApplication(app) {
   var dirId = $(app).data("dir-id");
   var installedVersionUrl = "/installations/"+dirId+"/installed_version.json";
 
-  $(app).find(".js-installed-app .js-busy").show(); // show busy
+  $(app).find(".js-installed-app .js-busy").removeClass("hidden"); // show busy
   $(app).find(".js-installed-version").html(""); // erase version + link
   $.getJSON(installedVersionUrl).success(function(data) {
     updateInstalledVersionFor(app, data.installed_version);
@@ -36,7 +36,7 @@ function checkInstalledVersionForApplication(app) {
 
 function updateInstalledVersionFor(dir, html) {
   var ia = $(dir).find(".js-installed-app");
-  $(ia).find(".js-busy").hide();
+  $(ia).find(".js-busy").addClass("hidden");
   $(ia).find(".js-installed-version").html(html); // set installed version text
   // update button
   $(ia).find(".js-check-installed-version-button").html(Render.recheckButtonFace());
@@ -68,7 +68,7 @@ function checkNewestVersionForApplicationByName(basicName) {
   var apps = $("[data-basic-name='"+basicName+"']");
   var newestVersionUrl = "/applications/"+basicName+"/newest_version.json";
 
-  $(apps).find(".js-newest-app .js-busy").show(); // show busy
+  $(apps).find(".js-newest-app .js-busy").removeClass("hidden"); // show busy
   $(apps).find(".js-newest-version").html(""); // erase version + link
   $.getJSON(newestVersionUrl).success(function(data) {
     updateNewestVersionFor(apps, data.newest_version);
@@ -85,7 +85,7 @@ function checkNewestVersionForApplicationByName(basicName) {
 
 function updateNewestVersionFor(inst, html) {
   var na = $(inst).find(".js-newest-app");
-  $(na).find(".js-busy").hide();
+  $(na).find(".js-busy").addClass("hidden");
   $(na).find(".js-newest-version").html(html); // set newest version text
   // update button
   $(na).find(".js-check-newest-version-button").html(Render.recheckButtonFace());
@@ -101,10 +101,10 @@ function checkAllVersions() {
 }
 
 function loadInstallations() {
-  $(".js-refresh-installations-button .js-busy").show();
+  $(".js-refresh-installations-button .js-busy").removeClass("hidden");
   $(".js-check-all-versions-button").fadeOut();
   $(".js-load-errors").slideUp();
-  $(".js-dir-errors").slideUp();
+  $(".js-missing-dirs").slideUp();
   $(".js-app-dirs").slideUp();
 
   $.getJSON("/installations.json").success(function(data) {
@@ -114,11 +114,10 @@ function loadInstallations() {
     }
     Render.appDirs(data.app_dirs).slideDown();
 
-    // show content
-    $(".js-refresh-installations-button .js-busy").hide();
-    $(".js-check-all-versions-button").fadeIn();
+    $(".js-refresh-installations-button .js-busy").addClass("hidden");
+    $(".js-check-all-versions-button").removeClass("hidden").fadeIn();
   }).error(function(xhr, error, exception) {
-    $(".js-busy").hide();
+    $(".js-busy").addClass("hidden");
     $(".js-load-errors").html(Render.loadErrors(error, exception)).slideDown();
   });
 }
