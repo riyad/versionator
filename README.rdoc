@@ -12,7 +12,6 @@ This is a web application that alows you to check a list of directories which we
 * {Etherpad Lite}[http://etherpad.org/]
 * {GitLab}[http://gitlabhq.com]
 * {MediaWiki}[http://www.mediawiki.org]
-* {Open Atrium}[http://openatrium.com/]
 * {ownCloud}[http://owncloud.org/]
 * {phpBB}[http://www.phpbb.com]
 * {phpMyAdmin}[http://www.phpmyadmin.net]
