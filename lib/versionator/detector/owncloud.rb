@@ -16,11 +16,6 @@ module Versionator
       set :newest_version_url, 'https://owncloud.org/install/'
       set :newest_version_selector, '.install .main p'
       set :newest_version_regexp, /^Latest stable version: ([\d\.]+)/
-
-      # Overridden to make sure that we do only detect the 5+ series
-      def contents_detected?
-        installed_version.major >= 7 if super
-      end
     end
   end
 end
