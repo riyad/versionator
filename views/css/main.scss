@@ -10,6 +10,15 @@ body {
   border: #eee solid 1px;
 }
 
+.busy .glyphicon {
+  animation: spin .8s infinite linear;
+}
+
+@keyframes spin {
+  from { transform: rotate( 0deg ); }
+  to { transform: rotate( 360deg ); }
+}
+
 .collapser {
   background-image: url('/img/container-expand.png');
   background-position: 0px 2px;
