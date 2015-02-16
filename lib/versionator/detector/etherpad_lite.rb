@@ -6,7 +6,7 @@ module Versionator
       set :project_url, "http://etherpad.org/"
       set :project_download_url, "http://etherpad.org/#download"
 
-      set :detect_dirs, %w{bin doc src tools var}
+      set :detect_dirs, %w{bin doc src var}
       set :detect_files, %w{CHANGELOG.md README.md settings.json.template}
 
       set :installed_version_file, "CHANGELOG.md"
