@@ -9,7 +9,7 @@
               %button.btn.btn-sm.js-check-app-button
                 %span.glyphicon.glyphicon-repeat
                 Check
-              %span.js-installed-app.js-newest-app= busy_indicator
+              %span.js-installed-app.js-newest-app
           .col-xs-2
             %h4.app-name
               %img{src: "img/logos/{{basic_name}}-mini.png", alt:"{{basic_name}}"}
@@ -28,14 +28,12 @@
           .js-installed-app
             Installed Version:
             %strong.js-installed-version
-            = busy_indicator
             %button.btn.btn-sm.js-check-installed-version-button
               %span.glyphicon.glyphicon-repeat
               Check
           .js-newest-app
             Newest Version:
             %strong.js-newest-version
-            = busy_indicator
             %button.btn.btn-sm.js-check-newest-version-button
               %span.glyphicon.glyphicon-repeat
               Check
