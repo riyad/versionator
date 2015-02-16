@@ -2,15 +2,9 @@
 // installed version
 
 function checkAllInstalledVersions() {
-  var delayBetweenRequests = 250; // in ms
-  var currentDelay = 0;
-
   $(".js-app").each(function() {
     var app = $(this);
-    setTimeout(function() {
-      checkInstalledVersionForApplication(app);
-    }, currentDelay);
-    currentDelay += delayBetweenRequests;
+    checkInstalledVersionForApplication(app);
   });
 }
 
@@ -47,19 +41,13 @@ function updateInstalledVersionFor(dir, html) {
 // newest version
 
 function checkAllNewestVersions() {
-  var delayBetweenRequests = 250; // in ms
-  var currentDelay = 0;
-
   var basicNames = $.unique($(".js-app").map(function() {
       return $(this).data("basic-name");
   }));
   $(basicNames).each(function() {
     var basicName = this;
     if (!isEmpty($("[data-basic-name='"+basicName+"']").toArray())) {
-      setTimeout(function() {
         checkNewestVersionForApplicationByName(basicName);
-      }, currentDelay);
-      currentDelay += delayBetweenRequests;
     }
   });
 }
