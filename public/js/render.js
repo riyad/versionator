@@ -4,7 +4,7 @@ var Render = {
   },
 
   appDirs: function (app_dirs) {
-    var list = $(".js-app-dirs");
+    var list = $(".js-app-instances");
 
     // reset list
     $(list).html("");
@@ -13,7 +13,7 @@ var Render = {
     $(app_dirs).each(function() {
       var app = this;
       if (app.unrecognized) {
-        var source = $("#tpl-unrecognized-app").html();
+        var source = $("#tpl-unknown-app").html();
         var template = Handlebars.compile(source);
         var context = {
           dir: app.dir,

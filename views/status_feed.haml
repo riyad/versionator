@@ -1,0 +1,9 @@
+!!! XML
+%feed{ :xmlns => 'http://www.w3.org/2005/Atom' }
+  %title
+  %link{ :href => "#{path_to('/installations/status.atom', true)}", :rel => "self" }
+  %link{ :href => "#{path_to('/', true)}" }
+  %updated= Time.now.xmlschema
+
+-# https://github.com/gma/nesta/blob/master/views/atom.haml
+-# https://github.com/gma/nesta/blob/master/lib/nesta/helpers.rb

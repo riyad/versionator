@@ -1,0 +1,46 @@
+%script#tpl-app{type: "text/x-handlebars-template"}
+  %section.app.js-app{ data: {basic_name: '{{basic_name}}', dir_id: '{{dir_id}}'} }
+    .row
+      .collapser.col-xs-12.js-collapser{ data: {toggle: 'collapse', target: '#{{dir_id}}-details'} }
+        .row
+          .col-xs-8
+            %h4
+              {{dir}}
+              %button.btn.btn-sm.js-check-app-button
+                %span.glyphicon.glyphicon-repeat
+                Check
+              %span.js-installed-app.js-newest-app= busy_indicator
+          .col-xs-2
+            %h4.app-name
+              %img{src: "img/logos/{{basic_name}}-mini.png", alt:"{{basic_name}}"}
+              {{app_name}}
+          .col-xs-2
+            .btn.disabled.js-assessment-summary
+              %span.glyphicon.glyphicon-question-sign
+              Status Unknown
+    -# set id to "#{dom_id_for_dir(dir)}-details" on .js-collapse
+    .row
+      .collapse.js-collapse{ id: '{{dir_id}}-details' }
+        .col-xs-3
+          .logo
+            %img{src: "img/logos/{{basic_name}}.png", alt:"{{basic_name}}"}
+        .versions.col-xs-3
+          .js-installed-app
+            Installed Version:
+            %strong.js-installed-version
+            = busy_indicator
+            %button.btn.btn-sm.js-check-installed-version-button
+              %span.glyphicon.glyphicon-repeat
+              Check
+          .js-newest-app
+            Newest Version:
+            %strong.js-newest-version
+            = busy_indicator
+            %button.btn.btn-sm.js-check-newest-version-button
+              %span.glyphicon.glyphicon-repeat
+              Check
+        .links.col-xs-offset-2.col-xs-3
+          .js-project-website-link
+            {{website_link}}
+          .js-project-download-link
+            {{download_link}}

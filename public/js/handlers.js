@@ -93,7 +93,7 @@ function loadInstallations() {
   $(".js-check-all-versions-button").fadeOut();
   $(".js-load-errors").slideUp();
   $(".js-missing-dirs").slideUp();
-  $(".js-app-dirs").slideUp();
+  $(".js-app-instances").slideUp();
 
   $.getJSON("/installations.json").success(function(data) {
     // update content

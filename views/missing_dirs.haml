@@ -1,0 +1,12 @@
+%script#tpl-missing-dirs{type: "text/x-handlebars-template"}
+  .alert.alert-danger
+    .collapser.js-collapser.in{ data: {toggle: "collapse", target: "#error-dirs-details"} }
+      %h4 Directories not found
+    #error-dirs-details.in.collapse
+      %p The following directories could not be found:
+      %ul.list-unstyled
+        {{#each dirs}}
+        %li
+          %img{src: "{{../folder_image}}"}
+          {{this}}
+        {{/each}}

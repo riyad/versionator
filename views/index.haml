@@ -1,19 +1,6 @@
 %section.errors.row.js-load-errors
 %section.errors.row.js-missing-dirs
 
-%script#tpl-missing-dirs{type: "text/x-handlebars-template"}
-  .alert.alert-danger
-    .collapser.js-collapser.in{ data: {toggle: "collapse", target: "#error-dirs-details"} }
-      %h4 Directories not found
-    #error-dirs-details.in.collapse
-      %p The following directories could not be found:
-      %ul.list-unstyled
-        {{#each dirs}}
-        %li
-          %img{src: "{{../folder_image}}"}
-          {{this}}
-        {{/each}}
-
 .row
   %p
     %button.btn.hidden.js-check-all-versions-button
@@ -21,61 +8,8 @@
       %span.glyphicon.glyphicon-retweet
       Check all versions
 
-.js-app-dirs
+.js-app-instances
 
-
-%script#tpl-unrecognized-app{type: "text/x-handlebars-template"}
-  %section.app
-    .row
-      .col-xs-12
-        %h4
-          %img{src: "img/folder.png"}
-          {{dir}}
-
-
-%script#tpl-app{type: "text/x-handlebars-template"}
-  %section.app.js-app{ data: {basic_name: '{{basic_name}}', dir_id: '{{dir_id}}'} }
-    .row
-      .collapser.col-xs-12.js-collapser{ data: {toggle: 'collapse', target: '#{{dir_id}}-details'} }
-        .row
-          .col-xs-8
-            %h4
-              {{dir}}
-              %button.btn.btn-sm.js-check-app-button
-                %span.glyphicon.glyphicon-repeat
-                Check
-              %span.js-installed-app.js-newest-app= busy_indicator
-          .col-xs-2
-            %h4.app-name
-              %img{src: "img/logos/{{basic_name}}-mini.png", alt:"{{basic_name}}"}
-              {{app_name}}
-          .col-xs-2
-            .btn.disabled.js-assessment-summary
-              %span.glyphicon.glyphicon-question-sign
-              Status Unknown
-    -# set id to "#{dom_id_for_dir(dir)}-details" on .js-collapse
-    .row
-      .collapse.js-collapse{ id: '{{dir_id}}-details' }
-        .col-xs-3
-          .logo
-            %img{src: "img/logos/{{basic_name}}.png", alt:"{{basic_name}}"}
-        .versions.col-xs-3
-          .js-installed-app
-            Installed Version:
-            %strong.js-installed-version
-            = busy_indicator
-            %button.btn.btn-sm.js-check-installed-version-button
-              %span.glyphicon.glyphicon-repeat
-              Check
-          .js-newest-app
-            Newest Version:
-            %strong.js-newest-version
-            = busy_indicator
-            %button.btn.btn-sm.js-check-newest-version-button
-              %span.glyphicon.glyphicon-repeat
-              Check
-        .links.col-xs-offset-2.col-xs-3
-          .js-project-website-link
-            {{website_link}}
-          .js-project-download-link
-            {{download_link}}
+= haml :app
+= haml :missing_dirs
+= haml :unknown_app
