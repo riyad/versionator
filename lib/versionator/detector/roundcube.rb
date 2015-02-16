@@ -15,7 +15,7 @@ module Versionator
 
       set :newest_version_url, 'http://roundcube.net/download/'
       set :newest_version_selector, '#main .dltable .dlversion'
-      set :newest_version_regexp, /^Complete: (.+)$/
+      set :newest_version_regexp, /^(.+) - Complete$/
     end
   end
 end
