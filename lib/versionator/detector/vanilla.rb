@@ -14,7 +14,7 @@ module Versionator
 
       set :newest_version_url, 'http://vanillaforums.org/get/vanilla-core'
       set :newest_version_selector, '#Body h1'
-      set :newest_version_regexp, /^Downloading: Vanilla version ([\d.]+)$/
+      set :newest_version_regexp, /^Downloading: Vanilla version ([\d.p]+)$/
     end
   end
 end
