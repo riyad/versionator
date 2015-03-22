@@ -8,7 +8,7 @@ module Versionator
       set :project_download_url, "http://collabtive.o-dyn.de/downloadref.php"
 
       set :detect_dirs, %w{config files include templates}
-      set :detect_files, %w{admin.php changelog.txt index.php init.php install.php license.txt manageajax.php myprojects.php mytasks.php}
+      set :detect_files, %w{admin.php changelog.txt index.php init.php install.php license.txt manageajax.php}
 
       set :installed_version_file, "changelog.txt"
       set :installed_version_regexp, /^.?Collabtive (.+)$/
