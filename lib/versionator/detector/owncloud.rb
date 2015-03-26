@@ -14,8 +14,8 @@ module Versionator
       set :installed_version_regexp, /\$OC_VersionString = '(.+)'/
 
       set :newest_version_url, 'https://owncloud.org/install/'
-      set :newest_version_selector, '.install .main p'
-      set :newest_version_regexp, /^Latest stable version: ([\d\.]+)/
+      set :newest_version_selector, '#instructions-server p'
+      set :newest_version_regexp, /^Latest stable version:\s+([\d\.]+)/
     end
   end
 end
