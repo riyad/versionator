@@ -14,8 +14,8 @@ module Versionator
       set :installed_version_regexp, /^\s*const VERSION = '(.+)';$/
 
       set :newest_version_url, 'http://piwik.org/download/'
-      set :newest_version_selector, '#startDownloadButton'
-      set :newest_version_regexp, /Download Piwik ([\d\.]+)/
+      set :newest_version_selector, '.pw-download .btn-download'
+      set :newest_version_regexp, /download piwik ([\d\.]+)/
     end
   end
 end
