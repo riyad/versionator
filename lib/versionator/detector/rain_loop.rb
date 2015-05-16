@@ -13,8 +13,8 @@ module Versionator
       set :installed_version_regexp, /([\d\.]+)/
 
       set :newest_version_url, 'http://rainloop.net/downloads/'
-      set :newest_version_selector, '.container a.button'
-      set :newest_version_regexp, /Download - v([\d\.]+)/
+      set :newest_version_selector, '.main-center a.button'
+      set :newest_version_regexp, /Community edition\s+v([\d\.]+)/
     end
   end
 end
